@@ -7,65 +7,66 @@ import Skills from '../views/Skills'
 import Gallery from '../views/Gallery'
 import Photography from '../views/Photography'
 import NotFound from '../views/NotFound'
+import App from '../App'
 
-export interface RouteConfig extends RouteObject {
-  label: string
+// 导航项配置（用于 NavBar）
+export interface NavItem {
   path: string
+  label: string
 }
 
-export const routes: RouteConfig[] = [
-  {
-    path: '/',
-    element: <Home />,
-    label: 'Home',
-  },
-  {
-    path: '/about',
-    element: <About />,
-    label: 'About',
-  },
-  {
-    path: '/resume',
-    element: <Resume />,
-    label: 'Resume',
-  },
-  {
-    path: '/experience',
-    element: <Experience />,
-    label: 'Experience',
-  },
-  {
-    path: '/skills',
-    element: <Skills />,
-    label: 'Skills',
-  },
-  {
-    path: '/gallery',
-    element: <Gallery />,
-    label: 'Gallery',
-  },
-  {
-    path: '/photography',
-    element: <Photography />,
-    label: 'Photography',
-  },
-  {
-    path: '*',
-    element: <NotFound />,
-    label: 'Not Found',
-  },
+export const navItems: NavItem[] = [
+  { path: '/about', label: 'About' },
+  { path: '/resume', label: 'Resume' },
+  { path: '/experience', label: 'Experience' },
+  { path: '/skills', label: 'Skills' },
+  { path: '/gallery', label: 'Gallery' },
+  { path: '/photography', label: 'Photography' },
 ]
 
-// 导出导航项配置（用于 NavBar）
-export const navItems = routes
-  .filter((route) => route.path !== '*' && route.path !== '/')
-  .map((route) => ({
-    path: route.path,
-    label: route.label,
-  }))
-
-// 添加 Home 到导航项（如果需要）
-export const allNavItems = [
+export const allNavItems: NavItem[] = [
   { path: '/', label: 'Home' },
   ...navItems,
+]
+
+// React Router 路由配置
+export const routes: RouteObject[] = [
+  {
+    path: '/',
+    element: <App />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: 'about',
+        element: <About />,
+      },
+      {
+        path: 'resume',
+        element: <Resume />,
+      },
+      {
+        path: 'experience',
+        element: <Experience />,
+      },
+      {
+        path: 'skills',
+        element: <Skills />,
+      },
+      {
+        path: 'gallery',
+        element: <Gallery />,
+      },
+      {
+        path: 'photography',
+        element: <Photography />,
+      },
+      {
+        path: '*',
+        element: <NotFound />,
+      },
+    ],
+  },
 ]
