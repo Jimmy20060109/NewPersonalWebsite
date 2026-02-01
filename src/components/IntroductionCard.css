@@ -1,0 +1,152 @@
+.introduction-card {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  margin: 0;
+  background: linear-gradient(135deg, #ffe5f0 0%, #ffd6e8 100%);
+  border-radius: 24px;
+  padding: var(--spacing-md);
+  text-decoration: none;
+  color: var(--color-text);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  height: 100%;
+}
+
+.introduction-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.introduction-content {
+  max-width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.introduction-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.introduction-top-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.introduction-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: left;
+  flex-shrink: 0;
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.introduction-greeting {
+  font-size: var(--font-size-xl);
+  font-weight: 500;
+  margin: 0;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.introduction-social-icons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex: 1;
+  margin-left: auto;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  opacity: 0.7;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.social-icon:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.social-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.introduction-greeting strong {
+  font-weight: 600;
+}
+
+.introduction-description {
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.introduction-description .highlight {
+  background: linear-gradient(120deg, #91C6BC 0%, #4B9DA9 100%);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+  color: #fff;
+  display: inline-block;
+}
+
+.inline-logo {
+  display: inline-block;
+  vertical-align: middle;
+  height: 1.8em;
+  width: auto;
+  margin: 0 6px;
+}
+
+@media (max-width: 768px) {
+  .introduction-card {
+    padding: var(--spacing-md);
+    margin: 0;
+    border-radius: 20px;
+  }
+
+  .introduction-header {
+    align-items: center;
+    text-align: center;
+  }
+
+  .introduction-top-row {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  .introduction-social-icons {
+    justify-content: center;
+  }
+
+  .introduction-avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .introduction-greeting {
+    font-size: var(--font-size-lg);
+  }
+
+  .introduction-description {
+    font-size: var(--font-size-sm);
+  }
+}

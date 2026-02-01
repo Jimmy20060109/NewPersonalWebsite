@@ -1,0 +1,125 @@
+.experience {
+  padding: var(--spacing-xl) var(--spacing-md);
+  background-color: var(--color-gray);
+}
+
+.experience-list {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.experience-item {
+  background-color: var(--color-white);
+  padding: var(--spacing-lg);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+}
+
+.experience-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.experience-header {
+  margin-bottom: var(--spacing-md);
+}
+
+.experience-title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-xs);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.experience-evaluation {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.experience-meta {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-xs);
+}
+
+.experience-company,
+.experience-location,
+.experience-period {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+}
+
+.experience-company {
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.experience-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-gray-dark);
+}
+
+.tech-tag {
+  font-size: var(--font-size-xs);
+  padding: 4px 12px;
+  background-color: var(--color-gray);
+  color: var(--color-text);
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.experience-achievements {
+  list-style: none;
+  padding-left: 0;
+}
+
+.achievement-item {
+  font-size: var(--font-size-base);
+  line-height: 1.8;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-sm);
+  padding-left: var(--spacing-md);
+  position: relative;
+}
+
+.achievement-item::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-text-light);
+  font-weight: bold;
+}
+
+.achievement-item:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .experience-item {
+    padding: var(--spacing-md);
+  }
+
+  .experience-title {
+    font-size: var(--font-size-lg);
+  }
+
+  .experience-meta {
+    flex-direction: column;
+    gap: 4px;
+  }
+}

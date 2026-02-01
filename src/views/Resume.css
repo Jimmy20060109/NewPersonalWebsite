@@ -1,0 +1,170 @@
+.resume-view {
+  min-height: calc(100vh - 160px);
+  padding: var(--spacing-xl) 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resume-container {
+  max-width: 800px;
+  width: 100%;
+  padding: var(--spacing-xl);
+  text-align: center;
+}
+
+.resume-actions {
+  margin-bottom: var(--spacing-xl);
+}
+
+.resume-download-button {
+  padding: var(--spacing-md) var(--spacing-xl);
+  background-color: var(--color-text);
+  color: var(--color-white);
+  border: none;
+  border-radius: 12px;
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.resume-download-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.resume-download-button:active {
+  transform: translateY(0);
+}
+
+.resume-content-section {
+  margin-top: var(--spacing-xl);
+  text-align: left;
+}
+
+.resume-note {
+  font-size: var(--font-size-base);
+  color: var(--color-text-light);
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Educational Background Section */
+.educational-background {
+  margin-bottom: var(--spacing-xl);
+}
+
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #d2d2d7, transparent);
+  margin-bottom: var(--spacing-md);
+}
+
+.section-title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: #4169E1;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-lg);
+}
+
+.education-entry {
+  margin-bottom: var(--spacing-lg);
+}
+
+.education-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--spacing-sm);
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.education-info {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+}
+
+.university-name {
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  color: var(--color-text);
+}
+
+.location {
+  font-size: var(--font-size-base);
+  color: var(--color-text-light);
+}
+
+.education-dates {
+  font-size: var(--font-size-base);
+  color: var(--color-text-light);
+  white-space: nowrap;
+}
+
+.education-details {
+  list-style: none;
+  padding-left: 0;
+  margin: var(--spacing-sm) 0;
+}
+
+.education-details li {
+  position: relative;
+  padding-left: var(--spacing-md);
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.education-details li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.education-details li strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .resume-container {
+    padding: var(--spacing-lg);
+  }
+
+  .resume-page-title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .resume-page-subtitle {
+    font-size: var(--font-size-xl);
+  }
+
+  .resume-download-button {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: var(--font-size-base);
+  }
+
+  .education-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .education-dates {
+    margin-top: var(--spacing-xs);
+  }
+
+  .section-title {
+    font-size: var(--font-size-lg);
+  }
+}

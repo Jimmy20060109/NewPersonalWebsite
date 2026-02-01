@@ -1,0 +1,4 @@
+.about-view {
+  min-height: calc(100vh - 160px);
+  padding: var(--spacing-xl) 0;
+}

@@ -1,0 +1,127 @@
+.resume-card {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #4a5568 0%, #718096 100%);
+  border-radius: 24px;
+  padding: var(--spacing-md);
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  text-decoration: none;
+  color: var(--color-white);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+  height: auto;
+}
+
+.resume-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.resume-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  flex: 1;
+}
+
+.resume-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.resume-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  margin: 0;
+  color: var(--color-white);
+  letter-spacing: -0.02em;
+}
+
+.resume-name {
+  font-size: var(--font-size-lg);
+  font-weight: 400;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.resume-button {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background-color: var(--color-white);
+  color: var(--color-text);
+  border: none;
+  border-radius: 12px;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: flex-start;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.resume-button:hover {
+  background-color: #f7fafc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.resume-button:active {
+  transform: translateY(0);
+}
+
+.resume-decoration {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 40%;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.plant-silhouette {
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300'%3E%3Cpath d='M100 50 Q80 80 90 120 Q100 160 110 200 Q120 240 100 280 L100 300 M100 50 Q120 80 110 120 Q100 160 90 200 Q80 240 100 280' fill='%23000000' opacity='0.4'/%3E%3Cpath d='M100 100 Q70 130 85 170 Q100 210 115 250 Q130 290 100 300 M100 100 Q130 130 115 170 Q100 210 85 250 Q70 290 100 300' fill='%23000000' opacity='0.3'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: contain;
+}
+
+@media (max-width: 768px) {
+  .resume-card {
+    width: 100%;
+    max-width: 100%;
+    padding: var(--spacing-md);
+    margin: 0;
+    border-radius: 20px;
+  }
+
+  .resume-title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .resume-name {
+    font-size: var(--font-size-base);
+  }
+
+  .resume-decoration {
+    width: 30%;
+    opacity: 0.2;
+  }
+
+  .resume-button {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+}
