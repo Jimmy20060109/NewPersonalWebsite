@@ -13,7 +13,7 @@
   .home-container {
     grid-template-columns: 3fr 1fr;
     padding: var(--spacing-xl) var(--spacing-xl);
-    gap: var(--spacing-md);
+    gap: var(--spacing-lg);
     margin: 0 var(--spacing-xl);
     align-items: stretch;
   }

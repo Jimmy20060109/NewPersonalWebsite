@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import avatarImage from '../images/avatar.jpg?url'
+import cursorLogo from '../images/cursorLogo.png?url'
+import claudeLogo from '../images/claude-ai-icon.webp?url'
 import waterlooLogo from '../images/waterlooLoGo.svg?url'
 import './IntroductionCard.css'
 
@@ -73,7 +75,9 @@ const IntroductionCard = () => {
           <span className="highlight">modern technologies</span> and have
           experience working on{' '}
           <span className="highlight">compiler development</span>,{' '}
-          <span className="highlight">AI-powered tools</span>, and{' '}
+          <span className="highlight">AI-powered tools</span>(cursor{' '}
+          <img src={cursorLogo} alt="Cursor" className="inline-logo" />, Claude Code
+          <img src={claudeLogo} alt="Claude Code" className="inline-logo" />), and{' '}
           <span className="highlight">full-stack web applications</span>.
         </p>
       </div>

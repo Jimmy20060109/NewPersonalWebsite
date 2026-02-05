@@ -3,7 +3,7 @@
   flex-direction: column;
   width: auto;
   margin: 0;
-  background: linear-gradient(135deg, #ffe5f0 0%, #ffd6e8 100%);
+  background: #111827;
   border-radius: 24px;
   padding: var(--spacing-md);
   text-decoration: none;
@@ -12,6 +12,7 @@
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   height: 100%;
+  min-height: 320px;
 }
 
 .introduction-card:hover {
@@ -40,13 +41,13 @@
 }
 
 .introduction-avatar {
-  width: 60px;
-  height: 60px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   object-fit: cover;
   object-position: left;
   flex-shrink: 0;
-  border: 3px solid rgba(255, 255, 255, 0.8);
+  border: 3px solid #91C6BC;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -99,7 +100,7 @@
 }
 
 .introduction-description .highlight {
-  background: linear-gradient(120deg, #91C6BC 0%, #4B9DA9 100%);
+  background: linear-gradient(120deg, #6366F1 0%, #818CF8 100%);
   padding: 2px 6px;
   border-radius: 4px;
   font-weight: 500;
@@ -120,6 +121,7 @@
     padding: var(--spacing-md);
     margin: 0;
     border-radius: 20px;
+    min-height: 280px;
   }
 
   .introduction-header {
@@ -138,8 +140,8 @@
   }
 
   .introduction-avatar {
-    width: 60px;
-    height: 60px;
+    width: 72px;
+    height: 72px;
   }
 
   .introduction-greeting {
