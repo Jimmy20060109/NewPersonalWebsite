@@ -3,7 +3,7 @@
   flex-direction: column;
   width: auto;
   margin: 0;
-  background: #111827;
+  background: var(--color-card);
   border-radius: 24px;
   padding: var(--spacing-md);
   text-decoration: none;
@@ -13,11 +13,45 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   height: 100%;
   min-height: 320px;
+  position: relative;
 }
 
 .introduction-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.introduction-card::before,
+.introduction-card::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  width: 28px;
+  height: 28px;
+  opacity: 0.45;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.introduction-card::before {
+  top: 12px;
+  left: 12px;
+  border-top: 2px solid var(--color-underline-subtle);
+  border-left: 2px solid var(--color-underline-subtle);
+  border-radius: 8px 0 0 0;
+}
+
+.introduction-card::after {
+  bottom: 12px;
+  right: 12px;
+  border-bottom: 2px solid var(--color-underline-subtle);
+  border-right: 2px solid var(--color-underline-subtle);
+  border-radius: 0 0 8px 0;
+}
+
+.introduction-card:hover::before,
+.introduction-card:hover::after {
+  opacity: 0.75;
+  transform: scale(1.03);
 }
 
 .introduction-content {
@@ -72,7 +106,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-text);
+  color: var(--color-text-light);
   opacity: 0.7;
   transition: all 0.2s ease;
   text-decoration: none;
@@ -95,16 +129,15 @@
 .introduction-description {
   font-size: var(--font-size-base);
   line-height: 1.6;
-  color: var(--color-text);
+  color: var(--color-text-light);
   margin: 0;
 }
 
 .introduction-description .highlight {
-  background: linear-gradient(120deg, #6366F1 0%, #818CF8 100%);
-  padding: 2px 6px;
-  border-radius: 4px;
+  color: var(--color-highlight);
   font-weight: 500;
-  color: #fff;
+  background: none;
+  padding: 0;
   display: inline-block;
 }
 

@@ -32,7 +32,14 @@ const About = () => {
         </p>
         <p className="about-text">
           I also have experience in <span className="about-highlight">compiler and systems-level development</span>.
-          During my co-op at Emerson / NI, I worked on a <strong>LabVIEW-to-native-code compiler</strong> using
+          During my co-op at <a
+            href="https://www.ni.com/en.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="about-link"
+          >
+            Emerson / NI
+          </a>, I worked on a <strong>LabVIEW-to-native-code compiler</strong> using
           C++, Python, and AST-based compilation pipelines, strengthening my understanding of low-level
           execution models and how high-level abstractions translate into efficient machine code.
         </p>
@@ -43,25 +50,6 @@ const About = () => {
           intersection of frontend engineering, AI-powered tooling, and developer productivity, and I'm
           currently seeking opportunities to work on <strong>impactful, technically challenging projects</strong>.
         </p>
-        <div className="education-section">
-          <h3 className="education-title">Education</h3>
-          <div className="education-item">
-            <div className="education-header">
-              <span className="education-school">
-                University of Waterloo, 2B
-              </span>
-              <span className="education-location">Waterloo, Ontario</span>
-              <span className="education-period">Sep 2024 - April 2029</span>
-            </div>
-            <div className="education-details">
-              <p className="education-degree">Data Science</p>
-              <p className="education-courses">
-                Relevant Coursework: Object-Oriented Programming, Calculus,
-                Algorithm Design & Data Structure, Linear Algebra
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   )
