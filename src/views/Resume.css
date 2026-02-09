@@ -1,6 +1,6 @@
 .resume-view {
   min-height: calc(100vh - 160px);
-  padding: var(--spacing-xl) 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,7 +9,6 @@
 .resume-container {
   max-width: 800px;
   width: 100%;
-  padding: var(--spacing-xl);
   text-align: center;
 }
 
@@ -74,6 +73,10 @@
 
 .education-entry {
   margin-bottom: var(--spacing-lg);
+  border: 1px solid #d2d2d7;
+  border-radius: 8px;
+  padding: var(--spacing-md);
+  background-color: rgba(65, 105, 225, 0.05);
 }
 
 .education-header {
@@ -87,7 +90,7 @@
 
 .education-info {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: var(--spacing-xs);
   flex-wrap: wrap;
 }
@@ -96,6 +99,19 @@
   font-weight: 700;
   font-size: var(--font-size-lg);
   color: var(--color-text);
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: none;
+  transition: border-bottom 0.3s ease;
+}
+
+.university-name:hover {
+  border-bottom: 1px solid var(--color-text);
+}
+
+.university-logo {
+  height: 30px;
+  width: auto;
 }
 
 .location {
@@ -135,6 +151,54 @@
 .education-details li strong {
   color: var(--color-text);
   font-weight: 600;
+}
+
+/* Technical Skills Section */
+.technical-skills {
+  margin-bottom: var(--spacing-xl);
+}
+
+.skills-category {
+  margin-bottom: var(--spacing-lg);
+  border: 1px solid #d2d2d7;
+  border-radius: 8px;
+  padding: var(--spacing-md);
+  background-color: rgba(65, 105, 225, 0.05);
+}
+
+.skills-category-title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: #4169E1;
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.skills-list {
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.skills-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+  justify-content: flex-start;
+}
+
+.skill-logo {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.skill-logo:hover {
+  transform: scale(1.1);
 }
 
 @media (max-width: 768px) {
