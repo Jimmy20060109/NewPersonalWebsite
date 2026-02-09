@@ -184,10 +184,67 @@
 
 .skills-logos {
   display: flex;
-  flex-wrap: wrap;
   gap: var(--spacing-md);
   margin-top: var(--spacing-md);
-  justify-content: flex-start;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(to right, transparent, rgba(65, 105, 225, 0.03), transparent);
+  padding: var(--spacing-md) 0;
+  border-radius: 8px;
+}
+
+.skills-logos::before,
+.skills-logos::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 60px;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.skills-logos::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(255, 255, 255, 1), transparent);
+}
+
+.skills-logos::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(255, 255, 255, 1), transparent);
+}
+
+.skills-logos-container {
+  display: flex;
+  gap: var(--spacing-md);
+  animation: scrollLogos 20s linear infinite;
+  padding: 0 var(--spacing-md);
+}
+
+.skills-logos-container:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollLogos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollLogosReverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.skills-logos-reverse .skills-logos-container {
+  animation: scrollLogosReverse 20s linear infinite;
 }
 
 .skill-logo {
@@ -195,6 +252,7 @@
   width: 40px;
   object-fit: contain;
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
 .skill-logo:hover {

@@ -1,16 +1,25 @@
 import './Resume.css'
 import WaterlooLogo from '../images/waterlooLoGo.svg'
 import RHHSLogo from '../images/RHHSLogo.png'
-import CppLogo from '../images/C++_Logo.png'
-import CLogo from '../images/C_Logo.png'
-import PythonLogo from '../images/Python_Logo.png'
-import JavaLogo from '../images/Java_Logo.png'
-import JSLogo from '../images/JS_Logo.png'
-import HTMLLogo from '../images/HTML_Logo.png'
-import CSSLogo from '../images/CSS_Logo.png'
-import SQLLogo from '../images/SQL_Logo.png'
-import RacketLogo from '../images/Racket_Logo.png'
-import VBALogo from '../images/VBA_Logo.png'
+import CppLogo from '../images/ProgrammingLanguage/Cpp_Logo.png'
+import CLogo from '../images/ProgrammingLanguage/C_Logo.png'
+import PythonLogo from '../images/ProgrammingLanguage/Python_Logo.png'
+import JavaLogo from '../images/ProgrammingLanguage/Java_Logo.png'
+import JSLogo from '../images/ProgrammingLanguage/JS_Logo.png'
+import HTMLLogo from '../images/ProgrammingLanguage/HTML_Logo.png'
+import CSSLogo from '../images/ProgrammingLanguage/CSS_Logo.png'
+import SQLLogo from '../images/ProgrammingLanguage/SQL_Logo.png'
+import RacketLogo from '../images/ProgrammingLanguage/Racket_Logo.png'
+import VBALogo from '../images/ProgrammingLanguage/VBA_Logo.png'
+import ReactLogo from '../images/framework/React_Logo.png'
+import ReactNativeLogo from '../images/framework/React_Native_Logo.png'
+import MernLogo from '../images/framework/Mern_Logo.png'
+import NodeLogo from '../images/framework/Node_Logo.png'
+import ExpressLogo from '../images/framework/Express_Logo.png'
+import NextJSLogo from '../images/framework/NextJS_Logo.png'
+import RestAPILogo from '../images/framework/RestAPI_Logo.png'
+import jQueryLogo from '../images/framework/jQuery_Logo.png'
+import BootstrapLogo from '../images/framework/BootStrap_Logo.png'
 
 const Resume = () => {
   const handleDownload = () => {
@@ -34,7 +43,7 @@ const Resume = () => {
               </div>
               <ul className="education-details">
                 <li>
-                  <strong>Faculty of Mathematics (Honours) Co-op</strong>, Data Science
+                  <strong>Bachelor of Mathematics (Honours) Co-op</strong>, Data Science
                 </li>
                 <li>
                   <strong>Relevant Coursework:</strong> Object-Oriented Programming, Calculus, Algorithm Design & Data Structure, Linear Algebra
@@ -71,21 +80,58 @@ const Resume = () => {
               <h3 className="skills-category-title">Languages</h3>
               <p className="skills-list">C/C++, Python, Java, JavaScript, TypeScript, HTML, CSS, SQL, Racket, VBA, LabVIEW SDK</p>
               <div className="skills-logos">
-                <img src={CLogo} alt="C Logo" className="skill-logo" />
-                <img src={CppLogo} alt="C++ Logo" className="skill-logo" />
-                <img src={PythonLogo} alt="Python Logo" className="skill-logo" />
-                <img src={JavaLogo} alt="Java Logo" className="skill-logo" />
-                <img src={JSLogo} alt="JavaScript Logo" className="skill-logo" />
-                <img src={HTMLLogo} alt="HTML Logo" className="skill-logo" />
-                <img src={CSSLogo} alt="CSS Logo" className="skill-logo" />
-                <img src={SQLLogo} alt="SQL Logo" className="skill-logo" />
-                <img src={RacketLogo} alt="Racket Logo" className="skill-logo" />
-                <img src={VBALogo} alt="VBA Logo" className="skill-logo" />
+                <div className="skills-logos-container">
+                  <img src={CLogo} alt="C Logo" className="skill-logo" />
+                  <img src={CppLogo} alt="C++ Logo" className="skill-logo" />
+                  <img src={PythonLogo} alt="Python Logo" className="skill-logo" />
+                  <img src={JavaLogo} alt="Java Logo" className="skill-logo" />
+                  <img src={JSLogo} alt="JavaScript Logo" className="skill-logo" />
+                  <img src={HTMLLogo} alt="HTML Logo" className="skill-logo" />
+                  <img src={CSSLogo} alt="CSS Logo" className="skill-logo" />
+                  <img src={SQLLogo} alt="SQL Logo" className="skill-logo" />
+                  <img src={RacketLogo} alt="Racket Logo" className="skill-logo" />
+                  <img src={VBALogo} alt="VBA Logo" className="skill-logo" />
+                </div>
+                <div className="skills-logos-container">
+                  <img src={CLogo} alt="C Logo" className="skill-logo" />
+                  <img src={CppLogo} alt="C++ Logo" className="skill-logo" />
+                  <img src={PythonLogo} alt="Python Logo" className="skill-logo" />
+                  <img src={JavaLogo} alt="Java Logo" className="skill-logo" />
+                  <img src={JSLogo} alt="JavaScript Logo" className="skill-logo" />
+                  <img src={HTMLLogo} alt="HTML Logo" className="skill-logo" />
+                  <img src={CSSLogo} alt="CSS Logo" className="skill-logo" />
+                  <img src={SQLLogo} alt="SQL Logo" className="skill-logo" />
+                  <img src={RacketLogo} alt="Racket Logo" className="skill-logo" />
+                  <img src={VBALogo} alt="VBA Logo" className="skill-logo" />
+                </div>
               </div>
             </div>
             <div className="skills-category">
               <h3 className="skills-category-title">Frameworks & Libraries</h3>
-              <p className="skills-list">React, React Native, MERN, Node.js, Express.js, Next.js, REST API, jQuery, Bootstrap</p>
+              <p className="skills-list">React, React Native, MERN, Node.js, Express.js, Next.js, REST API, jQuery, Bootstrap, Vue.js, Stripe</p>              <div className="skills-logos skills-logos-reverse">
+                <div className="skills-logos-container">
+                  <img src={ReactLogo} alt="React Logo" className="skill-logo" />
+                  <img src={ReactNativeLogo} alt="React Native Logo" className="skill-logo" />
+                  <img src={MernLogo} alt="MERN Logo" className="skill-logo" />
+                  <img src={NodeLogo} alt="Node.js Logo" className="skill-logo" />
+                  <img src={ExpressLogo} alt="Express.js Logo" className="skill-logo" />
+                  <img src={NextJSLogo} alt="Next.js Logo" className="skill-logo" />
+                  <img src={RestAPILogo} alt="REST API Logo" className="skill-logo" />
+                  <img src={jQueryLogo} alt="jQuery Logo" className="skill-logo" />
+                  <img src={BootstrapLogo} alt="Bootstrap Logo" className="skill-logo" />
+                </div>
+                <div className="skills-logos-container">
+                  <img src={ReactLogo} alt="React Logo" className="skill-logo" />
+                  <img src={ReactNativeLogo} alt="React Native Logo" className="skill-logo" />
+                  <img src={MernLogo} alt="MERN Logo" className="skill-logo" />
+                  <img src={NodeLogo} alt="Node.js Logo" className="skill-logo" />
+                  <img src={ExpressLogo} alt="Express.js Logo" className="skill-logo" />
+                  <img src={NextJSLogo} alt="Next.js Logo" className="skill-logo" />
+                  <img src={RestAPILogo} alt="REST API Logo" className="skill-logo" />
+                  <img src={jQueryLogo} alt="jQuery Logo" className="skill-logo" />
+                  <img src={BootstrapLogo} alt="Bootstrap Logo" className="skill-logo" />
+                </div>
+              </div>
             </div>
             <div className="skills-category">
               <h3 className="skills-category-title">Tools & Technologies</h3>
