@@ -23,12 +23,21 @@ const About = () => {
           from both <span className="about-highlight">theoretical and practical engineering perspectives</span>.
         </p>
         <p className="about-text">
-          I specialize in <span className="about-highlight">modern frontend development</span>, with{' '}
-          <strong>over two years</strong> of experience building scalable, user-focused web applications using{' '}
-          <span className="about-highlight">React, Vue, TypeScript, and JavaScript</span>. I enjoy creating
-          clean, responsive interfaces while maintaining strong performance, structure, and long-term
-          maintainability, and I'm comfortable working across the stack and integrating with APIs and
-          data pipelines.
+          In my current co-op as a <strong>Full-Stack Developer</strong> at{' '}
+          <a
+            href="https://www.hanovsolutions.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="about-link"
+          >
+            Hanov Solutions Inc
+          </a>, I engineered and deployed core infrastructure for a momentum-based stock analytics SaaS
+          platform, transforming Python ML trading models into a production-ready full-stack system
+          with real-time screening. I designed a modular Vue 3 architecture that reduced redundant
+          API calls and improved chart/watchlist load performance by <strong>30%</strong>, and built
+          secure authentication plus Stripe-based subscription workflows in TypeScript. I also applied
+          AI-assisted development (Cursor) across Vue, TypeScript, Go, and Python to increase feature
+          throughput by <strong>40%</strong> while maintaining strong code quality and reliability.
         </p>
         <p className="about-text">
           I also have experience in <span className="about-highlight">compiler and systems-level development</span>.

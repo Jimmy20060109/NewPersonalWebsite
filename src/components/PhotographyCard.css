@@ -1,0 +1,65 @@
+.photography-card {
+  display: block;
+  text-decoration: none;
+  color: var(--color-white);
+  border-radius: 24px;
+  overflow: hidden;
+  min-height: 210px;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #0b1324 0%, #1f3f6e 50%, #4f8ac0 100%);
+}
+
+.photography-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+.photography-card-content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.photography-card-eyebrow {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.photography-card-title {
+  margin: var(--spacing-xs) 0;
+  font-size: var(--font-size-2xl);
+  line-height: 1.1;
+}
+
+.photography-card-subtitle {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: var(--font-size-sm);
+}
+
+.photography-card-button {
+  margin-top: var(--spacing-md);
+  align-self: flex-start;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  font-size: var(--font-size-sm);
+  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 768px) {
+  .photography-card {
+    min-height: 180px;
+    border-radius: 20px;
+  }
+}

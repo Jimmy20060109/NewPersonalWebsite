@@ -9,6 +9,12 @@
   align-items: start;
 }
 
+.home-main-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
 @media (min-width: 1024px) {
   .home-container {
     grid-template-columns: 3fr 1fr;
@@ -17,6 +23,14 @@
     margin: 0 var(--spacing-xl);
     align-items: stretch;
   }
+
+  .home-main-cards {
+    align-self: start;
+  }
+
+  .home-container > .resume-card {
+    align-self: start;
+  }
 }
 
 @media (max-width: 768px) {
@@ -24,5 +38,9 @@
     padding: var(--spacing-md) var(--spacing-xs);
     gap: var(--spacing-md);
     margin: 0 var(--spacing-lg);
+  }
+
+  .home-main-cards {
+    gap: var(--spacing-md);
   }
 }

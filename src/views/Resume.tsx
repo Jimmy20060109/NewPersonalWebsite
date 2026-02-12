@@ -1,5 +1,5 @@
 import './Resume.css'
-import '../components/Experience.css'
+import { useState, useEffect, useRef } from 'react'
 import WaterlooLogo from '../images/waterlooLoGo.svg'
 import RHHSLogo from '../images/RHHSLogo.png'
 import CppLogo from '../images/ProgrammingLanguage/Cpp_Logo.png'
@@ -34,10 +34,12 @@ import BookLogo from '../images/Book_Logo.png'
 import SkillsLogo from '../images/Skill_Logo.png'
 import WorkExperienceLogo from '../images/work-experience-logo.svg'
 import ResumePdf from "../images/Jimmy Zheng's Waterloo CS Resume V3.pdf"
+import WorkLogo from '../images/Work_Logo.png'
 
 interface ExperienceItem {
   title: string
   company: string
+  companyLinks?: SkillLink[]
   location: string
   period: string
   technologies: string[]
@@ -66,6 +68,7 @@ const experiences: ExperienceItem[] = [
   {
     title: 'Full-Stack Developer, Co-op',
     company: 'Hanov Solutions Inc',
+    companyLinks: [{ name: 'Hanov Solutions Inc', href: 'https://www.hanovsolutions.com/' }],
     location: 'Waterloo, Ontario',
     period: 'Jan 2026 - Present',
     technologies: [
@@ -89,6 +92,10 @@ const experiences: ExperienceItem[] = [
   {
     title: 'Software Innovation Developer, Co-op',
     company: 'Emerson, NI',
+    companyLinks: [
+      { name: 'Emerson', href: 'https://www.emerson.com/en-us' },
+      { name: 'NI', href: 'https://www.ni.com/en.html?srsltid=AfmBOormNRFx7ARN0LyBbBtcxeLqHRkAZOzqghXwkx6FYN6NFfkN4hiM' },
+    ],
     location: 'Shanghai, China',
     period: 'May 2025 - August 2025',
     evaluation: 'Outstanding Evaluation',
@@ -113,6 +120,7 @@ const experiences: ExperienceItem[] = [
   {
     title: 'Software Developer, Part-time',
     company: 'VolunTrack.Org',
+    companyLinks: [{ name: 'VolunTrack.Org', href: 'https://voluntracks.com/' }],
     location: 'Toronto, Ontario',
     period: 'Feb 2024 - August 2025',
     technologies: [
@@ -129,6 +137,38 @@ const experiences: ExperienceItem[] = [
       'Implemented automated testing using Python unit tests, Jest, and visual regression testing, identifying and resolving 15+ bugs before production release and improving overall code reliability by 50%.',
       'Validated HTTP requests with Postman by designing and executing structured API test cases, ensuring 90%+ accuracy of backend responses and reducing integration issues across the web application.',
       'Optimized website responsiveness by implementing media queries in CSS to ensure optimal user experience across various devices, including desktops, tablets, and smartphones.',
+    ],
+  },
+]
+
+interface PersonalProject {
+  title: string
+  href: string
+  period: string
+  technologies: string[]
+  achievements: string[]
+}
+
+const personalProjects: PersonalProject[] = [
+  {
+    title: "Simon's Game",
+    href: 'https://jimmy20060109.github.io/Simons-Game/',
+    period: 'Oct 2024 - Dec 2024',
+    technologies: ['JavaScript', 'jQuery', 'Node.js', 'Express.js', 'HTML', 'CSS', 'SQL'],
+    achievements: [
+      'Created an interactive game using JavaScript, HTML, CSS, jQuery, Node.js, and Express.js, enhancing user engagement through immersive audio effects and intuitive interaction features.',
+      'Engineered backend functions in JavaScript to manage player choices and game-state logic, ensuring seamless real-time interactions and reliable outcome validation.',
+    ],
+  },
+  {
+    title: 'Keeper Note App',
+    href: 'https://jimmy20060109.github.io/Website-create/',
+    period: 'Feb 2025 - June 2025',
+    technologies: ['React', 'JavaScript', 'CSS', 'Postman', 'HTTP', 'Unsplash API'],
+    achievements: [
+      'Built a Google Keep–style note-taking app using React functional components and Hooks (useState), supporting creating and deleting notes via controlled inputs and prop callbacks.',
+      'CRA built with npm scripts + cross-env (OpenSSL fix), ESLint (react-hooks); CSS + Google Fonts.',
+      'Composed reusable components (Header, Footer, CreateArea, Note) with lifted state and keyed lists.',
     ],
   },
 ]
@@ -234,7 +274,58 @@ const skillsCategories: SkillCategory[] = [
 ]
 
 const Resume = () => {
+  const [buttonState, setButtonState] = useState('initial-show')
+  const isHoveredRef = useRef(false)
+  const collapseDelayRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setButtonState('collapsed')
+    }, 2000)
+
+    return () => {
+      clearTimeout(timer)
+      if (collapseDelayRef.current) {
+        clearTimeout(collapseDelayRef.current)
+      }
+    }
+  }, [])
+
+  const handleMouseEnter = () => {
+    if (collapseDelayRef.current) {
+      clearTimeout(collapseDelayRef.current)
+      collapseDelayRef.current = null
+    }
+
+    if (isHoveredRef.current) {
+      return
+    }
+
+    isHoveredRef.current = true
+    setButtonState('hovered')
+  }
+
+  const handleMouseLeave = () => {
+    if (!isHoveredRef.current) {
+      return
+    }
+
+    isHoveredRef.current = false
+
+    collapseDelayRef.current = setTimeout(() => {
+      if (!isHoveredRef.current) {
+        setButtonState('collapsed')
+      }
+    }, 120)
+  }
+
   const handleDownload = () => {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches
+    if (isMobile) {
+      window.location.href = ResumePdf
+      return
+    }
+
     window.open(ResumePdf, '_blank')
   }
 
@@ -254,7 +345,7 @@ const Resume = () => {
                   <img src={WaterlooLogo} alt="University of Waterloo Logo" className="university-logo" />, 
                   <span className="location">2B, Waterloo, Ontario</span>
                 </div>
-                <span className="education-dates">Sep 2024 - April 2029 (Expected)</span>
+                <span className="education-dates">Sep 2024 - (Expected) April 2029</span>
               </div>
               <ul className="education-details">
                 <li>
@@ -288,7 +379,7 @@ const Resume = () => {
             </div>
           </div>
         </div>
-        <div className="resume-content-section">
+        <div className="resume-content-section section-compact-gap">
           <div className="technical-skills">
             <div className="section-header">
               <img src={SkillsLogo} alt="Skills Logo" className="section-icon" />
@@ -330,10 +421,10 @@ const Resume = () => {
             ))}
           </div>
         </div>
-        <div className="resume-content-section">
+        <div className="resume-content-section section-compact-gap">
           <div className="work-experience">
             <div className="section-header">
-              <img src={WorkExperienceLogo} alt="Work Experience Logo" className="section-icon" />
+              <img src={WorkLogo} alt="Work Experience Logo" className="section-icon" />
               <h2 className="section-title">Work Experience</h2>
             </div>
             <div className="experience-list">
@@ -349,7 +440,18 @@ const Resume = () => {
                     )}
                   </div>
                   <div className="experience-meta">
-                    <span className="experience-company">{exp.company}</span>
+                    <span className="experience-company">
+                      {exp.companyLinks
+                        ? exp.companyLinks.map((companyLink, companyIndex) => (
+                            <span key={`${companyLink.name}-${companyIndex}`}>
+                              <a href={companyLink.href} target="_blank" rel="noopener noreferrer">
+                                {companyLink.name}
+                              </a>
+                              {companyIndex < exp.companyLinks.length - 1 ? ', ' : ''}
+                            </span>
+                          ))
+                        : exp.company}
+                    </span>
                     <span className="experience-location">{exp.location}</span>
                     <span className="experience-period">{exp.period}</span>
                   </div>
@@ -373,10 +475,63 @@ const Resume = () => {
           </div>
           </div>
         </div>
-        <div className="resume-actions">
-          <button className="resume-download-button" onClick={handleDownload}>
-            View & Download Resume in PDF
-          </button>
+        <div className="resume-content-section section-compact-gap section-personal-projects-gap">
+          <div className="personal-projects">
+            <div className="section-header">
+              <img src={WorkExperienceLogo} alt="Personal Projects Logo" className="section-icon" />
+              <h2 className="section-title">Personal Projects</h2>
+            </div>
+            <div className="experience-list">
+              {personalProjects.map((project, index) => (
+                <div key={index} className="experience-item">
+                  <div className="experience-header">
+                    <div>
+                      <h3 className="experience-title">
+                        <a
+                          href={project.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="university-name"
+                        >
+                          {project.title}
+                        </a>
+                      </h3>
+                    </div>
+                    <div className="experience-meta">
+                      <span className="experience-period">{project.period}</span>
+                    </div>
+                  </div>
+                  <div className="experience-technologies">
+                    {project.technologies.map((tech, techIndex) => (
+                      <span key={techIndex} className="tech-tag">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <ul className="experience-achievements">
+                    {project.achievements.map((achievement, achIndex) => (
+                      <li key={achIndex} className="achievement-item">
+                        {achievement}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className={`resume-actions ${buttonState}`}>
+          <div
+            className="resume-actions-hitbox"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <button className="resume-download-button" onClick={handleDownload}>
+              View & Download
+              <br />
+              Resume in PDF
+            </button>
+          </div>
         </div>
       </div>
     </div>
