@@ -442,12 +442,12 @@ const Resume = () => {
                   <div className="experience-meta">
                     <span className="experience-company">
                       {exp.companyLinks
-                        ? exp.companyLinks.map((companyLink, companyIndex) => (
+                        ? exp.companyLinks.map((companyLink, companyIndex, companyLinks) => (
                             <span key={`${companyLink.name}-${companyIndex}`}>
                               <a href={companyLink.href} target="_blank" rel="noopener noreferrer">
                                 {companyLink.name}
                               </a>
-                              {companyIndex < exp.companyLinks.length - 1 ? ', ' : ''}
+                              {companyIndex < companyLinks.length - 1 ? ', ' : ''}
                             </span>
                           ))
                         : exp.company}
