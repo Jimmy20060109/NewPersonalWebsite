@@ -33,6 +33,7 @@ import AutotestLogo from '../images/tools/autotest_Logo.png'
 import BookLogo from '../images/Book_Logo.png'
 import SkillsLogo from '../images/Skill_Logo.png'
 import WorkExperienceLogo from '../images/work-experience-logo.svg'
+import ResumePdf from "../images/Jimmy Zheng's Waterloo CS Resume V3.pdf"
 
 interface ExperienceItem {
   title: string
@@ -44,7 +45,47 @@ interface ExperienceItem {
   evaluation?: string
 }
 
+interface SkillLink {
+  name: string
+  href: string
+}
+
+interface SkillLogo {
+  src: string
+  alt: string
+}
+
+interface SkillCategory {
+  title: string
+  links: SkillLink[]
+  logos: SkillLogo[]
+  reverse?: boolean
+}
+
 const experiences: ExperienceItem[] = [
+  {
+    title: 'Full-Stack Developer, Co-op',
+    company: 'Hanov Solutions Inc',
+    location: 'Waterloo, Ontario',
+    period: 'Jan 2026 - Present',
+    technologies: [
+      'Python',
+      'Go',
+      'Vue.js',
+      'Node.js',
+      'JavaScript',
+      'TypeScript',
+      'Vite',
+      'SQLite',
+      'Stripe',
+    ],
+    achievements: [
+      'Engineered and deployed core infrastructure for eh-trade, a momentum-based stock analytics SaaS platform, transforming Python ML trading models into a production-ready full-stack system serving real-time stock screening.',
+      'Designed modular frontend architecture with Vue 3, optimized data rendering and API integration patterns, reduced redundant network requests, and improved chart and watchlist load performance by 30% across desktop and mobile.',
+      'Developed secure authentication and subscription infrastructure using TypeScript and Stripe, enabling recurring billing, gated premium features, and full user lifecycle management from onboarding to subscription control.',
+      'Applied AI-assisted (Cursor) development practices across the full stack (Vue.js, TypeScript, Go, Python) to shorten iteration cycles and increase feature throughput by 40%, while maintaining code review standards, modular architecture, and production-grade reliability.',
+    ],
+  },
   {
     title: 'Software Innovation Developer, Co-op',
     company: 'Emerson, NI',
@@ -92,9 +133,109 @@ const experiences: ExperienceItem[] = [
   },
 ]
 
+const skillsCategories: SkillCategory[] = [
+  {
+    title: 'Languages',
+    links: [
+      { name: 'C', href: 'https://www.cprogramming.com/' },
+      { name: 'C++', href: 'https://isocpp.org/' },
+      { name: 'Python', href: 'https://www.python.org/' },
+      { name: 'Java', href: 'https://www.oracle.com/java/' },
+      {
+        name: 'JavaScript',
+        href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
+      },
+      { name: 'TypeScript', href: 'https://www.typescriptlang.org/' },
+      {
+        name: 'HTML',
+        href: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
+      },
+      { name: 'CSS', href: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
+      { name: 'SQL', href: 'https://en.wikipedia.org/wiki/SQL' },
+      { name: 'Racket', href: 'https://racket-lang.org/' },
+      {
+        name: 'VBA',
+        href: 'https://learn.microsoft.com/en-us/office/vba/api/overview',
+      },
+      { name: 'LabVIEW SDK', href: 'https://www.labviewmakerhub.com/' },
+    ],
+    logos: [
+      { src: CLogo, alt: 'C Logo' },
+      { src: CppLogo, alt: 'C++ Logo' },
+      { src: PythonLogo, alt: 'Python Logo' },
+      { src: JavaLogo, alt: 'Java Logo' },
+      { src: JSLogo, alt: 'JavaScript Logo' },
+      { src: HTMLLogo, alt: 'HTML Logo' },
+      { src: CSSLogo, alt: 'CSS Logo' },
+      { src: SQLLogo, alt: 'SQL Logo' },
+      { src: RacketLogo, alt: 'Racket Logo' },
+      { src: VBALogo, alt: 'VBA Logo' },
+    ],
+  },
+  {
+    title: 'Frameworks & Libraries',
+    links: [
+      { name: 'React', href: 'https://react.dev/' },
+      { name: 'React Native', href: 'https://reactnative.dev/' },
+      { name: 'MERN', href: 'https://www.mongodb.com/mern-stack' },
+      { name: 'Node.js', href: 'https://nodejs.org/' },
+      { name: 'Express.js', href: 'https://expressjs.com/' },
+      { name: 'Next.js', href: 'https://nextjs.org/' },
+      { name: 'REST API', href: 'https://restfulapi.net/' },
+      { name: 'jQuery', href: 'https://jquery.com/' },
+      { name: 'Bootstrap', href: 'https://getbootstrap.com/' },
+      { name: 'Vue.js', href: 'https://vuejs.org/' },
+      { name: 'Stripe', href: 'https://stripe.com/' },
+    ],
+    logos: [
+      { src: ReactLogo, alt: 'React Logo' },
+      { src: ReactNativeLogo, alt: 'React Native Logo' },
+      { src: MernLogo, alt: 'MERN Logo' },
+      { src: NodeLogo, alt: 'Node.js Logo' },
+      { src: ExpressLogo, alt: 'Express.js Logo' },
+      { src: NextJSLogo, alt: 'Next.js Logo' },
+      { src: RestAPILogo, alt: 'REST API Logo' },
+      { src: jQueryLogo, alt: 'jQuery Logo' },
+      { src: BootstrapLogo, alt: 'Bootstrap Logo' },
+    ],
+    reverse: true,
+  },
+  {
+    title: 'Tools & Technologies',
+    links: [
+      { name: 'Postman', href: 'https://www.postman.com/' },
+      { name: 'Linux command line', href: 'https://www.linux.org/' },
+      { name: 'GitHub', href: 'https://github.com/' },
+      { name: 'Git', href: 'https://git-scm.com/' },
+      { name: 'n8n', href: 'https://n8n.io/' },
+      {
+        name: 'Test automation',
+        href: 'https://en.wikipedia.org/wiki/Test_automation',
+      },
+      { name: 'Docker', href: 'https://www.docker.com/' },
+      { name: 'SSH', href: 'https://en.wikipedia.org/wiki/Secure_Shell' },
+      {
+        name: 'UI/UX',
+        href: 'https://en.wikipedia.org/wiki/User_experience_design',
+      },
+    ],
+    logos: [
+      { src: PostmanLogo, alt: 'Postman Logo' },
+      { src: GithubLogo, alt: 'Github Logo' },
+      { src: GitLogo, alt: 'Git Logo' },
+      { src: n8nLogo, alt: 'n8n Logo' },
+      { src: DockerLogo, alt: 'Docker Logo' },
+      { src: CursorLogo, alt: 'Cursor Logo' },
+      { src: GeminiLogo, alt: 'Gemini Logo' },
+      { src: CMLLogo, alt: 'CML Logo' },
+      { src: AutotestLogo, alt: 'Autotest Logo' },
+    ],
+  },
+]
+
 const Resume = () => {
   const handleDownload = () => {
-    window.open('Jimmy Zheng\'s External CS Resume V2.pdf', '_blank')
+    window.open(ResumePdf, '_blank')
   }
 
   return (
@@ -153,126 +294,40 @@ const Resume = () => {
               <img src={SkillsLogo} alt="Skills Logo" className="section-icon" />
               <h2 className="section-title">TECHNICAL SKILLS</h2>
             </div>
-            <div className="skills-category">
-              <h3 className="skills-category-title">Languages</h3>
-              <p className="skills-list">
-                <a href="https://www.cprogramming.com/" target="_blank" rel="noopener noreferrer">C</a>/
-                <a href="https://isocpp.org/" target="_blank" rel="noopener noreferrer">C++</a>,{' '}
-                <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer">Python</a>,{' '}
-                <a href="https://www.oracle.com/java/" target="_blank" rel="noopener noreferrer">Java</a>,{' '}
-                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer">JavaScript</a>,{' '}
-                <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer">TypeScript</a>,{' '}
-                <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" rel="noopener noreferrer">HTML</a>,{' '}
-                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener noreferrer">CSS</a>,{' '}
-                <a href="https://en.wikipedia.org/wiki/SQL" target="_blank" rel="noopener noreferrer">SQL</a>,{' '}
-                <a href="https://racket-lang.org/" target="_blank" rel="noopener noreferrer">Racket</a>,{' '}
-                <a href="https://learn.microsoft.com/en-us/office/vba/api/overview" target="_blank" rel="noopener noreferrer">VBA</a>,{' '}
-                <a href="https://www.labviewmakerhub.com/" target="_blank" rel="noopener noreferrer">LabVIEW SDK</a>
-              </p>
-              <div className="skills-logos">
-                <div className="skills-logos-container">
-                  <img src={CLogo} alt="C Logo" className="skill-logo" />
-                  <img src={CppLogo} alt="C++ Logo" className="skill-logo" />
-                  <img src={PythonLogo} alt="Python Logo" className="skill-logo" />
-                  <img src={JavaLogo} alt="Java Logo" className="skill-logo" />
-                  <img src={JSLogo} alt="JavaScript Logo" className="skill-logo" />
-                  <img src={HTMLLogo} alt="HTML Logo" className="skill-logo" />
-                  <img src={CSSLogo} alt="CSS Logo" className="skill-logo" />
-                  <img src={SQLLogo} alt="SQL Logo" className="skill-logo" />
-                  <img src={RacketLogo} alt="Racket Logo" className="skill-logo" />
-                  <img src={VBALogo} alt="VBA Logo" className="skill-logo" />
-                </div>
-                <div className="skills-logos-container">
-                  <img src={CLogo} alt="C Logo" className="skill-logo" />
-                  <img src={CppLogo} alt="C++ Logo" className="skill-logo" />
-                  <img src={PythonLogo} alt="Python Logo" className="skill-logo" />
-                  <img src={JavaLogo} alt="Java Logo" className="skill-logo" />
-                  <img src={JSLogo} alt="JavaScript Logo" className="skill-logo" />
-                  <img src={HTMLLogo} alt="HTML Logo" className="skill-logo" />
-                  <img src={CSSLogo} alt="CSS Logo" className="skill-logo" />
-                  <img src={SQLLogo} alt="SQL Logo" className="skill-logo" />
-                  <img src={RacketLogo} alt="Racket Logo" className="skill-logo" />
-                  <img src={VBALogo} alt="VBA Logo" className="skill-logo" />
+            {skillsCategories.map((category) => (
+              <div key={category.title} className="skills-category">
+                <h3 className="skills-category-title">{category.title}</h3>
+                <p className="skills-list">
+                  {category.links.map((link, index) => (
+                    <span key={link.name}>
+                      <a href={link.href} target="_blank" rel="noopener noreferrer">
+                        {link.name}
+                      </a>
+                      {index < category.links.length - 1 ? ', ' : ''}
+                    </span>
+                  ))}
+                </p>
+                <div
+                  className={`skills-logos${category.reverse ? ' skills-logos-reverse' : ''}`}
+                >
+                  {[0, 1].map((containerIndex) => (
+                    <div
+                      key={`${category.title}-${containerIndex}`}
+                      className="skills-logos-container"
+                    >
+                      {category.logos.map((logo) => (
+                        <img
+                          key={`${logo.alt}-${containerIndex}`}
+                          src={logo.src}
+                          alt={logo.alt}
+                          className="skill-logo"
+                        />
+                      ))}
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
-            <div className="skills-category">
-              <h3 className="skills-category-title">Frameworks & Libraries</h3>
-              <p className="skills-list">
-                <a href="https://react.dev/" target="_blank" rel="noopener noreferrer">React</a>,{' '}
-                <a href="https://reactnative.dev/" target="_blank" rel="noopener noreferrer">React Native</a>,{' '}
-                <a href="https://www.mongodb.com/mern-stack" target="_blank" rel="noopener noreferrer">MERN</a>,{' '}
-                <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer">Node.js</a>,{' '}
-                <a href="https://expressjs.com/" target="_blank" rel="noopener noreferrer">Express.js</a>,{' '}
-                <a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer">Next.js</a>,{' '}
-                <a href="https://restfulapi.net/" target="_blank" rel="noopener noreferrer">REST API</a>,{' '}
-                <a href="https://jquery.com/" target="_blank" rel="noopener noreferrer">jQuery</a>,{' '}
-                <a href="https://getbootstrap.com/" target="_blank" rel="noopener noreferrer">Bootstrap</a>,{' '}
-                <a href="https://vuejs.org/" target="_blank" rel="noopener noreferrer">Vue.js</a>,{' '}
-                <a href="https://stripe.com/" target="_blank" rel="noopener noreferrer">Stripe</a>
-              </p>              <div className="skills-logos skills-logos-reverse">
-                <div className="skills-logos-container">
-                  <img src={ReactLogo} alt="React Logo" className="skill-logo" />
-                  <img src={ReactNativeLogo} alt="React Native Logo" className="skill-logo" />
-                  <img src={MernLogo} alt="MERN Logo" className="skill-logo" />
-                  <img src={NodeLogo} alt="Node.js Logo" className="skill-logo" />
-                  <img src={ExpressLogo} alt="Express.js Logo" className="skill-logo" />
-                  <img src={NextJSLogo} alt="Next.js Logo" className="skill-logo" />
-                  <img src={RestAPILogo} alt="REST API Logo" className="skill-logo" />
-                  <img src={jQueryLogo} alt="jQuery Logo" className="skill-logo" />
-                  <img src={BootstrapLogo} alt="Bootstrap Logo" className="skill-logo" />
-                </div>
-                <div className="skills-logos-container">
-                  <img src={ReactLogo} alt="React Logo" className="skill-logo" />
-                  <img src={ReactNativeLogo} alt="React Native Logo" className="skill-logo" />
-                  <img src={MernLogo} alt="MERN Logo" className="skill-logo" />
-                  <img src={NodeLogo} alt="Node.js Logo" className="skill-logo" />
-                  <img src={ExpressLogo} alt="Express.js Logo" className="skill-logo" />
-                  <img src={NextJSLogo} alt="Next.js Logo" className="skill-logo" />
-                  <img src={RestAPILogo} alt="REST API Logo" className="skill-logo" />
-                  <img src={jQueryLogo} alt="jQuery Logo" className="skill-logo" />
-                  <img src={BootstrapLogo} alt="Bootstrap Logo" className="skill-logo" />
-                </div>
-              </div>
-            </div>
-            <div className="skills-category">
-              <h3 className="skills-category-title">Tools & Technologies</h3>
-              <p className="skills-list">
-                <a href="https://www.postman.com/" target="_blank" rel="noopener noreferrer">Postman</a>,{' '}
-                <a href="https://www.linux.org/" target="_blank" rel="noopener noreferrer">Linux command line</a>,{' '}
-                <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>,{' '}
-                <a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">Git</a>,{' '}
-                <a href="https://n8n.io/" target="_blank" rel="noopener noreferrer">n8n</a>,{' '}
-                <a href="https://en.wikipedia.org/wiki/Test_automation" target="_blank" rel="noopener noreferrer">Test automation</a>,{' '}
-                <a href="https://www.docker.com/" target="_blank" rel="noopener noreferrer">Docker</a>,{' '}
-                <a href="https://en.wikipedia.org/wiki/Secure_Shell" target="_blank" rel="noopener noreferrer">SSH</a>,{' '}
-                <a href="https://en.wikipedia.org/wiki/User_experience_design" target="_blank" rel="noopener noreferrer">UI/UX</a>
-              </p>
-              <div className="skills-logos">
-                <div className="skills-logos-container">
-                  <img src={PostmanLogo} alt="Postman Logo" className="skill-logo" />
-                  <img src={GithubLogo} alt="Github Logo" className="skill-logo" />
-                  <img src={GitLogo} alt="Git Logo" className="skill-logo" />
-                  <img src={n8nLogo} alt="n8n Logo" className="skill-logo" />
-                  <img src={DockerLogo} alt="Docker Logo" className="skill-logo" />
-                  <img src={CursorLogo} alt="Cursor Logo" className="skill-logo" />
-                  <img src={GeminiLogo} alt="Gemini Logo" className="skill-logo" />
-                  <img src={CMLLogo} alt="CML Logo" className="skill-logo" />
-                  <img src={AutotestLogo} alt="Autotest Logo" className="skill-logo" />
-                </div>
-                <div className="skills-logos-container">
-                  <img src={PostmanLogo} alt="Postman Logo" className="skill-logo" />
-                  <img src={GithubLogo} alt="Github Logo" className="skill-logo" />
-                  <img src={GitLogo} alt="Git Logo" className="skill-logo" />
-                  <img src={n8nLogo} alt="n8n Logo" className="skill-logo" />
-                  <img src={DockerLogo} alt="Docker Logo" className="skill-logo" />
-                  <img src={CursorLogo} alt="Cursor Logo" className="skill-logo" />
-                  <img src={GeminiLogo} alt="Gemini Logo" className="skill-logo" />
-                  <img src={CMLLogo} alt="CML Logo" className="skill-logo" />
-                  <img src={AutotestLogo} alt="Autotest Logo" className="skill-logo" />
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
         <div className="resume-content-section">
@@ -320,13 +375,8 @@ const Resume = () => {
         </div>
         <div className="resume-actions">
           <button className="resume-download-button" onClick={handleDownload}>
-            View & Download Resume
+            View & Download Resume in PDF
           </button>
-        </div>
-        <div className="resume-content-section">
-          <p className="resume-note">
-            Click the button above to view or download my resume in PDF format.
-          </p>
         </div>
       </div>
     </div>

@@ -12,6 +12,29 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
   {
+    title: 'Full-Stack Developer, Co-op',
+    company: 'Hanov Solutions Inc',
+    location: 'Waterloo, Ontario',
+    period: 'Jan 2026 - Present',
+    technologies: [
+      'Python',
+      'Go',
+      'Vue.js',
+      'Node.js',
+      'JavaScript',
+      'TypeScript',
+      'Vite',
+      'SQLite',
+      'Stripe',
+    ],
+    achievements: [
+      'Engineered and deployed core infrastructure for eh-trade, a momentum-based stock analytics SaaS platform, transforming Python ML trading models into a production-ready full-stack system serving real-time stock screening.',
+      'Designed modular frontend architecture with Vue 3, optimized data rendering and API integration patterns, reduced redundant network requests, and improved chart and watchlist load performance by 30% across desktop and mobile.',
+      'Developed secure authentication and subscription infrastructure using TypeScript and Stripe, enabling recurring billing, gated premium features, and full user lifecycle management from onboarding to subscription control.',
+      'Applied AI-assisted (Cursor) development practices across the full stack (Vue.js, TypeScript, Go, Python) to shorten iteration cycles and increase feature throughput by 40%, while maintaining code review standards, modular architecture, and production-grade reliability.',
+    ],
+  },
+  {
     title: 'Software Innovation Developer, Co-op',
     company: 'Emerson, NI',
     location: 'Shanghai, China',
