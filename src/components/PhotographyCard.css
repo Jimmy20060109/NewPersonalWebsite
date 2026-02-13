@@ -2,13 +2,58 @@
   display: block;
   text-decoration: none;
   color: var(--color-white);
+  width: min(100%, 80%);
+  align-self: flex-start;
   border-radius: 24px;
   overflow: hidden;
-  min-height: 210px;
+  aspect-ratio: 16 / 9;
   position: relative;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
   background: linear-gradient(135deg, #0b1324 0%, #1f3f6e 50%, #4f8ac0 100%);
+  isolation: isolate;
+}
+
+.photography-card-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: scale(1);
+}
+
+.photography-card-bg-base {
+  transition: transform 6s ease;
+}
+
+.photography-card-bg-overlay {
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.photography-card-bg-overlay.is-visible {
+  opacity: 1;
+}
+
+.photography-card-tint {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(145deg, rgba(8, 20, 44, 0.62), rgba(15, 23, 42, 0.24) 46%, rgba(10, 18, 35, 0.64));
+}
+
+.photography-card-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 88% 16%, rgba(173, 216, 255, 0.28) 0%, rgba(173, 216, 255, 0) 42%),
+    radial-gradient(circle at 8% 100%, rgba(133, 180, 255, 0.22) 0%, rgba(133, 180, 255, 0) 40%);
+  mix-blend-mode: screen;
+  pointer-events: none;
 }
 
 .photography-card:hover {
@@ -16,9 +61,14 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
 }
 
+.photography-card:hover .photography-card-bg-base,
+.photography-card:hover .photography-card-bg-overlay {
+  transform: scale(1.04);
+}
+
 .photography-card-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   height: 100%;
   padding: var(--spacing-md);
   display: flex;
@@ -59,7 +109,17 @@
 
 @media (max-width: 768px) {
   .photography-card {
-    min-height: 180px;
+    width: 100%;
+    aspect-ratio: auto;
+    min-height: 220px;
     border-radius: 20px;
+  }
+
+  .photography-card-content {
+    padding: var(--spacing-sm);
+  }
+
+  .photography-card-button {
+    margin-top: var(--spacing-sm);
   }
 }

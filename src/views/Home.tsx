@@ -6,10 +6,8 @@ import './Home.css'
 const Home = () => {
   return (
     <div className="home-container">
-      <div className="home-main-cards">
-        <IntroductionCard />
-        <PhotographyCard />
-      </div>
+      <IntroductionCard />
+      <PhotographyCard />
       <ResumeCard />
     </div>
   )
