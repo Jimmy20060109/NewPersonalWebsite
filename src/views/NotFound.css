@@ -1,0 +1,46 @@
+.not-found {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl, 2rem);
+}
+
+.not-found-content {
+  text-align: center;
+}
+
+.not-found-title {
+  font-size: 6rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1;
+}
+
+.not-found-subtitle {
+  font-size: var(--font-size-xl, 1.5rem);
+  color: var(--color-text);
+  margin: var(--spacing-md, 1rem) 0;
+}
+
+.not-found-message {
+  font-size: var(--font-size-base, 1rem);
+  color: var(--color-gray-dark, #666);
+  margin-bottom: var(--spacing-lg, 2rem);
+}
+
+.not-found-link {
+  display: inline-block;
+  padding: var(--spacing-sm, 0.5rem) var(--spacing-lg, 1.5rem);
+  background-color: var(--color-primary, #007bff);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: var(--transition);
+}
+
+.not-found-link:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}

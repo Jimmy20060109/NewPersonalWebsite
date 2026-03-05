@@ -1,0 +1,13 @@
+.gallery {
+  padding-top: calc(var(--spacing-xl) + 80px);
+}
+
+.gallery-content {
+  text-align: center;
+  padding: var(--spacing-xl) 0;
+}
+
+.gallery-content p {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-light);
+}
