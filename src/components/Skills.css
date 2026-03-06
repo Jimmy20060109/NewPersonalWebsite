@@ -49,9 +49,9 @@
 }
 
 .skill-item:hover {
-  background-color: var(--color-text);
+  background-color: var(--color-strong-bg);
   color: var(--color-white);
-  border-color: var(--color-text);
+  border-color: var(--color-strong-bg);
   transform: scale(1.05);
 }
 

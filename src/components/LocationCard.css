@@ -58,6 +58,16 @@
   filter: saturate(0.95) contrast(1.05);
 }
 
+.location-card-map-canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.location-card-map > iframe {
+  position: absolute;
+  inset: 0;
+}
+
 .location-card-eyebrow {
   margin: 0;
   font-size: var(--font-size-xs);

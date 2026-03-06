@@ -64,14 +64,14 @@
   font-size: var(--font-size-base);
   color: var(--color-text);
   padding: var(--spacing-xs) var(--spacing-md);
-  border: 1px solid var(--color-text);
+  border: 1px solid var(--color-strong-bg);
   border-radius: 20px;
   transition: var(--transition);
   display: inline-block;
 }
 
 .hero-link:hover {
-  background-color: var(--color-text);
+  background-color: var(--color-strong-bg);
   color: var(--color-white);
   transform: translateY(-2px);
 }

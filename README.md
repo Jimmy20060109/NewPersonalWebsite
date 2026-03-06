@@ -5,7 +5,7 @@
 1. Copy env file:
 
 ```bash
-cp .env.example .env
+cp .env.example .env.local
 ```
 
 2. Install dependencies:

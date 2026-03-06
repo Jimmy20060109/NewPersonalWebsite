@@ -60,7 +60,7 @@
   left: 0;
   width: 0;
   height: 1px;
-  background-color: var(--color-text);
+  background-color: var(--color-strong-bg);
   transition: width 0.3s ease;
 }
 
@@ -81,7 +81,7 @@
 .menu-toggle span {
   width: 24px;
   height: 2px;
-  background-color: var(--color-text);
+  background-color: var(--color-strong-bg);
   transition: var(--transition);
 }
 

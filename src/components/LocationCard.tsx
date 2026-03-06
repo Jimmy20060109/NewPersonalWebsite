@@ -1,8 +1,113 @@
 import { useEffect, useState } from 'react'
 import './LocationCard.css'
 
+declare global {
+  interface Window {
+    google?: {
+      maps?: {
+        Map: new (element: HTMLElement, options: Record<string, unknown>) => unknown
+        Marker: new (options: Record<string, unknown>) => unknown
+      }
+    }
+  }
+}
+
+const MAPS_SCRIPT_ID = 'google-maps-sdk'
+const MAP_COORDS = { lat: 43.9078295, lng: -79.4380962 }
+const EMBED_URL =
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5748.98004918972!2d-79.44068002360596!3d43.9078279359245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b2a77a1ddb031%3A0x6945bc4d63159682!2s55%20Falling%20River%20Dr%2C%20Richmond%20Hill%2C%20ON%20L4S%202R2!5e0!3m2!1sen!2sca!4v1771933744639!5m2!1sen!2sca'
+
+const darkStyle = [
+  { elementType: 'geometry', stylers: [{ color: '#0f1115' }] },
+  { elementType: 'labels.text.fill', stylers: [{ color: '#b0b6c3' }] },
+  { elementType: 'labels.text.stroke', stylers: [{ color: '#151821' }] },
+  {
+    featureType: 'administrative',
+    elementType: 'geometry.stroke',
+    stylers: [{ color: '#262b3a' }]
+  },
+  {
+    featureType: 'administrative.land_parcel',
+    elementType: 'labels.text.fill',
+    stylers: [{ color: '#7c8396' }]
+  },
+  {
+    featureType: 'poi',
+    elementType: 'labels.text.fill',
+    stylers: [{ color: '#7c8396' }]
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: [{ color: '#1c2030' }]
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry.stroke',
+    stylers: [{ color: '#262b3a' }]
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels.text.fill',
+    stylers: [{ color: '#94a3b8' }]
+  },
+  {
+    featureType: 'transit',
+    elementType: 'geometry',
+    stylers: [{ color: '#1c2030' }]
+  },
+  {
+    featureType: 'water',
+    elementType: 'geometry',
+    stylers: [{ color: '#111827' }]
+  },
+  {
+    featureType: 'water',
+    elementType: 'labels.text.fill',
+    stylers: [{ color: '#7c8396' }]
+  }
+]
+
+async function loadGoogleMapsScript(apiKey: string): Promise<void> {
+  if (window.google?.maps) {
+    return
+  }
+
+  const existing = document.getElementById(MAPS_SCRIPT_ID) as HTMLScriptElement | null
+  if (existing) {
+    await new Promise<void>((resolve, reject) => {
+      if (window.google?.maps) {
+        resolve()
+        return
+      }
+
+      existing.addEventListener('load', () => resolve(), { once: true })
+      existing.addEventListener('error', () => reject(new Error('Failed to load Google Maps')), {
+        once: true
+      })
+    })
+    return
+  }
+
+  const script = document.createElement('script')
+  script.id = MAPS_SCRIPT_ID
+  script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`
+  script.async = true
+  script.defer = true
+
+  await new Promise<void>((resolve, reject) => {
+    script.onload = () => resolve()
+    script.onerror = () => reject(new Error('Failed to load Google Maps'))
+    document.head.appendChild(script)
+  })
+}
+
 const LocationCard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [useFallbackMap, setUseFallbackMap] = useState(false)
+  const apiKey = (import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string | undefined)?.trim()
+
+  const [mapHost, setMapHost] = useState<HTMLDivElement | null>(null)
 
   useEffect(() => {
     if (!isModalOpen) {
@@ -22,16 +127,67 @@ const LocationCard = () => {
     }
   }, [isModalOpen])
 
+  useEffect(() => {
+    if (!apiKey || !mapHost) {
+      setUseFallbackMap(true)
+      return
+    }
+
+    let cancelled = false
+
+    const initMap = async () => {
+      try {
+        await loadGoogleMapsScript(apiKey)
+
+        if (cancelled || !window.google?.maps) {
+          return
+        }
+
+        const map = new window.google.maps.Map(mapHost, {
+          center: MAP_COORDS,
+          zoom: 13,
+          styles: darkStyle,
+          disableDefaultUI: true,
+          zoomControl: true,
+          gestureHandling: 'none',
+          keyboardShortcuts: false,
+          clickableIcons: false
+        })
+
+        new window.google.maps.Marker({
+          position: MAP_COORDS,
+          map,
+          title: 'Richmond Hill, Ontario'
+        })
+
+        setUseFallbackMap(false)
+      } catch {
+        if (!cancelled) {
+          setUseFallbackMap(true)
+        }
+      }
+    }
+
+    initMap()
+
+    return () => {
+      cancelled = true
+    }
+  }, [apiKey, mapHost])
+
   return (
     <>
       <button type="button" className="location-card" onClick={() => setIsModalOpen(true)}>
         <div className="location-card-map" aria-hidden="true">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5748.98004918972!2d-79.44068002360596!3d43.9078279359245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b2a77a1ddb031%3A0x6945bc4d63159682!2s55%20Falling%20River%20Dr%2C%20Richmond%20Hill%2C%20ON%20L4S%202R2!5e0!3m2!1sen!2sca!4v1771933744639!5m2!1sen!2sca"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Map background"
-          />
+          <div ref={setMapHost} className="location-card-map-canvas" />
+          {useFallbackMap && (
+            <iframe
+              src={EMBED_URL}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Map background"
+            />
+          )}
         </div>
         <div className="location-card-content">
           <p className="location-card-eyebrow">Current Base</p>
@@ -70,7 +226,7 @@ const LocationCard = () => {
 
             <div className="location-modal-map-wrap">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5748.98004918972!2d-79.44068002360596!3d43.9078279359245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b2a77a1ddb031%3A0x6945bc4d63159682!2s55%20Falling%20River%20Dr%2C%20Richmond%20Hill%2C%20ON%20L4S%202R2!5e0!3m2!1sen!2sca!4v1771933744639!5m2!1sen!2sca"
+                src={EMBED_URL}
                 title="Home location map"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
