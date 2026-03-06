@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useMemo, useRef, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useMemo, useRef, useState } from 'react'
 import './ChatBoxCard.css'
 
 type AskTopic = '' | 'project' | 'work' | 'education' | 'skills' | 'contact' | 'location'
@@ -55,6 +55,7 @@ function makeMessageId(): string {
 const ChatBoxCard = () => {
   const apiBaseUrl = useMemo(() => getApiBaseUrl(), [])
   const messagesContainerRef = useRef<HTMLDivElement | null>(null)
+  const questionInputRef = useRef<HTMLTextAreaElement | null>(null)
   const shouldAutoScrollRef = useRef(true)
 
   const [question, setQuestion] = useState('')
@@ -88,7 +89,24 @@ const ChatBoxCard = () => {
     container.scrollTop = container.scrollHeight
   }, [messages, isLoading])
 
+  useEffect(() => {
+    const input = questionInputRef.current
+    if (!input) {
+      return
+    }
+
+    input.style.height = 'auto'
+    const maxHeight = 160
+    const nextHeight = Math.min(input.scrollHeight, maxHeight)
+    input.style.height = `${nextHeight}px`
+    input.style.overflowY = input.scrollHeight > maxHeight ? 'auto' : 'hidden'
+  }, [question])
+
   const canSubmit = question.trim().length > 0 && !isLoading
+
+  const handleQuestionChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setQuestion(event.target.value)
+  }
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
@@ -220,11 +238,12 @@ const ChatBoxCard = () => {
 
         <div className="chatbox-form-bottom">
           <textarea
+            ref={questionInputRef}
             value={question}
-            onChange={(event) => setQuestion(event.target.value)}
+            onChange={handleQuestionChange}
             className="chatbox-input"
             placeholder="Ask about projects, internships, skills, or contact info..."
-            rows={3}
+            rows={1}
           />
           <button type="submit" className="chatbox-send-button" disabled={!canSubmit}>
             {isLoading ? 'Thinking...' : 'Send'}

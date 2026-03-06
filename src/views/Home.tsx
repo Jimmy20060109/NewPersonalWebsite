@@ -10,13 +10,9 @@ const Home = () => {
     <div className="home-container">
       <IntroductionCard />
       <ResumeCard />
-      <div className="home-ai-row">
-        <div className="home-ai-left">
-          <PhotographyCard />
-          <LocationCard />
-        </div>
-        <ChatBoxCard />
-      </div>
+      <PhotographyCard />
+      <LocationCard />
+      <ChatBoxCard />
     </div>
   )
 }

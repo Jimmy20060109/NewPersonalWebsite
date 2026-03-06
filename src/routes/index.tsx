@@ -3,7 +3,6 @@ import Home from '../views/Home'
 import About from '../views/About'
 import Resume from '../views/Resume'
 import Skills from '../views/Skills'
-import Gallery from '../views/Gallery'
 import Photography from '../views/Photography'
 import NotFound from '../views/NotFound'
 import App from '../App'
@@ -17,7 +16,6 @@ export const navItems: NavItem[] = [
   { path: '/about', label: 'About' },
   { path: '/resume', label: 'Resume' },
   { path: '/skills', label: 'Skills' },
-  { path: '/gallery', label: 'Gallery' },
   { path: '/photography', label: 'Photography' },
 ]
 
@@ -46,10 +44,6 @@ export const routes: RouteObject[] = [
       {
         path: 'skills',
         element: <Skills />,
-      },
-      {
-        path: 'gallery',
-        element: <Gallery />,
       },
       {
         path: 'photography',
