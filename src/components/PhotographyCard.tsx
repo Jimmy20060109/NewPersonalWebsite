@@ -2,12 +2,19 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './PhotographyCard.css'
 
+const homepageImageModules = import.meta.glob(
+  '../images/travel/homepage/*.{jpg,JPG,jpeg,JPEG,png,PNG,webp,WEBP}',
+  { eager: true, import: 'default' },
+) as Record<string, string>
+
 const travelImageModules = import.meta.glob(
   '../images/travel/*.{jpg,JPG,jpeg,JPEG,png,PNG,webp,WEBP}',
   { eager: true, import: 'default' },
 ) as Record<string, string>
 
-const travelImageUrls = Object.values(travelImageModules)
+const travelImageUrls = Object.values(homepageImageModules).length
+  ? Object.values(homepageImageModules)
+  : Object.values(travelImageModules)
 const ROTATE_INTERVAL_MS = 10000
 const CROSSFADE_MS = 1000
 
