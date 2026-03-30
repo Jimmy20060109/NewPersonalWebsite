@@ -16,9 +16,12 @@ const initialTravelImages = Object.entries(imageModules)
     alt: `${path.split('/').pop()?.replace(/\.[^.]+$/, '') || 'travel'} photo`,
   }))
 
+type PhotoShape = 'landscape' | 'portrait'
+
 const Photography = () => {
   const [images, setImages] = useState(initialTravelImages)
   const [selectedImage, setSelectedImage] = useState<(typeof initialTravelImages)[number] | null>(null)
+  const [imageShapes, setImageShapes] = useState<Record<string, PhotoShape>>({})
   const galleryRef = useRef<HTMLDivElement | null>(null)
   const suppressClickIdsRef = useRef<Set<string>>(new Set())
 
@@ -164,6 +167,22 @@ const Photography = () => {
     setSelectedImage(image)
   }
 
+  const handleImageLoad = (imageId: string, event: React.SyntheticEvent<HTMLImageElement>) => {
+    const { naturalWidth, naturalHeight } = event.currentTarget
+    const nextShape: PhotoShape = naturalHeight > naturalWidth ? 'portrait' : 'landscape'
+
+    setImageShapes((prevShapes) => {
+      if (prevShapes[imageId] === nextShape) {
+        return prevShapes
+      }
+
+      return {
+        ...prevShapes,
+        [imageId]: nextShape,
+      }
+    })
+  }
+
   return (
     <section id="photography" className="photography">
       <h2 className="section-title">Photography</h2>
@@ -173,14 +192,23 @@ const Photography = () => {
       </div>
       <div ref={galleryRef} className="photography-gallery">
         {images.map((image) => (
-          <figure className="photo-frame draggable-photo" key={image.id} data-photo-id={image.id}>
+          <figure
+            className={`photo-frame draggable-photo is-${imageShapes[image.id] ?? 'landscape'}`}
+            key={image.id}
+            data-photo-id={image.id}
+          >
             <button
               type="button"
               className="photo-frame-button"
               onClick={() => handleImageClick(image)}
               aria-label={`Open ${image.alt}`}
             >
-              <img src={image.src} alt={image.alt} loading="lazy" />
+              <img
+                src={image.src}
+                alt={image.alt}
+                loading="lazy"
+                onLoad={(event) => handleImageLoad(image.id, event)}
+              />
             </button>
           </figure>
         ))}

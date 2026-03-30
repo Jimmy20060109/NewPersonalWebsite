@@ -52,6 +52,7 @@
 .photo-frame-button {
   width: 100%;
   display: block;
+  height: 100%;
   padding: 0;
   border: none;
   border-radius: 14px;
@@ -62,8 +63,18 @@
 
 .photo-frame-button img {
   width: 100%;
+  height: 100%;
   display: block;
   border-radius: 14px;
+  object-fit: cover;
+}
+
+.photo-frame.is-landscape {
+  min-height: 220px;
+}
+
+.photo-frame.is-portrait {
+  min-height: 340px;
 }
 
 .photo-lightbox {
@@ -175,6 +186,14 @@
 
   .photo-frame-button img {
     border-radius: 11px;
+  }
+
+  .photo-frame.is-landscape {
+    min-height: 180px;
+  }
+
+  .photo-frame.is-portrait {
+    min-height: 280px;
   }
 
   .photo-lightbox-content {
