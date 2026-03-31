@@ -16,12 +16,11 @@ const initialTravelImages = Object.entries(imageModules)
     alt: `${path.split('/').pop()?.replace(/\.[^.]+$/, '') || 'travel'} photo`,
   }))
 
-type PhotoShape = 'landscape' | 'portrait'
 
 const Photography = () => {
   const [images, setImages] = useState(initialTravelImages)
   const [selectedImage, setSelectedImage] = useState<(typeof initialTravelImages)[number] | null>(null)
-  const [imageShapes, setImageShapes] = useState<Record<string, PhotoShape>>({})
+  const [imageRowSpans, setImageRowSpans] = useState<Record<string, number>>({})
   const galleryRef = useRef<HTMLDivElement | null>(null)
   const suppressClickIdsRef = useRef<Set<string>>(new Set())
 
@@ -168,17 +167,32 @@ const Photography = () => {
   }
 
   const handleImageLoad = (imageId: string, event: React.SyntheticEvent<HTMLImageElement>) => {
-    const { naturalWidth, naturalHeight } = event.currentTarget
-    const nextShape: PhotoShape = naturalHeight > naturalWidth ? 'portrait' : 'landscape'
+    const img = event.currentTarget
+    const naturalWidth = img.naturalWidth
+    const naturalHeight = img.naturalHeight
+    const renderedWidth = img.clientWidth
 
-    setImageShapes((prevShapes) => {
-      if (prevShapes[imageId] === nextShape) {
-        return prevShapes
+    if (!naturalWidth || !naturalHeight || !renderedWidth) {
+      return
+    }
+
+    const renderedHeight = (renderedWidth * naturalHeight) / naturalWidth
+
+    const CARD_CHROME = 18
+    const GRID_ROW_UNIT = 8
+    const GRID_GAP = 24
+
+    const cardHeight = renderedHeight + CARD_CHROME
+    const rowSpan = Math.ceil((cardHeight + GRID_GAP) / (GRID_GAP + GRID_ROW_UNIT))
+
+    setImageRowSpans((prev) => {
+      if (prev[imageId] === rowSpan) {
+        return prev
       }
 
       return {
-        ...prevShapes,
-        [imageId]: nextShape,
+        ...prev,
+        [imageId]: rowSpan,
       }
     })
   }
@@ -193,9 +207,10 @@ const Photography = () => {
       <div ref={galleryRef} className="photography-gallery">
         {images.map((image) => (
           <figure
-            className={`photo-frame draggable-photo is-${imageShapes[image.id] ?? 'landscape'}`}
+            className={`photo-frame draggable-photo`}
             key={image.id}
             data-photo-id={image.id}
+            style={{ '--row-span': imageRowSpans[image.id] ?? 30 } as React.CSSProperties}
           >
             <button
               type="button"

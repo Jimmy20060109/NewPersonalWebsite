@@ -28,7 +28,8 @@
 .photography-gallery {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--spacing-md);
+  gap: 1.5rem;
+  grid-auto-rows: 8px;
   align-items: start;
 }
 
@@ -43,6 +44,7 @@
     linear-gradient(140deg, #f8fbff, #dbeafe 35%, #bfd9ff 65%, #f8fbff) border-box;
   box-shadow: 0 14px 28px rgba(30, 64, 175, 0.12);
   transition: box-shadow 0.25s ease, border-color 0.25s ease;
+  grid-row-end: span var(--row-span, 30);
 }
 
 .photo-frame:hover:not(.is-dragging) {
@@ -52,7 +54,6 @@
 .photo-frame-button {
   width: 100%;
   display: block;
-  height: 100%;
   padding: 0;
   border: none;
   border-radius: 14px;
@@ -63,18 +64,9 @@
 
 .photo-frame-button img {
   width: 100%;
-  height: 100%;
+  height: auto;
   display: block;
   border-radius: 14px;
-  object-fit: cover;
-}
-
-.photo-frame.is-landscape {
-  min-height: 220px;
-}
-
-.photo-frame.is-portrait {
-  min-height: 340px;
 }
 
 .photo-lightbox {
@@ -186,14 +178,6 @@
 
   .photo-frame-button img {
     border-radius: 11px;
-  }
-
-  .photo-frame.is-landscape {
-    min-height: 180px;
-  }
-
-  .photo-frame.is-portrait {
-    min-height: 280px;
   }
 
   .photo-lightbox-content {
