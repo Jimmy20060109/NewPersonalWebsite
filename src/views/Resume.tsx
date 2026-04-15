@@ -1,5 +1,5 @@
 import './Resume.css'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, type ReactNode } from 'react'
 import WaterlooLogo from '../images/waterlooLoGo.svg'
 import RHHSLogo from '../images/RHHSLogo.png'
 import CppLogo from '../images/ProgrammingLanguage/Cpp_Logo.png'
@@ -33,8 +33,11 @@ import AutotestLogo from '../images/tools/autotest_Logo.png'
 import BookLogo from '../images/Book_Logo.png'
 import SkillsLogo from '../images/Skill_Logo.png'
 import WorkExperienceLogo from '../images/work-experience-logo.svg'
-import ResumePdf from "../images/Jimmy Zheng's Waterloo CS Resume V3.pdf"
+import ResumePdf from "../images/Jimmy Zheng's External CS Resume V4 .pdf"
 import WorkLogo from '../images/Work_Logo.png'
+import GoLogo from '../images/ProgrammingLanguage/Go_Logo.png'
+import StripeLogo from '../images/framework/Stripe_Logo.png'
+import VueLogo from '../images/framework/Vue_Logo.png'
 
 interface ExperienceItem {
   title: string
@@ -43,7 +46,7 @@ interface ExperienceItem {
   location: string
   period: string
   technologies: string[]
-  achievements: string[]
+  achievements: ReactNode[]
   evaluation?: string
 }
 
@@ -84,9 +87,20 @@ const experiences: ExperienceItem[] = [
     ],
     achievements: [
       'Engineered and deployed core infrastructure for eh-trade, a momentum-based stock analytics SaaS platform, transforming Python ML trading models into a production-ready full-stack system serving real-time stock screening.',
-      'Designed modular frontend architecture with Vue 3, optimized data rendering and API integration patterns, reduced redundant network requests, and improved chart and watchlist load performance by 30% across desktop and mobile.',
-      'Developed secure authentication and subscription infrastructure using TypeScript and Stripe, enabling recurring billing, gated premium features, and full user lifecycle management from onboarding to subscription control.',
-      'Applied AI-assisted (Cursor) development practices across the full stack (Vue.js, TypeScript, Go, Python) to shorten iteration cycles and increase feature throughput by 40%, while maintaining code review standards, modular architecture, and production-grade reliability.',
+      'Optimized Vue 3 charting and pair analysis interfaces by refactoring data-heavy frontend modules, reducing redundant API and RPC calls, and implementing lazy loading, cutting load times by 30% across desktop and mobile.',
+      'Built a scalable programmatic SEO (pSEO) system using Go, implementing server-side rendering (SSR) for dynamic stock pages, automated meta/OG tag generation, cache-backed data prewarming, and sitemap integration, enabling efficient indexing and fast crawl performance across 500+ earning pages and hundreds of comparison URLs.',
+      <>Developed secure <strong>authentication</strong> and <strong>subscription</strong> infrastructure using <strong>{' '}TypeScript</strong><img src={JSLogo} alt="JavaScript Logo" className="inline-tech-logo"/>, 
+      <strong>{' '}Go</strong><img src={GoLogo} alt="Go Logo" className="inline-tech-logo"/> and <strong>{' '}Stripe</strong> <img src={StripeLogo} alt="Stripe Logo" className="inline-tech-logo"/>, enabling recurring billing, gated premium features, 
+      and full user lifecycle management from onboarding to subscription control.
+      </>,
+      <>
+        Used <strong>AI-assisted</strong> development workflows (Cursor, Claude) to
+        speed implementation of full-stack features including<strong> charting </strong>improvements,
+        <strong> watchlist</strong> performance, <strong> subscription</strong> flows, and analytics tooling across
+        <strong> Vue.js</strong>, <strong>TypeScript</strong>, <strong> Go</strong>, and <strong> Python</strong>, increasing feature throughput by{' '}
+        <strong>40%</strong> without compromising review quality or system
+        reliability.
+      </>,
     ],
   },
   {
@@ -146,7 +160,7 @@ interface PersonalProject {
   href: string
   period: string
   technologies: string[]
-  achievements: string[]
+  achievements: ReactNode[]
 }
 
 const personalProjects: PersonalProject[] = [
@@ -198,6 +212,7 @@ const skillsCategories: SkillCategory[] = [
         href: 'https://learn.microsoft.com/en-us/office/vba/api/overview',
       },
       { name: 'LabVIEW SDK', href: 'https://www.labviewmakerhub.com/' },
+      {name: 'Go', href: 'https://go.dev/'},
     ],
     logos: [
       { src: CLogo, alt: 'C Logo' },
@@ -210,6 +225,7 @@ const skillsCategories: SkillCategory[] = [
       { src: SQLLogo, alt: 'SQL Logo' },
       { src: RacketLogo, alt: 'Racket Logo' },
       { src: VBALogo, alt: 'VBA Logo' },
+      { src: GoLogo, alt: 'Go Logo' },
     ],
   },
   {
@@ -237,6 +253,8 @@ const skillsCategories: SkillCategory[] = [
       { src: RestAPILogo, alt: 'REST API Logo' },
       { src: jQueryLogo, alt: 'jQuery Logo' },
       { src: BootstrapLogo, alt: 'Bootstrap Logo' },
+      { src: VueLogo, alt: 'Vue.js Logo' },
+      { src: StripeLogo, alt: 'Stripe Logo' },
     ],
     reverse: true,
   },

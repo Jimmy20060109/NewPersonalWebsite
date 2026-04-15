@@ -54,6 +54,15 @@
   width: 100vw;
 }
 
+.inline-tech-logo {
+  height: 16px;
+  width: 16px;
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 4px;
+}
+
 @keyframes slideInFromLeft {
   from {
     transform: translateY(-50%) translateX(-120%);
