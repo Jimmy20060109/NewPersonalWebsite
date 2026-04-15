@@ -309,12 +309,13 @@
 }
 
 .skills-logos {
+  --skills-logos-bg: rgba(65, 105, 225, 0.05);
   display: flex;
   gap: var(--spacing-md);
   margin-top: var(--spacing-md);
   overflow: hidden;
   position: relative;
-  background: linear-gradient(to right, transparent, rgba(65, 105, 225, 0.03), transparent);
+  background: var(--skills-logos-bg);
   padding: var(--spacing-md) 0;
   border-radius: 8px;
 }
@@ -332,12 +333,12 @@
 
 .skills-logos::before {
   left: 0;
-  background: linear-gradient(to right, rgba(255, 255, 255, 1), transparent);
+  background: linear-gradient(to right, var(--skills-logos-bg), transparent);
 }
 
 .skills-logos::after {
   right: 0;
-  background: linear-gradient(to left, rgba(255, 255, 255, 1), transparent);
+  background: linear-gradient(to left, var(--skills-logos-bg), transparent);
 }
 
 .skills-logos-container {

@@ -181,6 +181,17 @@ const ChatBoxCard = () => {
       }
     ])
   }
+  
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault()
+      if (!canSubmit) {
+        handleSubmit(event as unknown as FormEvent)
+      }
+      event.currentTarget.form?.requestSubmit()
+    }
+  }
+
 
   return (
     <section className="chatbox-card" aria-label="AI chat assistant">
@@ -241,8 +252,9 @@ const ChatBoxCard = () => {
             ref={questionInputRef}
             value={question}
             onChange={handleQuestionChange}
+            onKeyDown={handleKeyDown}
             className="chatbox-input"
-            placeholder="Ask about projects, internships, skills, or contact info..."
+            placeholder="Ask something about Jimmy..."
             rows={1}
           />
           <button type="submit" className="chatbox-send-button" disabled={!canSubmit}>
