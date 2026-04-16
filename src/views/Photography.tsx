@@ -6,16 +6,23 @@ const imageModules = import.meta.glob('../images/travel/*.{jpg,JPG,jpeg,JPEG,png
   eager: true,
 }) as Record<string, { default: string }>
 
-const initialTravelImages = Object.entries(imageModules)
-  .sort(([pathA], [pathB]) =>
-    pathA.localeCompare(pathB, undefined, { numeric: true, sensitivity: 'base' }),
-  )
+function shuffleArray<T>(array: T[]) {
+  const result = [...array]
+
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]]
+  }
+  return result
+}
+const initialTravelImages = shuffleArray(
+  Object.entries(imageModules)
   .map(([path, module]) => ({
     id: path,
     src: module.default,
     alt: `${path.split('/').pop()?.replace(/\.[^.]+$/, '') || 'travel'} photo`,
-  }))
-
+  })),
+)
 
 const Photography = () => {
   const [images, setImages] = useState(initialTravelImages)
