@@ -120,6 +120,23 @@
   transform: translateY(0);
 }
 
+.resume-link {
+  color: var(--color-highlight);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-bottom-color 0.2s ease, opacity 0.2s ease;
+}
+
+.resume-link:hover {
+  color: var(--color-highlight);
+  border-bottom-color: currentColor;
+  opacity: 1;
+}
+
+.resume-des-link strong {
+  font-weight: 700;
+}
+
 .current-time {
   margin-top: var(--spacing-sm);
   font-size: var(--font-size-xs);
@@ -170,6 +187,10 @@
   justify-content: center;
 }
 
+:root[data-theme='dark'] .section-icon {
+  filter: brightness(0) invert(1) drop-shadow(0 0 6px rgba(255, 255, 255, 0.18));
+}
+
 .section-title {
   font-size: var(--font-size-xl);
   font-weight: 700;
@@ -212,15 +233,11 @@
 .university-name {
   font-weight: 700;
   font-size: var(--font-size-lg);
-  color: var(--color-text);
-  text-decoration: none;
   cursor: pointer;
-  border-bottom: none;
-  transition: border-bottom 0.3s ease;
 }
 
 .university-name:hover {
-  border-bottom: 1px solid var(--color-text);
+  border-bottom-color: currentColor;
 }
 
 .university-logo {
@@ -297,15 +314,11 @@
 }
 
 .skills-list a {
-  color: var(--color-text);
-  text-decoration: none;
-  border-bottom: none;
-  transition: border-bottom 0.3s ease;
   cursor: pointer;
 }
 
 .skills-list a:hover {
-  border-bottom: 1px solid var(--color-text);
+  border-bottom-color: currentColor;
 }
 
 .skills-logos {
@@ -536,14 +549,11 @@
 }
 
 .experience-company a {
-  color: inherit;
-  text-decoration: none;
-  border-bottom: none;
-  transition: border-bottom 0.3s ease;
+  font-weight: 600;
 }
 
 .experience-company a:hover {
-  border-bottom: 1px solid var(--color-text);
+  border-bottom-color: currentColor;
 }
 
 .experience-location,
@@ -578,6 +588,7 @@
 
 .achievement-item {
   font-size: var(--font-size-base);
+  font-family: 'Nunito', sans-serif;
   line-height: 1.8;
   color: var(--color-text);
   margin-bottom: var(--spacing-sm);

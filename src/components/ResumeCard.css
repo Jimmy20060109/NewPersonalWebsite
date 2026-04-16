@@ -107,6 +107,11 @@
   transform: translateY(0);
 }
 
+:root[data-theme='dark'] .resume-button,
+:root[data-theme='dark'] .resume-button:hover {
+  color: #111827;
+}
+
 .resume-decoration {
   display: none;
 }

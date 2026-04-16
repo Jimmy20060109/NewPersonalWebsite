@@ -1,44 +1,47 @@
 import './Resume.css'
 import { useState, useEffect, useRef, type ReactNode } from 'react'
-import WaterlooLogo from '../images/waterlooLoGo.svg'
-import RHHSLogo from '../images/RHHSLogo.png'
-import CppLogo from '../images/ProgrammingLanguage/Cpp_Logo.png'
-import CLogo from '../images/ProgrammingLanguage/C_Logo.png'
-import PythonLogo from '../images/ProgrammingLanguage/Python_Logo.png'
-import JavaLogo from '../images/ProgrammingLanguage/Java_Logo.png'
-import JSLogo from '../images/ProgrammingLanguage/JS_Logo.png'
-import HTMLLogo from '../images/ProgrammingLanguage/HTML_Logo.png'
-import CSSLogo from '../images/ProgrammingLanguage/CSS_Logo.png'
-import SQLLogo from '../images/ProgrammingLanguage/SQL_Logo.png'
-import RacketLogo from '../images/ProgrammingLanguage/Racket_Logo.png'
-import VBALogo from '../images/ProgrammingLanguage/VBA_Logo.png'
-import ReactLogo from '../images/framework/React_Logo.png'
-import ReactNativeLogo from '../images/framework/React_Native_Logo.png'
-import MernLogo from '../images/framework/Mern_Logo.png'
-import NodeLogo from '../images/framework/Node_Logo.png'
-import ExpressLogo from '../images/framework/Express_Logo.png'
-import NextJSLogo from '../images/framework/NextJS_Logo.png'
-import RestAPILogo from '../images/framework/RestAPI_Logo.png'
-import jQueryLogo from '../images/framework/jQuery_Logo.png'
-import BootstrapLogo from '../images/framework/BootStrap_Logo.png'
-import PostmanLogo from '../images/tools/Postman_Logo.png'
-import DockerLogo from '../images/tools/Docker_Logo.png'
-import GitLogo from '../images/tools/Git_Logo.png'
-import GithubLogo from '../images/tools/Github_Logo.png'
-import n8nLogo from '../images/tools/n8n_Logo.png'
-import CursorLogo from '../images/tools/Cursor_Logo.png'
-import GeminiLogo from '../images/tools/Gemini_Logo.png'
-import CMLLogo from '../images/tools/cml_Logo.png'
 import AutotestLogo from '../images/tools/autotest_Logo.png'
 import BookLogo from '../images/Book_Logo.png'
-import SkillsLogo from '../images/Skill_Logo.png'
-import WorkExperienceLogo from '../images/work-experience-logo.svg'
-import ResumePdf from "../images/Jimmy Zheng's External CS Resume V4 .pdf"
-import WorkLogo from '../images/Work_Logo.png'
+import BootstrapLogo from '../images/framework/BootStrap_Logo.png'
+import CLogo from '../images/ProgrammingLanguage/C_Logo.png'
+import ClaudeLogo from '../images/tools/Claude_Logo.png'
+import CMLLogo from '../images/tools/cml_Logo.png'
+import CppLogo from '../images/ProgrammingLanguage/Cpp_Logo.png'
+import CSSLogo from '../images/ProgrammingLanguage/CSS_Logo.png'
+import CursorLogo from '../images/tools/Cursor_Logo.png'
+import DockerLogo from '../images/tools/Docker_Logo.png'
+import EhTradeLogo from '../images/logo/eh_trade_logo.png'
+import ExpressLogo from '../images/framework/Express_Logo.png'
+import GeminiLogo from '../images/tools/Gemini_Logo.png'
+import GitLogo from '../images/tools/Git_Logo.png'
+import GithubLogo from '../images/tools/Github_Logo.png'
 import GoLogo from '../images/ProgrammingLanguage/Go_Logo.png'
+import HTMLLogo from '../images/ProgrammingLanguage/HTML_Logo.png'
+import JavaLogo from '../images/ProgrammingLanguage/Java_Logo.png'
+import jQueryLogo from '../images/framework/jQuery_Logo.png'
+import JSLogo from '../images/ProgrammingLanguage/JS_Logo.png'
+import TSLogo from '../images/ProgrammingLanguage/TS_Logo.png'
+import MernLogo from '../images/framework/Mern_Logo.png'
+import n8nLogo from '../images/tools/n8n_Logo.png'
+import NextJSLogo from '../images/framework/NextJS_Logo.png'
+import NodeLogo from '../images/framework/Node_Logo.png'
+import PostmanLogo from '../images/tools/Postman_Logo.png'
+import PythonLogo from '../images/ProgrammingLanguage/Python_Logo.png'
+import RacketLogo from '../images/ProgrammingLanguage/Racket_Logo.png'
+import ReactLogo from '../images/framework/React_Logo.png'
+import ReactNativeLogo from '../images/framework/React_Native_Logo.png'
+import RestAPILogo from '../images/framework/RestAPI_Logo.png'
+import ResumePdf from "../images/Jimmy Zheng's External CS Resume V4 .pdf"
+import RHHSLogo from '../images/RHHSLogo.png'
+import SQLLogo from '../images/ProgrammingLanguage/SQL_Logo.png'
+import SkillsLogo from '../images/Skill_Logo.png'
 import StripeLogo from '../images/framework/Stripe_Logo.png'
+import VBALogo from '../images/ProgrammingLanguage/VBA_Logo.png'
+import VueInline from '../images/framework/Vue-Inline.png'
 import VueLogo from '../images/framework/Vue_Logo.png'
-
+import WaterlooLogo from '../images/waterlooLoGo.svg'
+import WorkExperienceLogo from '../images/work-experience-logo.svg'
+import WorkLogo from '../images/Work_Logo.png'
 interface ExperienceItem {
   title: string
   company: string
@@ -73,7 +76,7 @@ const experiences: ExperienceItem[] = [
     company: 'Hanov Solutions Inc',
     companyLinks: [{ name: 'Hanov Solutions Inc', href: 'https://www.hanovsolutions.com/' }],
     location: 'Waterloo, Ontario',
-    period: 'Jan 2026 - Present',
+    period: 'Jan 2026 - April 2026',
     technologies: [
       'Python',
       'Go',
@@ -86,18 +89,81 @@ const experiences: ExperienceItem[] = [
       'Stripe',
     ],
     achievements: [
-      'Engineered and deployed core infrastructure for eh-trade, a momentum-based stock analytics SaaS platform, transforming Python ML trading models into a production-ready full-stack system serving real-time stock screening.',
-      'Optimized Vue 3 charting and pair analysis interfaces by refactoring data-heavy frontend modules, reducing redundant API and RPC calls, and implementing lazy loading, cutting load times by 30% across desktop and mobile.',
-      'Built a scalable programmatic SEO (pSEO) system using Go, implementing server-side rendering (SSR) for dynamic stock pages, automated meta/OG tag generation, cache-backed data prewarming, and sitemap integration, enabling efficient indexing and fast crawl performance across 500+ earning pages and hundreds of comparison URLs.',
-      <>Developed secure <strong>authentication</strong> and <strong>subscription</strong> infrastructure using <strong>{' '}TypeScript</strong><img src={JSLogo} alt="JavaScript Logo" className="inline-tech-logo"/>, 
-      <strong>{' '}Go</strong><img src={GoLogo} alt="Go Logo" className="inline-tech-logo"/> and <strong>{' '}Stripe</strong> <img src={StripeLogo} alt="Stripe Logo" className="inline-tech-logo"/>, enabling recurring billing, gated premium features, 
+      <>
+        Engineered and deployed core infrastructure for{' '}
+        <a
+          href="https://eh-trade.ca/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="resume-link resume-des-link"
+        >
+          <strong>eh-trade</strong>
+        </a>
+        <img src={EhTradeLogo} alt="eh-trade logo img" className="inline-tech-logo"/>
+        , a momentum-based stock analytics SaaS platform, transforming{' '}
+        <strong>Python ML</strong> trading models into a production-ready{' '}
+        <strong>full-stack</strong> system serving real-time stock screening.
+      </>,
+
+
+
+      <>Optimized <strong>Vue 3</strong><img src={VueInline} className="inline-tech-logo" alt="VueLogo"/> 
+      <a href="https://eh-trade.ca/stock/AAPL"
+         target="_blank"
+         rel="noopener noreferrer"
+         className="resume-link resume-des-link"
+      >
+        <strong>charting</strong>
+      </a>{' '}
+      and {' '}
+      <a href="https://eh-trade.ca/pair?s=kc51"
+         target="_blank"
+         rel="noopener noreferrer"
+         className="resume-link resume-des-link"
+      >
+        <strong>pair analysis</strong>
+      </a> {' '} interfaces by refactoring <strong>data-heavy frontend</strong> modules, reducing redundant 
+      <strong>API</strong> and <strong>RPC</strong> calls,
+      and implementing <strong>lazy loading</strong>, cutting load times by <strong>30%</strong> across desktop and mobile.</>,
+
+      <>Built a scalable <strong>programmatic SEO (pSEO)</strong> system using <strong>Go</strong>
+      <img src={GoLogo} className="inline-tech-logo" alt="Go logo"/>, 
+      implementing <strong>server-side rendering (SSR)</strong> for dynamic stock pages, automated <strong>meta/OG tag</strong>
+      {' '}generation, <strong>cache-backed</strong> data prewarming, and <strong>sitemap</strong> integration, enabling
+      efficient <strong>indexing</strong> and fast crawl performance across <strong>500+</strong>
+      <a href="https://eh-trade.ca/earnings"
+         target="_blank"
+         rel="noopener noreferrer"
+         className="resume-link resume-des-link"
+      >
+        {' '}<strong>earning pages</strong>
+      </a> {' '} and hundreds of comparison URLs.</>,
+
+
+      <>Developed secure <strong>authentication</strong> and <strong>subscription</strong> infrastructure using <strong>{' '}TypeScript</strong>
+      <img src={TSLogo} alt="TypeScript Logo" className="inline-tech-logo"/>,
+      <strong>{' '}Go</strong><img src={GoLogo} alt="Go Logo" className="inline-tech-logo"/> and
+      <strong>{' '}Stripe</strong> <img src={StripeLogo} alt="Stripe Logo" className="inline-tech-logo"/>, 
+      enabling recurring billing, gated premium features, 
       and full user lifecycle management from onboarding to subscription control.
       </>,
+
+
+
       <>
-        Used <strong>AI-assisted</strong> development workflows (Cursor, Claude) to
-        speed implementation of full-stack features including<strong> charting </strong>improvements,
+        Used <strong>AI-assisted</strong> development workflows 
+        <img src={ClaudeLogo} alt="Claude Code Logo" className="inline-tech-logo"/>
+        <img src={CursorLogo} alt="Cursor Logo" className="inline-tech-logo"/> to
+        speed implementation of <strong>full-stack</strong> features including<strong> charting </strong>improvements,
         <strong> watchlist</strong> performance, <strong> subscription</strong> flows, and analytics tooling across
-        <strong> Vue.js</strong>, <strong>TypeScript</strong>, <strong> Go</strong>, and <strong> Python</strong>, increasing feature throughput by{' '}
+        <strong> Vue.js</strong>
+        <img src={VueInline} alt="Vue Logo" className="inline-tech-logo"/>, 
+        <strong>TypeScript</strong>, 
+        <img src={TSLogo} alt="TSlogo Logo" className="inline-tech-logo"/>
+        <strong> Go</strong>
+        <img src={GoLogo} alt="Go Logo" className="inline-tech-logo"/>, and 
+        <strong> Python</strong>
+        <img src={PythonLogo} alt="python logo" className="inline-tech-logo"/>, increasing feature throughput by{' '}
         <strong>40%</strong> without compromising review quality or system
         reliability.
       </>,
@@ -359,7 +425,14 @@ const Resume = () => {
             <div className="education-entry">
               <div className="education-header">
                 <div className="education-info">
-                  <a href="https://www.uwaterloo.ca/" target="_blank" rel="noopener noreferrer" className="university-name">University of Waterloo</a>
+                  <a
+                    href="https://www.uwaterloo.ca/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="university-name resume-link"
+                  >
+                    University of Waterloo
+                  </a>
                   <img src={WaterlooLogo} alt="University of Waterloo Logo" className="university-logo" />, 
                   <span className="location">2B, Waterloo, Ontario</span>
                 </div>
@@ -380,7 +453,14 @@ const Resume = () => {
             <div className="education-entry">
               <div className="education-header">
                 <div className="education-info">
-                  <a href="https://richmondhill-hs.yrdsb.ca/" target="_blank" rel="noopener noreferrer" className="university-name">Richmond Hill High School</a>
+                  <a
+                    href="https://richmondhill-hs.yrdsb.ca/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="university-name resume-link"
+                  >
+                    Richmond Hill High School
+                  </a>
                   <img src={RHHSLogo} alt="Richmond Hill High School Logo" className="university-logo" />, 
                   <span className="location">Richmond Hill, Ontario</span>
                 </div>
@@ -409,7 +489,12 @@ const Resume = () => {
                 <p className="skills-list">
                   {category.links.map((link, index) => (
                     <span key={link.name}>
-                      <a href={link.href} target="_blank" rel="noopener noreferrer">
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="resume-link"
+                      >
                         {link.name}
                       </a>
                       {index < category.links.length - 1 ? ', ' : ''}
@@ -462,7 +547,12 @@ const Resume = () => {
                       {exp.companyLinks
                         ? exp.companyLinks.map((companyLink, companyIndex, companyLinks) => (
                             <span key={`${companyLink.name}-${companyIndex}`}>
-                              <a href={companyLink.href} target="_blank" rel="noopener noreferrer">
+                              <a
+                                href={companyLink.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="resume-link"
+                              >
                                 {companyLink.name}
                               </a>
                               {companyIndex < companyLinks.length - 1 ? ', ' : ''}
@@ -509,7 +599,7 @@ const Resume = () => {
                           href={project.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="university-name"
+                          className="university-name resume-link"
                         >
                           {project.title}
                         </a>
