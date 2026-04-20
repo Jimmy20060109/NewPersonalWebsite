@@ -42,6 +42,7 @@ import VueLogo from '../images/framework/Vue_Logo.png'
 import WaterlooLogo from '../images/waterlooLoGo.svg'
 import WorkExperienceLogo from '../images/work-experience-logo.svg'
 import WorkLogo from '../images/Work_Logo.png'
+import ComfyLogo from '../images/tools/Comfy.png'
 interface ExperienceItem {
   title: string
   company: string
@@ -178,7 +179,6 @@ const experiences: ExperienceItem[] = [
     ],
     location: 'Shanghai, China',
     period: 'May 2025 - August 2025',
-    evaluation: 'Outstanding Evaluation',
     technologies: [
       'C++',
       'Python',
@@ -191,10 +191,24 @@ const experiences: ExperienceItem[] = [
       'React',
     ],
     achievements: [
-      'Assisted in developing a LabVIEW-to-native-code compiler using C++ and Python, enabling graphical programs to be translated into optimized machine code. Improved compilation speed by 30% and reduced runtime errors by 20%, accelerating internal development workflows.',
-      'Developed an internal chatbot powered by RAG that indexed and summarized official documentation, helping cross-functional teams (e.g., LabVIEW developers exploring TestStand) access accurate answers instantly, improving team productivity and knowledge sharing, reducing knowledge lookup time by 50%.',
-      'Built automated workflows with n8n and Docker to generate and publish circuit documentation, reducing manual preparation time by 70% and ensuring consistent formatting across all projects.',
-      'Designed and built an internal website using JavaScript and ComfyUI with React.js to auto-generate cartoon avatars from employee photos, increasing internal team profile recognizability by 80%.',
+      <>Assisted in developing a LabVIEW-to-native-code compiler using <strong>C++</strong>
+      <img src={CppLogo} alt="C++ Logo" className="inline-tech-logo"/> and <strong>Python</strong>
+      <img src={PythonLogo} alt="Python Logo" className="inline-tech-logo"/>, 
+      enabling graphical programs to be translated into optimized machine code. 
+      Improved compilation speed by <strong>30%</strong> and reduced runtime errors by <strong>20%</strong>, 
+      accelerating internal development workflows.</>,
+      <>Developed an internal chatbot powered by <strong>RAG</strong> that indexed and summarized official documentation, 
+      helping cross-functional teams (e.g., <strong>LabVIEW</strong> developers exploring TestStand) access accurate answers instantly, 
+      improving team productivity and knowledge sharing, reducing knowledge lookup time by <strong>50%</strong>.</>,
+      <>Built automated workflows with <strong>n8n</strong>
+      <img src={n8nLogo} alt="n8n Logo" className="inline-tech-logo"/> and <strong>Docker</strong>
+      <img src={DockerLogo} alt="Docker Logo" className="inline-tech-logo"/> to generate and publish circuit documentation, 
+      reducing manual preparation time by <strong>70%</strong> and ensuring consistent formatting across all projects.</>,
+      <>Designed and built an internal website using <strong>JavaScript</strong>
+      <img src={JSLogo} alt="JavaScript Logo" className="inline-tech-logo"/> and <strong>ComfyUI</strong>
+      <img src={ComfyLogo} alt="ComfyUI Logo" className="inline-tech-logo"/>  with <strong>React.js</strong>
+      <img src={ReactLogo} alt="React Logo" className="inline-tech-logo"/> to auto-generate cartoon avatars from employee photos,
+       increasing internal team profile recognizability by <strong>80%</strong>.</>,
     ],
   },
   {
