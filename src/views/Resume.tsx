@@ -20,6 +20,7 @@ import HTMLLogo from '../images/ProgrammingLanguage/HTML_Logo.png'
 import JavaLogo from '../images/ProgrammingLanguage/Java_Logo.png'
 import jQueryLogo from '../images/framework/jQuery_Logo.png'
 import JSLogo from '../images/ProgrammingLanguage/JS_Logo.png'
+import JestLogo from '../images/tools/JestLogo.png'
 import TSLogo from '../images/ProgrammingLanguage/TS_Logo.png'
 import MernLogo from '../images/framework/Mern_Logo.png'
 import n8nLogo from '../images/tools/n8n_Logo.png'
@@ -227,10 +228,17 @@ const experiences: ExperienceItem[] = [
       'HTTP',
     ],
     achievements: [
-      'Developed and optimized the homepage and \'About Us\' page for VolunTrack using React, Bootstrap, and JavaScript, improving site load speed by 30% and enhancing mobile responsiveness.',
-      'Implemented automated testing using Python unit tests, Jest, and visual regression testing, identifying and resolving 15+ bugs before production release and improving overall code reliability by 50%.',
-      'Validated HTTP requests with Postman by designing and executing structured API test cases, ensuring 90%+ accuracy of backend responses and reducing integration issues across the web application.',
-      'Optimized website responsiveness by implementing media queries in CSS to ensure optimal user experience across various devices, including desktops, tablets, and smartphones.',
+      <>Designed and executed structured <strong>API test</strong> cases in <strong>Postman</strong>
+      <img src={PostmanLogo} alt="Postman Logo" className="inline-tech-logo"/> for <strong>happy-path flows</strong>,{' '} 
+      <strong>required-field</strong> checks, and <strong>type validation</strong>, verifying correct status codes, 
+      response structures, and backend behavior across core endpoints.</>,
+      <>Implemented automated testing using <strong>Python unit tests</strong>, <strong>Jest</strong>
+      <img src={JestLogo} alt="JestLogoImage" className="inline-tech-logo"/>, and <strong>visual regression testing</strong>, 
+      identifying and resolving <strong>15+</strong> bugs before production release and improving overall system reliability by <strong>50%</strong>.</>,
+      <>Extended test coverage to <strong>authentication failures</strong>, <strong>nonexistent-resource</strong> scenarios, 
+      <strong>duplicate submissions</strong>, <strong>rate-limit</strong> behavior, 
+      improving backend response accuracy to <strong>95%+</strong> and reducing integration defects across the web application.</>
+
     ],
   },
 ]
@@ -250,8 +258,19 @@ const personalProjects: PersonalProject[] = [
     period: 'Oct 2024 - Dec 2024',
     technologies: ['JavaScript', 'jQuery', 'Node.js', 'Express.js', 'HTML', 'CSS', 'SQL'],
     achievements: [
-      'Created an interactive game using JavaScript, HTML, CSS, jQuery, Node.js, and Express.js, enhancing user engagement through immersive audio effects and intuitive interaction features.',
-      'Engineered backend functions in JavaScript to manage player choices and game-state logic, ensuring seamless real-time interactions and reliable outcome validation.',
+      <>Created an interactive game using JavaScript
+      <img src={JSLogo} alt="JavaScript Logo" className="inline-tech-logo"/>, <strong>HTML</strong>
+      <img src={HTMLLogo} alt="html logo" className="inline-tech-logo"/>, <strong>CSS</strong>
+      <img src={CSSLogo} alt="css logo" className="inline-tech-logo"/>, <strong>jQuery</strong>
+      <img src={jQueryLogo} alt="jQuery Logo" className="inline-tech-logo"/>, <strong>Node.js</strong>
+      <img src={NodeLogo} alt="Node.js Logo" className="inline-tech-logo"/>, and <strong>Express.js</strong>
+      <img src={ExpressLogo} alt = "ExpressLogo" className="inline-tech-logo"/>,{' '}
+      enhancing user engagement through immersive audio effects 
+      and intuitive interaction features.</>,
+      <>Engineered backend functions in <strong>JavaScript</strong> 
+      <img src={JSLogo} alt="JS logo" className="inline-tech-logo"/>,{' '}
+      to manage player choices and game-state logic, ensuring seamless real-time 
+      interactions and reliable outcome validation.</>,
     ],
   },
   {
@@ -260,9 +279,15 @@ const personalProjects: PersonalProject[] = [
     period: 'Feb 2025 - June 2025',
     technologies: ['React', 'JavaScript', 'CSS', 'Postman', 'HTTP', 'Unsplash API'],
     achievements: [
-      'Built a Google Keep–style note-taking app using React functional components and Hooks (useState), supporting creating and deleting notes via controlled inputs and prop callbacks.',
-      'CRA built with npm scripts + cross-env (OpenSSL fix), ESLint (react-hooks); CSS + Google Fonts.',
-      'Composed reusable components (Header, Footer, CreateArea, Note) with lifted state and keyed lists.',
+      <>Built a Google Keep-style note-taking app using <strong>React</strong>
+      <img src={ReactLogo} alt="React Logo" className="inline-tech-logo"/>,{' '}
+      functional components and <strong>Hooks (useState)</strong>,{' '}
+      supporting creating and deleting notes via controlled inputs and prop callbacks.</>,
+      <>Create React App with <strong>npm scripts</strong> + cross-env (OpenSSL fix),{' '}
+      <strong>ESLint</strong> (react-hooks); 
+      CSS + Google Fonts.</>,
+      <>Composed reusable components (Header, Footer, CreateArea, Note) 
+      with <strong>lifted state</strong> and keyed lists.</>,
     ],
   },
 ]

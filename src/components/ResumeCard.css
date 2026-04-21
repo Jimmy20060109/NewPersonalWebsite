@@ -1,14 +1,17 @@
 .resume-card {
   --resume-card-bg-image: url('../images/Resume.jpg');
   --resume-card-overlay: rgba(0, 0, 0, 0.28);
+  --resume-card-bg-blur: 2px;
   --resume-card-title-color: #ffffff;
   --resume-card-name-color: rgba(255, 255, 255, 0.84);
   --resume-card-button-bg: rgba(255, 255, 255, 0.96);
   --resume-card-button-bg-hover: #f7fafc;
   --resume-card-button-color: #111827;
+  --resume-card-button-blur: 1px;
+  --resume-card-pill-radius: 12px;
   display: flex;
   flex-direction: column;
-  background: #111827;
+  background-color: #111827;
   border-radius: 24px;
   padding: var(--spacing-md);
   margin: 0;
@@ -28,11 +31,27 @@
 :root[data-theme='dark'] .resume-card {
   --resume-card-bg-image: url('../images/Resume_Dark.png');
   --resume-card-overlay: rgba(0, 0, 0, 0.14);
+  --resume-card-bg-blur: 2px;
   --resume-card-title-color: #f8fafc;
   --resume-card-name-color: rgba(230, 232, 236, 0.9);
-  --resume-card-button-bg: rgba(15, 17, 21, 0.82);
-  --resume-card-button-bg-hover: rgba(28, 32, 48, 0.92);
+  --resume-card-button-bg: rgba(15, 17, 21, 0.9);
+  --resume-card-button-bg-hover: rgba(28, 32, 48, 0.96);
   --resume-card-button-color: #f8fafc;
+  --resume-card-button-blur: 6px;
+}
+
+.resume-card::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  background-image:
+    linear-gradient(var(--resume-card-overlay), var(--resume-card-overlay)),
+    var(--resume-card-bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(var(--resume-card-bg-blur));
+  z-index: 0;
 }
 
 .resume-card:hover {
@@ -64,17 +83,35 @@
   font-size: var(--font-size-2xl);
   font-weight: 700;
   margin: 0;
+  padding: 0.35rem 0.75rem;
   color: var(--resume-card-title-color);
   letter-spacing: -0.02em;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.24);
+  display: inline-flex;
+  align-self: flex-start;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  border-radius: var(--resume-card-pill-radius);
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .resume-name {
   font-size: var(--font-size-lg);
   font-weight: 400;
   margin: 0;
+  padding: 0.3rem 0.7rem;
   color: var(--resume-card-name-color);
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+  display: inline-flex;
+  align-self: flex-start;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.54);
+  border-radius: var(--resume-card-pill-radius);
+  background: rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .resume-button {
@@ -83,7 +120,7 @@
   background-color: var(--resume-card-button-bg);
   color: var(--resume-card-button-color);
   border: none;
-  border-radius: 12px;
+  border-radius: var(--resume-card-pill-radius);
   font-size: var(--font-size-base);
   font-weight: 500;
   cursor: pointer;
@@ -94,6 +131,8 @@
   box-sizing: border-box;
   text-align: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(var(--resume-card-button-blur));
+  -webkit-backdrop-filter: blur(var(--resume-card-button-blur));
 }
 
 @media (min-width: 769px) {
@@ -132,30 +171,6 @@
 
 .plant-silhouette {
   display: none;
-}
-
-/* Background layer using Resume.jpg: cover crop, slight blur and overlay for readability */
-.resume-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: var(--resume-card-bg-image);
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  filter: blur(2px);
-  transform: scale(1.03);
-  z-index: 0;
-  pointer-events: none;
-}
-
-.resume-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--resume-card-overlay);
-  z-index: 1;
-  pointer-events: none;
 }
 
 @media (max-width: 768px) {
