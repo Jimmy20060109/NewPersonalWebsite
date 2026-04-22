@@ -1,8 +1,6 @@
 import { ChangeEvent, FormEvent, useEffect, useMemo, useRef, useState } from 'react'
 import './ChatBoxCard.css'
 
-type AskTopic = '' | 'project' | 'work' | 'education' | 'skills' | 'contact' | 'location'
-
 interface AskSource {
   id: string
   title: string
@@ -22,16 +20,6 @@ interface ChatMessage {
   sources?: AskSource[]
   isError?: boolean
 }
-
-const TOPIC_OPTIONS: Array<{ label: string; value: AskTopic }> = [
-  { label: 'Auto Topic', value: '' },
-  { label: 'Projects', value: 'project' },
-  { label: 'Work', value: 'work' },
-  { label: 'Education', value: 'education' },
-  { label: 'Skills', value: 'skills' },
-  { label: 'Contact', value: 'contact' },
-  { label: 'Location', value: 'location' }
-]
 
 function getApiBaseUrl(): string {
   const configured = (import.meta.env.VITE_RAG_API_BASE_URL as string | undefined)?.trim()
@@ -59,7 +47,6 @@ const ChatBoxCard = () => {
   const shouldAutoScrollRef = useRef(true)
 
   const [question, setQuestion] = useState('')
-  const [topic, setTopic] = useState<AskTopic>('')
   const [isLoading, setIsLoading] = useState(false)
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -134,8 +121,7 @@ const ChatBoxCard = () => {
         body: JSON.stringify({
           question: trimmedQuestion,
           topK: 4,
-          lang: 'auto',
-          topic: topic || undefined
+          lang: 'auto'
         })
       })
 
@@ -197,7 +183,7 @@ const ChatBoxCard = () => {
     <section className="chatbox-card" aria-label="AI chat assistant">
       <div className="chatbox-header">
         <h2 className="chatbox-title">Ask Jimmy AI</h2>
-        <p className="chatbox-subtitle">Type your question and get an answer grounded in the portfolio knowledge base.</p>
+        <p className="chatbox-subtitle">Ask anything about Jimmy !!!</p>
       </div>
 
       <div
@@ -227,21 +213,6 @@ const ChatBoxCard = () => {
 
       <form className="chatbox-form" onSubmit={handleSubmit}>
         <div className="chatbox-form-top">
-          <label className="chatbox-topic-label" htmlFor="chatbox-topic">
-            Focus
-          </label>
-          <select
-            id="chatbox-topic"
-            value={topic}
-            onChange={(event) => setTopic(event.target.value as AskTopic)}
-            className="chatbox-topic-select"
-          >
-            {TOPIC_OPTIONS.map((option) => (
-              <option key={option.value || 'auto'} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
           <button type="button" className="chatbox-clear-button" onClick={clearConversation} disabled={isLoading}>
             Clear
           </button>

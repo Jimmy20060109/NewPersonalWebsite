@@ -10,9 +10,29 @@
 }
 
 .home-container > .photography-card,
-.home-container > .location-card {
+.home-container > .location-card,
+.home-container > .home-card-row {
   width: 100%;
   align-self: stretch;
+}
+
+.home-card-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-lg);
+  align-items: stretch;
+}
+
+.home-card-row > .location-card,
+.home-card-row > .education-card {
+  width: 100%;
+  align-self: stretch;
+  aspect-ratio: 1.75 / 1;
+  min-height: 250px;
+}
+
+.home-card-row > .education-card {
+  min-height: 250px;
 }
 
 @media (min-width: 1024px) {
@@ -43,7 +63,7 @@
     align-self: stretch;
   }
 
-  .home-container > .location-card {
+  .home-container > .home-card-row {
     grid-area: loc;
     align-self: stretch;
   }
@@ -53,6 +73,11 @@
     height: 100%;
     min-height: 0;
     align-self: stretch;
+  }
+
+  .home-card-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-md);
   }
 }
 
@@ -71,5 +96,19 @@
   .home-container > .introduction-card {
     height: auto;
     min-height: 230px;
+  }
+
+  .home-card-row {
+    gap: var(--spacing-sm);
+  }
+
+  .home-card-row > .education-card {
+    aspect-ratio: auto;
+    min-height: 215px;
+  }
+
+  .home-card-row > .location-card {
+    aspect-ratio: auto;
+    min-height: 215px;
   }
 }

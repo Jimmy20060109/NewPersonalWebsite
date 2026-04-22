@@ -3,6 +3,7 @@ import './LocationCard.css'
 
 declare global {
   interface Window {
+    gm_authFailure?: () => void
     google?: {
       maps?: {
         Map: new (element: HTMLElement, options: Record<string, unknown>) => unknown
@@ -75,36 +76,71 @@ async function loadGoogleMapsScript(apiKey: string): Promise<void> {
 
   const existing = document.getElementById(MAPS_SCRIPT_ID) as HTMLScriptElement | null
   if (existing) {
+    const existingStatus = existing.dataset.status
+    if (existingStatus === 'error') {
+      throw new Error('Failed to load Google Maps')
+    }
+    if (existingStatus === 'loaded' && !window.google?.maps) {
+      throw new Error('Google Maps loaded but is unavailable')
+    }
+
     await new Promise<void>((resolve, reject) => {
+      const timeoutId = window.setTimeout(
+        () => reject(new Error('Timed out while waiting for Google Maps to load')),
+        5000
+      )
+
       if (window.google?.maps) {
+        window.clearTimeout(timeoutId)
         resolve()
         return
       }
 
-      existing.addEventListener('load', () => resolve(), { once: true })
-      existing.addEventListener('error', () => reject(new Error('Failed to load Google Maps')), {
-        once: true
-      })
+      existing.addEventListener(
+        'load',
+        () => {
+          window.clearTimeout(timeoutId)
+          existing.dataset.status = 'loaded'
+          resolve()
+        },
+        { once: true }
+      )
+      existing.addEventListener(
+        'error',
+        () => {
+          window.clearTimeout(timeoutId)
+          existing.dataset.status = 'error'
+          reject(new Error('Failed to load Google Maps'))
+        },
+        { once: true }
+      )
     })
     return
   }
 
   const script = document.createElement('script')
   script.id = MAPS_SCRIPT_ID
+  script.dataset.status = 'loading'
   script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`
   script.async = true
   script.defer = true
 
   await new Promise<void>((resolve, reject) => {
-    script.onload = () => resolve()
-    script.onerror = () => reject(new Error('Failed to load Google Maps'))
+    script.onload = () => {
+      script.dataset.status = 'loaded'
+      resolve()
+    }
+    script.onerror = () => {
+      script.dataset.status = 'error'
+      reject(new Error('Failed to load Google Maps'))
+    }
     document.head.appendChild(script)
   })
 }
 
 const LocationCard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [useFallbackMap, setUseFallbackMap] = useState(false)
+  const [useFallbackMap, setUseFallbackMap] = useState(true)
   const apiKey = (import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string | undefined)?.trim()
 
   const [mapHost, setMapHost] = useState<HTMLDivElement | null>(null)
@@ -134,12 +170,20 @@ const LocationCard = () => {
     }
 
     let cancelled = false
+    let authFailed = false
+    const previousAuthFailure = window.gm_authFailure
+    window.gm_authFailure = () => {
+      authFailed = true
+      if (!cancelled) {
+        setUseFallbackMap(true)
+      }
+    }
 
     const initMap = async () => {
       try {
         await loadGoogleMapsScript(apiKey)
 
-        if (cancelled || !window.google?.maps) {
+        if (cancelled || authFailed || !window.google?.maps) {
           return
         }
 
@@ -160,7 +204,9 @@ const LocationCard = () => {
           title: 'Richmond Hill, Ontario'
         })
 
-        setUseFallbackMap(false)
+        if (!authFailed) {
+          setUseFallbackMap(false)
+        }
       } catch {
         if (!cancelled) {
           setUseFallbackMap(true)
@@ -172,6 +218,7 @@ const LocationCard = () => {
 
     return () => {
       cancelled = true
+      window.gm_authFailure = previousAuthFailure
     }
   }, [apiKey, mapHost])
 
@@ -190,10 +237,14 @@ const LocationCard = () => {
           )}
         </div>
         <div className="location-card-content">
-          <p className="location-card-eyebrow">Current Base</p>
-          <h2 className="location-card-title">Location</h2>
-          <p className="location-card-subtitle">Richmond Hill, ON · Open to relocation</p>
-          <span className="location-card-button">Open Map</span>
+          <div className="location-card-top">
+            <p className="location-card-eyebrow">Current Base</p>
+            <h2 className="location-card-title">Location</h2>
+          </div>
+          <div className="location-card-footer">
+            <p className="location-card-subtitle">Richmond Hill, ON</p>
+            <span className="location-card-button">Open Map</span>
+          </div>
         </div>
       </button>
 

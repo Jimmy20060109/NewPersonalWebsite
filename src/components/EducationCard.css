@@ -1,0 +1,117 @@
+.education-card {
+  display: block;
+  text-align: left;
+  text-decoration: none;
+  color: var(--color-white);
+  width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  aspect-ratio: 2 / 1;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  background: #0f172a;
+}
+
+.education-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 12, 22, 0.16) 0%, rgba(8, 12, 22, 0.7) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.education-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+.education-card-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  filter: saturate(0.9) contrast(1.05);
+  z-index: 0;
+}
+
+.education-card-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.education-card-top {
+  display: flex;
+  flex-direction: column;
+}
+
+.education-card-footer {
+  position: absolute;
+  left: var(--spacing-md);
+  right: var(--spacing-md);
+  bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.education-card-eyebrow {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.education-card-title {
+  margin: var(--spacing-xs) 0;
+  font-size: var(--font-size-2xl);
+  line-height: 1.1;
+}
+
+.education-card-subtitle {
+  margin: 0;
+  padding-bottom: 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: var(--font-size-sm);
+}
+
+.education-card-button {
+  margin-top: 1rem;
+  align-self: flex-start;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  font-size: var(--font-size-sm);
+  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 768px) {
+  .education-card {
+    aspect-ratio: auto;
+    min-height: 190px;
+    border-radius: 20px;
+  }
+
+  .education-card-content {
+    padding: var(--spacing-sm);
+  }
+
+  .education-card-footer {
+    left: var(--spacing-sm);
+    right: var(--spacing-sm);
+    bottom: 0;
+  }
+
+  .education-card-button {
+    margin-top: var(--spacing-sm);
+  }
+}

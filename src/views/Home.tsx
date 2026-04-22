@@ -3,6 +3,7 @@ import LocationCard from '../components/LocationCard'
 import PhotographyCard from '../components/PhotographyCard'
 import ResumeCard from '../components/ResumeCard'
 import ChatBoxCard from '../components/ChatBoxCard'
+import EducationCard from '../components/EducationCard'
 import './Home.css'
 
 const Home = () => {
@@ -11,7 +12,10 @@ const Home = () => {
       <IntroductionCard />
       <ResumeCard />
       <PhotographyCard />
-      <LocationCard />
+      <div className="home-card-row" aria-label="Location and education highlights">
+        <LocationCard />
+        <EducationCard />
+      </div>
       <ChatBoxCard />
     </div>
   )

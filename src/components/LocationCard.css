@@ -41,7 +41,21 @@
   padding: var(--spacing-md);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+}
+
+.location-card-top {
+  display: flex;
+  flex-direction: column;
+}
+
+.location-card-footer {
+  position: absolute;
+  left: var(--spacing-md);
+  right: var(--spacing-md);
+  bottom: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .location-card-map {
@@ -84,12 +98,13 @@
 
 .location-card-subtitle {
   margin: 0;
+  padding-bottom: 0;
   color: rgba(255, 255, 255, 0.88);
   font-size: var(--font-size-sm);
 }
 
 .location-card-button {
-  margin-top: var(--spacing-md);
+  margin-top: 1rem;
   align-self: flex-start;
   padding: var(--spacing-xs) var(--spacing-md);
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -183,6 +198,12 @@
 
   .location-card-content {
     padding: var(--spacing-sm);
+  }
+
+  .location-card-footer {
+    left: var(--spacing-sm);
+    right: var(--spacing-sm);
+    bottom: 0;
   }
 
   .location-card-button {
