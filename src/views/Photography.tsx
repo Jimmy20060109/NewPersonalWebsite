@@ -57,6 +57,12 @@ const Photography = () => {
       return
     }
 
+    const isMobile = 
+      window.matchMedia('(pointer: coarse) || (max-width: 768px)').matches
+      if (isMobile) {
+        return
+      }
+
     const interactable = interact('.draggable-photo').draggable({
       listeners: {
         start(event) {
