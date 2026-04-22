@@ -209,7 +209,6 @@ const Photography = () => {
       <h2 className="section-title">Photography</h2>
       <div className="photography-header">
         <p className="photography-subtitle">Travel Collection</p>
-        <p className="photo-count">{images.length} photos</p>
       </div>
       <div ref={galleryRef} className="photography-gallery">
         {images.map((image) => (

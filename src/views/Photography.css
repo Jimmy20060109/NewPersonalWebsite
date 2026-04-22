@@ -1,6 +1,10 @@
 .photography {
-  padding-top: calc(var(--spacing-xl) + 80px);
+  padding-top: calc(var(--spacing-xl));
   max-width: 1680px;
+}
+
+.photography .section-title {
+  margin-top: 0;
 }
 
 .photography-header {
@@ -8,7 +12,7 @@
   align-items: baseline;
   justify-content: space-between;
   gap: var(--spacing-sm);
-  margin: var(--spacing-sm) 0 var(--spacing-md);
+  margin: 0 0 var(--spacing-md);
 }
 
 .photography-subtitle {
@@ -145,7 +149,7 @@
   }
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1024px) {
   .photography-gallery {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
