@@ -208,6 +208,7 @@
 
   .location-card-button {
     margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
   }
 
   .location-modal {

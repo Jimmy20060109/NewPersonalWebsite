@@ -83,7 +83,7 @@
 
 @media (max-width: 768px) {
   .home-container {
-    padding: var(--spacing-md) 0.35rem;
+    padding: calc(var(--spacing-md) + 4.5rem) 0.15rem var(--spacing-md);
     gap: var(--spacing-sm);
     margin: 0 0.35rem;
   }
