@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useLanguage } from '../i18n/LanguageContext'
 import './PhotographyCard.css'
 
 const homepageImageModules = import.meta.glob(
@@ -34,6 +35,7 @@ const pickRandomImage = (exclude?: string) => {
 }
 
 const PhotographyCard = () => {
+  const { t } = useLanguage()
   const [currentImage, setCurrentImage] = useState<string>(() => pickRandomImage())
   const [nextImage, setNextImage] = useState<string | null>(null)
   const [isCrossfading, setIsCrossfading] = useState(false)
@@ -91,10 +93,10 @@ const PhotographyCard = () => {
       <span className="photography-card-tint" />
       <span className="photography-card-glow" />
       <div className="photography-card-content">
-        <p className="photography-card-eyebrow">Creative Work</p>
-        <h2 className="photography-card-title">Photography</h2>
-        <p className="photography-card-subtitle">Street, portrait, and travel moments.</p>
-        <span className="photography-card-button">View Photos</span>
+        <p className="photography-card-eyebrow">{t('photographyCard.eyebrow')}</p>
+        <h2 className="photography-card-title">{t('photographyCard.title')}</h2>
+        <p className="photography-card-subtitle">{t('photographyCard.subtitle')}</p>
+        <span className="photography-card-button">{t('photographyCard.button')}</span>
       </div>
     </Link>
   )

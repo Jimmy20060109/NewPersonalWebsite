@@ -1,11 +1,14 @@
+import { useLanguage } from '../i18n/LanguageContext'
 import './Gallery.css'
 
 const Gallery = () => {
+  const { t } = useLanguage()
+
   return (
     <section id="gallery" className="gallery">
-      <h2 className="section-title">Gallery</h2>
+      <h2 className="section-title">{t('gallery.title')}</h2>
       <div className="gallery-content">
-        <p>Gallery content coming soon...</p>
+        <p>{t('gallery.soon')}</p>
       </div>
     </section>
   )

@@ -1,11 +1,14 @@
+import { useLanguage } from '../i18n/LanguageContext'
 import './Footer.css'
 
 const Footer = () => {
+  const { t } = useLanguage()
+
   return (
     <footer className="footer">
       <div className="footer-content">
         <p className="footer-text">
-          © 2026 Jimmy Zheng. All rights reserved.
+          © 2026 Jimmy Zheng. {t('footer.rights')}
         </p>
         <div className="footer-links">
           <a
@@ -22,7 +25,7 @@ const Footer = () => {
           >
             GitHub
           </a>
-          <a href="mailto:j289zhen@uwaterloo.ca">Email</a>
+          <a href="mailto:j289zhen@uwaterloo.ca">{t('common.email')}</a>
         </div>
       </div>
     </footer>

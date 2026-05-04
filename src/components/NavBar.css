@@ -88,6 +88,38 @@
   gap: 0.5rem;
 }
 
+.language-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.2rem;
+  background: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+}
+
+.language-option {
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 0.45rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-text);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.language-option:hover {
+  color: var(--color-highlight);
+}
+
+.language-option.active {
+  color: var(--color-surface);
+  background: var(--color-highlight);
+}
+
 .theme-toggle {
   color: var(--color-text);
   background: var(--color-surface-alt);

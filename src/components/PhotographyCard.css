@@ -70,10 +70,10 @@
   position: relative;
   z-index: 2;
   height: 100%;
-  padding: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-md) var(--home-card-action-bottom, 1rem);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .photography-card-eyebrow {
@@ -91,13 +91,13 @@
 }
 
 .photography-card-subtitle {
-  margin: 0;
+  margin: auto 0 0;
   color: rgba(255, 255, 255, 0.85);
   font-size: var(--font-size-sm);
 }
 
 .photography-card-button {
-  margin-top: var(--spacing-md);
+  margin-top: var(--home-card-action-gap, 1rem);
   align-self: flex-start;
   padding: var(--spacing-xs) var(--spacing-md);
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -116,10 +116,10 @@
   }
 
   .photography-card-content {
-    padding: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-sm) var(--home-card-action-bottom, var(--spacing-xs));
   }
 
   .photography-card-button {
-    margin-top: var(--spacing-sm);
+    margin-top: var(--home-card-action-gap, var(--spacing-sm));
   }
 }

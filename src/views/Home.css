@@ -1,4 +1,6 @@
 .home-container {
+  --home-card-action-bottom: 1rem;
+  --home-card-action-gap: 1rem;
   min-height: calc(80vh - 560px);
   padding: var(--spacing-lg) var(--spacing-xs);
   max-width: none;
@@ -83,6 +85,8 @@
 
 @media (max-width: 768px) {
   .home-container {
+    --home-card-action-bottom: var(--spacing-xs);
+    --home-card-action-gap: var(--spacing-sm);
     padding: calc(var(--spacing-md) + 4.5rem) 0.15rem var(--spacing-md);
     gap: var(--spacing-sm);
     margin: 0 0.35rem;

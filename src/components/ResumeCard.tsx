@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
+import { useLanguage } from '../i18n/LanguageContext'
 import './ResumeCard.css'
 
 const ResumeCard = () => {
+  const { t } = useLanguage()
 
   const handleDownload = (e: React.MouseEvent) => {
     e.stopPropagation()
@@ -11,13 +13,13 @@ const ResumeCard = () => {
     <Link to="/resume" className="resume-card">
       <div className="resume-content">
         <div className="resume-text">
-          <h2 className="resume-title">My Resume</h2>
+          <h2 className="resume-title">{t('resumeCard.title')}</h2>
           <p className="resume-name">Jimmy Zheng</p>
           <button
             className="resume-button"
             onClick={handleDownload}
           >
-            View & download
+            {t('resumeCard.button')}
           </button>
         </div>
         <div className="resume-decoration">

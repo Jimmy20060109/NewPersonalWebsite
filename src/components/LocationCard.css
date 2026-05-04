@@ -53,9 +53,10 @@
   position: absolute;
   left: var(--spacing-md);
   right: var(--spacing-md);
-  bottom: 1rem;
+  bottom: var(--home-card-action-bottom, 1rem);
   display: flex;
   flex-direction: column;
+  gap: var(--home-card-action-gap, 1rem);
 }
 
 .location-card-map {
@@ -101,15 +102,26 @@
   padding-bottom: 0;
   color: rgba(255, 255, 255, 0.88);
   font-size: var(--font-size-sm);
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .location-card-button {
-  margin-top: 1rem;
+  margin-top: 0;
   align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.625rem;
+  max-width: 100%;
   padding: var(--spacing-xs) var(--spacing-md);
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 999px;
   font-size: var(--font-size-sm);
+  line-height: 1.2;
+  white-space: nowrap;
   color: var(--color-white);
   background: rgba(255, 255, 255, 0.08);
 }
@@ -203,12 +215,11 @@
   .location-card-footer {
     left: var(--spacing-sm);
     right: var(--spacing-sm);
-    bottom: 0;
+    bottom: var(--home-card-action-bottom, var(--spacing-xs));
   }
 
   .location-card-button {
-    margin-top: var(--spacing-sm);
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: 0;
   }
 
   .location-modal {

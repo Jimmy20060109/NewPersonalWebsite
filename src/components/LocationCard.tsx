@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useLanguage } from '../i18n/LanguageContext'
 import './LocationCard.css'
 
 declare global {
@@ -139,6 +140,7 @@ async function loadGoogleMapsScript(apiKey: string): Promise<void> {
 }
 
 const LocationCard = () => {
+  const { t } = useLanguage()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [useFallbackMap, setUseFallbackMap] = useState(true)
   const apiKey = (import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string | undefined)?.trim()
@@ -238,12 +240,12 @@ const LocationCard = () => {
         </div>
         <div className="location-card-content">
           <div className="location-card-top">
-            <p className="location-card-eyebrow">Current Base</p>
-            <h2 className="location-card-title">Location</h2>
+            <p className="location-card-eyebrow">{t('location.cardLabel')}</p>
+            <h2 className="location-card-title">{t('location.title')}</h2>
           </div>
           <div className="location-card-footer">
-            <p className="location-card-subtitle">Richmond Hill, ON</p>
-            <span className="location-card-button">Open Map</span>
+            <p className="location-card-subtitle">{t('location.city')}</p>
+            <span className="location-card-button">{t('location.button')}</span>
           </div>
         </div>
       </button>
@@ -264,14 +266,14 @@ const LocationCard = () => {
             <button
               type="button"
               className="location-modal-close"
-              aria-label="Close location map"
+              aria-label={t('location.closeMap')}
               onClick={() => setIsModalOpen(false)}
             >
               ×
             </button>
 
             <div className="location-modal-header">
-              <h3 id="location-modal-title">I live in Richmond Hill</h3>
+              <h3 id="location-modal-title">{t('location.modalTitle')}</h3>
               <p>55 Falling River Dr, Richmond Hill, ON L4S 2R2</p>
             </div>
 

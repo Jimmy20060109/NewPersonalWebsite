@@ -1,5 +1,6 @@
 import './Resume.css'
 import { useState, useEffect, useRef, type ReactNode } from 'react'
+import { useLanguage } from '../i18n/LanguageContext'
 import AutotestLogo from '../images/tools/autotest_Logo.png'
 import BookLogo from '../images/Book_Logo.png'
 import BootstrapLogo from '../images/framework/BootStrap_Logo.png'
@@ -292,6 +293,120 @@ const personalProjects: PersonalProject[] = [
   },
 ]
 
+const zhExperiences: Pick<ExperienceItem, 'title' | 'location' | 'period' | 'achievements'>[] = [
+  {
+    title: '全栈开发实习生',
+    location: '安大略省滑铁卢',
+    period: '2026 年 1 月 - 2026 年 4 月',
+    achievements: [
+      <>
+        为 <strong>eh-trade</strong> 这一基于动量策略的股票分析 SaaS 平台设计并部署核心基础设施，
+        将 <strong>Python 机器学习</strong>交易模型转化为可用于生产环境的
+        <strong>全栈</strong>系统，支持实时股票筛选。
+      </>,
+      <>
+        通过重构 <strong>Vue 3</strong> 中数据密集的前端模块，优化图表和配对分析界面，
+        减少重复 <strong>API</strong> 与 <strong>RPC</strong> 调用，并实现
+        <strong>懒加载</strong>，使桌面端和移动端加载时间降低 <strong>30%</strong>。
+      </>,
+      <>
+        使用 <strong>Go</strong> 构建可扩展的 <strong>programmatic SEO (pSEO)</strong> 系统，
+        为动态股票页面实现 <strong>服务端渲染 (SSR)</strong>、自动 meta/OG 标签生成、
+        基于缓存的数据预热和 sitemap 集成，让 <strong>500+</strong> 财报页面及大量对比 URL
+        能被高效索引并快速抓取。
+      </>,
+      <>
+        使用 <strong>TypeScript</strong>、<strong>Go</strong> 和 <strong>Stripe</strong>
+        开发安全的认证与订阅基础设施，支持周期性计费、付费功能权限控制，以及从用户引导到订阅管理的完整生命周期。
+      </>,
+      <>
+        使用 <strong>AI 辅助开发</strong>工作流加速全栈功能实现，包括图表优化、watchlist 性能、
+        订阅流程和分析工具，覆盖 <strong>Vue.js</strong>、<strong>TypeScript</strong>、
+        <strong>Go</strong> 与 <strong>Python</strong>，在不牺牲代码审查质量和系统可靠性的前提下，
+        将功能交付效率提升 <strong>40%</strong>。
+      </>,
+    ],
+  },
+  {
+    title: '软件创新开发实习生',
+    location: '中国上海',
+    period: '2025 年 5 月 - 2025 年 8 月',
+    achievements: [
+      <>
+        使用 <strong>C++</strong> 和 <strong>Python</strong> 协助开发 LabVIEW 到原生代码的编译器，
+        将图形化程序转换为优化后的机器码，使编译速度提升 <strong>30%</strong>，
+        运行时错误减少 <strong>20%</strong>，加速内部开发工作流。
+      </>,
+      <>
+        开发由 <strong>RAG</strong> 驱动的内部聊天机器人，用于索引和总结官方文档，
+        帮助跨职能团队快速获取准确答案，团队知识检索时间减少 <strong>50%</strong>。
+      </>,
+      <>
+        使用 <strong>n8n</strong> 和 <strong>Docker</strong> 构建自动化工作流，
+        生成并发布电路文档，使人工准备时间减少 <strong>70%</strong>，并保证项目文档格式一致。
+      </>,
+      <>
+        使用 <strong>JavaScript</strong>、<strong>ComfyUI</strong> 和 <strong>React.js</strong>
+        设计并开发内部网站，可根据员工照片自动生成卡通头像，使内部团队资料识别度提升 <strong>80%</strong>。
+      </>,
+    ],
+  },
+  {
+    title: '兼职软件开发者',
+    location: '安大略省多伦多',
+    period: '2024 年 2 月 - 2025 年 8 月',
+    achievements: [
+      <>
+        使用 <strong>Postman</strong> 设计并执行结构化 <strong>API 测试</strong>用例，
+        覆盖 happy path、必填字段和类型校验，验证核心端点的状态码、响应结构和后端行为。
+      </>,
+      <>
+        使用 <strong>Python 单元测试</strong>、<strong>Jest</strong> 和
+        <strong>视觉回归测试</strong>实现自动化测试，在生产发布前识别并修复
+        <strong>15+</strong> 个缺陷，使整体系统可靠性提升 <strong>50%</strong>。
+      </>,
+      <>
+        将测试覆盖扩展到认证失败、不存在资源、重复提交和限流等场景，
+        将后端响应准确率提升至 <strong>95%+</strong>，并减少 Web 应用集成缺陷。
+      </>,
+    ],
+  },
+]
+
+const zhPersonalProjects: Pick<PersonalProject, 'period' | 'achievements'>[] = [
+  {
+    period: '2024 年 10 月 - 2024 年 12 月',
+    achievements: [
+      <>
+        使用 <strong>JavaScript</strong>、<strong>HTML</strong>、<strong>CSS</strong>、
+        <strong>jQuery</strong>、<strong>Node.js</strong> 和 <strong>Express.js</strong>
+        创建互动游戏，通过沉浸式音效和直观交互提升用户参与度。
+      </>,
+      <>
+        使用 <strong>JavaScript</strong> 构建后端函数来管理玩家选择和游戏状态逻辑，
+        确保实时交互流畅且结果校验可靠。
+      </>,
+    ],
+  },
+  {
+    period: '2025 年 2 月 - 2025 年 6 月',
+    achievements: [
+      <>
+        使用 <strong>React</strong> 函数组件和 <strong>Hooks (useState)</strong>
+        构建类似 Google Keep 的笔记应用，支持通过受控输入和 props 回调创建、删除笔记。
+      </>,
+      <>
+        使用 <strong>npm scripts</strong> + cross-env（OpenSSL 修复）搭建 Create React App，
+        并配置 <strong>ESLint</strong>（react-hooks）、CSS 和 Google Fonts。
+      </>,
+      <>
+        组合 Header、Footer、CreateArea、Note 等可复用组件，通过
+        <strong>状态提升</strong>和 keyed lists 管理数据流。
+      </>,
+    ],
+  },
+]
+
 const skillsCategories: SkillCategory[] = [
   {
     title: 'Languages',
@@ -397,9 +512,24 @@ const skillsCategories: SkillCategory[] = [
 ]
 
 const Resume = () => {
+  const { language, t } = useLanguage()
   const [buttonState, setButtonState] = useState('initial-show')
   const isHoveredRef = useRef(false)
   const collapseDelayRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const localizedExperiences =
+    language === 'zh'
+      ? experiences.map((experience, index) => ({
+          ...experience,
+          ...zhExperiences[index],
+        }))
+      : experiences
+  const localizedPersonalProjects =
+    language === 'zh'
+      ? personalProjects.map((project, index) => ({
+          ...project,
+          ...zhPersonalProjects[index],
+        }))
+      : personalProjects
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -459,7 +589,7 @@ const Resume = () => {
           <div className="educational-background">
             <div className="section-header">
               <img src={BookLogo} alt="Book Logo" className="section-icon" />
-              <h2 className="section-title">EDUCATIONAL BACKGROUND</h2>
+              <h2 className="section-title">{t('resume.educationTitle')}</h2>
             </div>
             <div className="education-entry">
               <div className="education-header">
@@ -470,22 +600,40 @@ const Resume = () => {
                     rel="noopener noreferrer"
                     className="university-name resume-link"
                   >
-                    University of Waterloo
+                    {language === 'zh' ? '滑铁卢大学' : 'University of Waterloo'}
                   </a>
                   <img src={WaterlooLogo} alt="University of Waterloo Logo" className="university-logo" />, 
-                  <span className="location">2B, Waterloo, Ontario</span>
+                  <span className="location">
+                    {language === 'zh' ? '2B，安大略省滑铁卢' : '2B, Waterloo, Ontario'}
+                  </span>
                 </div>
-                <span className="education-dates">Sep 2024 - (Expected) April 2029</span>
+                <span className="education-dates">
+                  {language === 'zh' ? '2024 年 9 月 - 预计 2029 年 4 月' : 'Sep 2024 - (Expected) April 2029'}
+                </span>
               </div>
               <ul className="education-details">
                 <li>
-                  <strong>Bachelor of Mathematics (Honours) Co-op</strong>, Data Science
+                  {language === 'zh' ? (
+                    <>
+                      <strong>数学荣誉学士（带薪实习）</strong>，数据科学
+                    </>
+                  ) : (
+                    <>
+                      <strong>Bachelor of Mathematics (Honours) Co-op</strong>, Data Science
+                    </>
+                  )}
                 </li>
                 <li>
-                  <strong>Relevant Coursework:</strong> Object-Oriented Programming, Calculus, Algorithm Design & Data Structure, Linear Algebra
+                  <strong>{t('resume.relevantCoursework')}</strong>{' '}
+                  {language === 'zh'
+                    ? '面向对象编程、微积分、算法设计与数据结构、线性代数'
+                    : 'Object-Oriented Programming, Calculus, Algorithm Design & Data Structure, Linear Algebra'}
                 </li>
                 <li>
-                  <strong>Skills:</strong> Problem-solving in binary search, binary trees, graph theory, and backtracking algorithms
+                  <strong>{t('resume.skillsLabel')}</strong>{' '}
+                  {language === 'zh'
+                    ? '二分查找、二叉树、图论和回溯算法的问题解决能力'
+                    : 'Problem-solving in binary search, binary trees, graph theory, and backtracking algorithms'}
                 </li>
               </ul>
             </div>
@@ -498,19 +646,26 @@ const Resume = () => {
                     rel="noopener noreferrer"
                     className="university-name resume-link"
                   >
-                    Richmond Hill High School
+                    {language === 'zh' ? '列治文山高中' : 'Richmond Hill High School'}
                   </a>
                   <img src={RHHSLogo} alt="Richmond Hill High School Logo" className="university-logo" />, 
-                  <span className="location">Richmond Hill, Ontario</span>
+                  <span className="location">
+                    {language === 'zh' ? '安大略省列治文山' : 'Richmond Hill, Ontario'}
+                  </span>
                 </div>
-                <span className="education-dates">Sep 2021 - Jun 2024</span>
+                <span className="education-dates">
+                  {language === 'zh' ? '2021 年 9 月 - 2024 年 6 月' : 'Sep 2021 - Jun 2024'}
+                </span>
               </div>
               <ul className="education-details">
                 <li>
-                  <strong>High School Diploma</strong>
+                  <strong>{language === 'zh' ? '高中毕业证书' : 'High School Diploma'}</strong>
                 </li>
                 <li>
-                  <strong>Coursework:</strong> Calculus, Advanced Functions, Data Management, Object-Oriented Programming
+                  <strong>{t('resume.coursework')}</strong>{' '}
+                  {language === 'zh'
+                    ? '微积分、高级函数、数据管理、面向对象编程'
+                    : 'Calculus, Advanced Functions, Data Management, Object-Oriented Programming'}
                 </li>
               </ul>
             </div>
@@ -520,11 +675,15 @@ const Resume = () => {
           <div className="technical-skills">
             <div className="section-header">
               <img src={SkillsLogo} alt="Skills Logo" className="section-icon" />
-              <h2 className="section-title">TECHNICAL SKILLS</h2>
+              <h2 className="section-title">{t('resume.skillsTitle')}</h2>
             </div>
-            {skillsCategories.map((category) => (
+            {skillsCategories.map((category, categoryIndex) => (
               <div key={category.title} className="skills-category">
-                <h3 className="skills-category-title">{category.title}</h3>
+                <h3 className="skills-category-title">
+                  {language === 'zh'
+                    ? ['编程语言', '框架与库', '工具与技术'][categoryIndex]
+                    : category.title}
+                </h3>
                 <p className="skills-list">
                   {category.links.map((link, index) => (
                     <span key={link.name}>
@@ -567,10 +726,10 @@ const Resume = () => {
           <div className="work-experience">
             <div className="section-header">
               <img src={WorkLogo} alt="Work Experience Logo" className="section-icon" />
-              <h2 className="section-title">Work Experience</h2>
+              <h2 className="section-title">{t('resume.workTitle')}</h2>
             </div>
             <div className="experience-list">
-            {experiences.map((exp, index) => (
+            {localizedExperiences.map((exp, index) => (
               <div key={index} className="experience-item">
                 <div className="experience-header">
                   <div>
@@ -626,10 +785,10 @@ const Resume = () => {
           <div className="personal-projects">
             <div className="section-header">
               <img src={WorkExperienceLogo} alt="Personal Projects Logo" className="section-icon" />
-              <h2 className="section-title">Personal Projects</h2>
+              <h2 className="section-title">{t('resume.projectsTitle')}</h2>
             </div>
             <div className="experience-list">
-              {personalProjects.map((project, index) => (
+              {localizedPersonalProjects.map((project, index) => (
                 <div key={index} className="experience-item">
                   <div className="experience-header">
                     <div>
@@ -674,9 +833,9 @@ const Resume = () => {
             onMouseLeave={handleMouseLeave}
           >
             <button className="resume-download-button" onClick={handleDownload}>
-              View & Download
+              {t('resume.download')}
               <br />
-              Resume in PDF
+              {t('resume.downloadPdf')}
             </button>
           </div>
         </div>

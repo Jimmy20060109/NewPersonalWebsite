@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import interact from 'interactjs'
+import { useLanguage } from '../i18n/LanguageContext'
 import './Photography.css'
 
 const imageModules = import.meta.glob('../images/travel/*.{jpg,JPG,jpeg,JPEG,png,PNG,webp,WEBP}', {
@@ -25,6 +26,7 @@ const initialTravelImages = shuffleArray(
 )
 
 const Photography = () => {
+  const { t } = useLanguage()
   const [images, setImages] = useState(initialTravelImages)
   const [selectedImage, setSelectedImage] = useState<(typeof initialTravelImages)[number] | null>(null)
   const [imageRowSpans, setImageRowSpans] = useState<Record<string, number>>({})
@@ -212,9 +214,9 @@ const Photography = () => {
 
   return (
     <section id="photography" className="photography">
-      <h2 className="section-title">Photography</h2>
+      <h2 className="section-title">{t('photography.title')}</h2>
       <div className="photography-header">
-        <p className="photography-subtitle">Travel Collection</p>
+        <p className="photography-subtitle">{t('photography.subtitle')}</p>
       </div>
       <div ref={galleryRef} className="photography-gallery">
         {images.map((image) => (
@@ -228,7 +230,7 @@ const Photography = () => {
               type="button"
               className="photo-frame-button"
               onClick={() => handleImageClick(image)}
-              aria-label={`Open ${image.alt}`}
+              aria-label={`${t('photography.openPhoto')}: ${image.alt}`}
             >
               <img
                 src={image.src}
@@ -245,7 +247,7 @@ const Photography = () => {
           className="photo-lightbox"
           role="dialog"
           aria-modal="true"
-          aria-label="Enlarged photo view"
+          aria-label={t('photography.lightbox')}
           onClick={() => setSelectedImage(null)}
         >
           <div className="photo-lightbox-content" onClick={(event) => event.stopPropagation()}>
@@ -253,7 +255,7 @@ const Photography = () => {
               type="button"
               className="photo-lightbox-close"
               onClick={() => setSelectedImage(null)}
-              aria-label="Close enlarged photo"
+              aria-label={t('photography.closePhoto')}
             >
               ×
             </button>

@@ -1,15 +1,18 @@
+import { useLanguage } from '../i18n/LanguageContext'
 import './Hero.css'
 
 const Hero = () => {
+  const { t } = useLanguage()
+
   return (
     <section id="hero" className="hero">
       <div className="hero-content">
         <h1 className="hero-title">
           <span className="hero-name">Jimmy Zheng</span>
         </h1>
-        <p className="hero-subtitle">Software Developer</p>
+        <p className="hero-subtitle">{t('hero.role')}</p>
         <p className="hero-description">
-          University of Waterloo, 2B • Data Science
+          {t('hero.education')}
         </p>
         <div className="hero-links">
           <a
@@ -29,7 +32,7 @@ const Hero = () => {
             GitHub
           </a>
           <a href="mailto:j289zhen@uwaterloo.ca" className="hero-link">
-            Email
+            {t('common.email')}
           </a>
         </div>
         <div className="hero-contact">

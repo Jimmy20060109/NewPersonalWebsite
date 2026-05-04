@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent, useEffect, useMemo, useRef, useState } from 'react'
+import { useLanguage } from '../i18n/LanguageContext'
 import './ChatBoxCard.css'
 
 interface AskSource {
@@ -41,6 +42,7 @@ function makeMessageId(): string {
 }
 
 const ChatBoxCard = () => {
+  const { language, t } = useLanguage()
   const apiBaseUrl = useMemo(() => getApiBaseUrl(), [])
   const messagesContainerRef = useRef<HTMLDivElement | null>(null)
   const questionInputRef = useRef<HTMLTextAreaElement | null>(null)
@@ -52,7 +54,7 @@ const ChatBoxCard = () => {
     {
       id: makeMessageId(),
       role: 'assistant',
-      text: 'Hi, I can answer questions about Jimmy’s projects, work experience, education, and skills.'
+      text: t('chat.initial')
     }
   ])
 
@@ -75,6 +77,16 @@ const ChatBoxCard = () => {
     // Scroll only inside the chat container to avoid moving page-level scrollbar.
     container.scrollTop = container.scrollHeight
   }, [messages, isLoading])
+
+  useEffect(() => {
+    setMessages((prev) => {
+      if (prev.length !== 1 || prev[0].role !== 'assistant') {
+        return prev
+      }
+
+      return [{ ...prev[0], text: t('chat.initial') }]
+    })
+  }, [t])
 
   useEffect(() => {
     const input = questionInputRef.current
@@ -121,7 +133,7 @@ const ChatBoxCard = () => {
         body: JSON.stringify({
           question: trimmedQuestion,
           topK: 4,
-          lang: 'auto'
+          lang: language
         })
       })
 
@@ -131,7 +143,7 @@ const ChatBoxCard = () => {
       }
 
       const data = (await response.json()) as AskResponse
-      const answerText = data.answer?.trim() || 'No answer returned from server.'
+      const answerText = data.answer?.trim() || t('chat.noAnswer')
 
       setMessages((prev) => [
         ...prev,
@@ -143,13 +155,13 @@ const ChatBoxCard = () => {
         }
       ])
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Unknown request error'
+      const message = error instanceof Error ? error.message : t('chat.unknownError')
       setMessages((prev) => [
         ...prev,
         {
           id: makeMessageId(),
           role: 'assistant',
-          text: `Request failed: ${message}`,
+          text: `${t('chat.requestFailed')}: ${message}`,
           isError: true
         }
       ])
@@ -163,7 +175,7 @@ const ChatBoxCard = () => {
       {
         id: makeMessageId(),
         role: 'assistant',
-        text: 'Conversation reset. Ask me anything about Jimmy.'
+        text: t('chat.reset')
       }
     ])
   }
@@ -180,10 +192,10 @@ const ChatBoxCard = () => {
 
 
   return (
-    <section className="chatbox-card" aria-label="AI chat assistant">
+    <section className="chatbox-card" aria-label={t('chat.label')}>
       <div className="chatbox-header">
-        <h2 className="chatbox-title">Ask Jimmy AI</h2>
-        <p className="chatbox-subtitle">Ask anything about Jimmy !!!</p>
+        <h2 className="chatbox-title">{t('chat.title')}</h2>
+        <p className="chatbox-subtitle">{t('chat.subtitle')}</p>
       </div>
 
       <div
@@ -212,12 +224,6 @@ const ChatBoxCard = () => {
       </div>
 
       <form className="chatbox-form" onSubmit={handleSubmit}>
-        <div className="chatbox-form-top">
-          <button type="button" className="chatbox-clear-button" onClick={clearConversation} disabled={isLoading}>
-            Clear
-          </button>
-        </div>
-
         <div className="chatbox-form-bottom">
           <textarea
             ref={questionInputRef}
@@ -225,11 +231,14 @@ const ChatBoxCard = () => {
             onChange={handleQuestionChange}
             onKeyDown={handleKeyDown}
             className="chatbox-input"
-            placeholder="Ask something about Jimmy..."
+            placeholder={t('chat.placeholder')}
             rows={1}
           />
           <button type="submit" className="chatbox-send-button" disabled={!canSubmit}>
-            {isLoading ? 'Thinking...' : 'Send'}
+            {isLoading ? t('chat.thinking') : t('chat.send')}
+          </button>
+          <button type="button" className="chatbox-clear-button" onClick={clearConversation} disabled={isLoading}>
+            {t('chat.clear')}
           </button>
         </div>
       </form>

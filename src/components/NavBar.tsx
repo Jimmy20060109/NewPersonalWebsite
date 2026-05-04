@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { allNavItems } from '../routes'
+import { useLanguage, type Language } from '../i18n/LanguageContext'
 import './NavBar.css'
 
 type ThemeMode = 'light' | 'dark'
@@ -24,6 +25,7 @@ const NavBar = () => {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [theme, setTheme] = useState<ThemeMode>(() => getInitialTheme())
+  const { language, setLanguage, t } = useLanguage()
   const location = useLocation()
 
   useEffect(() => {
@@ -47,6 +49,11 @@ const NavBar = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
   }
 
+  const selectLanguage = (nextLanguage: Language) => {
+    setLanguage(nextLanguage)
+    setMenuOpen(false)
+  }
+
   return (
     <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <nav className="nav">
@@ -63,17 +70,37 @@ const NavBar = () => {
                 }
                 end={item.path === '/'}
               >
-                {item.label}
+                {t(item.labelKey)}
               </NavLink>
             </li>
           ))}
         </ul>
         <div className="nav-actions">
+          <div className="language-toggle" aria-label={t('nav.language')}>
+            <button
+              type="button"
+              className={`language-option ${language === 'en' ? 'active' : ''}`}
+              onClick={() => selectLanguage('en')}
+              aria-label={t('nav.selectEnglish')}
+              aria-pressed={language === 'en'}
+            >
+              EN
+            </button>
+            <button
+              type="button"
+              className={`language-option ${language === 'zh' ? 'active' : ''}`}
+              onClick={() => selectLanguage('zh')}
+              aria-label={t('nav.selectChinese')}
+              aria-pressed={language === 'zh'}
+            >
+              中
+            </button>
+          </div>
           <button
             type="button"
             className="theme-toggle"
             onClick={toggleTheme}
-            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            aria-label={theme === 'dark' ? t('theme.light') : t('theme.dark')}
           >
             {theme === 'dark' ? (
               <svg

@@ -3,9 +3,12 @@ import avatarImage from '../images/avatar.jpg?url'
 import cursorLogo from '../images/cursorLogo.png?url'
 import claudeLogo from '../images/claude-ai-icon.webp?url'
 import waterlooLogo from '../images/waterlooLoGo.svg?url'
+import { useLanguage } from '../i18n/LanguageContext'
 import './IntroductionCard.css'
 
 const IntroductionCard = () => {
+  const { language, t } = useLanguage()
+
   const handleSocialClick = (e: React.MouseEvent, url: string) => {
     e.preventDefault()
     e.stopPropagation()
@@ -61,24 +64,45 @@ const IntroductionCard = () => {
             </div>
           </div>
           <p className="introduction-greeting">
-            Hey there! I am <strong>Jimmy (Jinjue) Zheng</strong>, welcome to my web!
+            {t('intro.greetingPrefix')}{' '}
+            <strong>{language === 'zh' ? '郑谨觉' : 'Jimmy Zheng'}</strong>,{' '}
+            {t('intro.greetingSuffix')}
           </p>
         </div>
         <p className="introduction-description">
-          I'm a <span className="highlight">2B Data Science student</span> at the{' '}
-          <span className="highlight">University of Waterloo</span>{' '}
-          <img src={waterlooLogo} alt="University of Waterloo" className="inline-logo" />
-          {' '}with a passion
-          for <span className="highlight">software development</span> and{' '}
-          <span className="highlight">innovation</span>. I specialize in building{' '}
-          <span className="highlight">efficient, scalable solutions</span> using{' '}
-          <span className="highlight">modern technologies</span> and have
-          experience working on{' '}
-          <span className="highlight">compiler development</span>,{' '}
-          <span className="highlight">AI-powered tools</span>(cursor{' '}
-          <img src={cursorLogo} alt="Cursor" className="inline-logo" />, Claude Code
-          <img src={claudeLogo} alt="Claude Code" className="inline-logo" />), and{' '}
-          <span className="highlight">full-stack web applications</span>.
+          {language === 'zh' ? (
+            <>
+              我是 <span className="highlight">滑铁卢大学</span>{' '}
+              <img src={waterlooLogo} alt="滑铁卢大学" className="inline-logo" />
+              的 <span className="highlight">2B 数据科学学生</span>，热爱
+              <span className="highlight">软件开发</span>与
+              <span className="highlight">创新</span>。我擅长使用
+              <span className="highlight">现代技术</span>构建
+              <span className="highlight">高效、可扩展的解决方案</span>，并拥有
+              <span className="highlight">编译器开发</span>、
+              <span className="highlight">AI 驱动工具</span>（Cursor{' '}
+              <img src={cursorLogo} alt="Cursor" className="inline-logo" />、Claude Code
+              <img src={claudeLogo} alt="Claude Code" className="inline-logo" />）以及
+              <span className="highlight">全栈 Web 应用</span>的实践经验。
+            </>
+          ) : (
+            <>
+              I'm a <span className="highlight">2B Data Science student</span> at the{' '}
+              <span className="highlight">University of Waterloo</span>{' '}
+              <img src={waterlooLogo} alt="University of Waterloo" className="inline-logo" />
+              {' '}with a passion
+              for <span className="highlight">software development</span> and{' '}
+              <span className="highlight">innovation</span>. I specialize in building{' '}
+              <span className="highlight">efficient, scalable solutions</span> using{' '}
+              <span className="highlight">modern technologies</span> and have
+              experience working on{' '}
+              <span className="highlight">compiler development</span>,{' '}
+              <span className="highlight">AI-powered tools</span>(cursor{' '}
+              <img src={cursorLogo} alt="Cursor" className="inline-logo" />, Claude Code
+              <img src={claudeLogo} alt="Claude Code" className="inline-logo" />), and{' '}
+              <span className="highlight">full-stack web applications</span>.
+            </>
+          )}
         </p>
       </div>
     </Link>

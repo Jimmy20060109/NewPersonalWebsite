@@ -1,3 +1,4 @@
+import { useLanguage } from '../i18n/LanguageContext'
 import './Projects.css'
 
 interface Project {
@@ -46,11 +47,33 @@ const projects: Project[] = [
 ]
 
 const Projects = () => {
+  const { language, t } = useLanguage()
+  const localizedProjects =
+    language === 'zh'
+      ? projects.map((project) => ({
+          ...project,
+          period: project.period
+            .replace('Oct 2024 - Dec 2024', '2024 年 10 月 - 2024 年 12 月')
+            .replace('Feb 2025 - June 2025', '2025 年 2 月 - 2025 年 6 月'),
+          description:
+            project.title === "Simon's Game"
+              ? [
+                  '使用 JavaScript、HTML、CSS、jQuery、Node.js 和 Express.js 创建互动游戏，通过沉浸式音效和直观交互提升用户参与度。',
+                  '使用 JavaScript 构建后端函数来管理玩家选择和游戏状态逻辑，确保实时交互流畅且结果校验可靠。',
+                ]
+              : [
+                  '使用 React 函数组件和 Hooks（useState）构建类似 Google Keep 的笔记应用，支持通过受控输入和 props 回调创建、删除笔记。',
+                  '使用 npm scripts + cross-env（OpenSSL 修复）搭建 CRA 项目，并配置 ESLint（react-hooks）、CSS 和 Google Fonts。',
+                  '组合 Header、Footer、CreateArea、Note 等可复用组件，通过状态提升和 keyed lists 管理数据流。',
+                ],
+        }))
+      : projects
+
   return (
     <section id="projects" className="projects">
-      <h2 className="section-title">Personal Projects</h2>
+      <h2 className="section-title">{t('projects.title')}</h2>
       <div className="projects-grid">
-        {projects.map((project, index) => (
+        {localizedProjects.map((project, index) => (
           <div key={index} className="project-card">
             <div className="project-header">
               <h3 className="project-title">{project.title}</h3>

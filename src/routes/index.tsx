@@ -2,25 +2,23 @@ import { RouteObject } from 'react-router-dom'
 import Home from '../views/Home'
 import About from '../views/About'
 import Resume from '../views/Resume'
-import Skills from '../views/Skills'
 import Photography from '../views/Photography'
 import NotFound from '../views/NotFound'
 import App from '../App'
 
 export interface NavItem {
   path: string
-  label: string
+  labelKey: 'nav.home' | 'nav.about' | 'nav.resume' | 'nav.photography'
 }
 
 export const navItems: NavItem[] = [
-  { path: '/about', label: 'About' },
-  { path: '/resume', label: 'Resume' },
-  { path: '/skills', label: 'Skills' },
-  { path: '/photography', label: 'Photography' },
+  { path: '/about', labelKey: 'nav.about' },
+  { path: '/resume', labelKey: 'nav.resume' },
+  { path: '/photography', labelKey: 'nav.photography' },
 ]
 
 export const allNavItems: NavItem[] = [
-  { path: '/', label: 'Home' },
+  { path: '/', labelKey: 'nav.home' },
   ...navItems,
 ]
 
@@ -40,10 +38,6 @@ export const routes: RouteObject[] = [
       {
         path: 'resume',
         element: <Resume />,
-      },
-      {
-        path: 'skills',
-        element: <Skills />,
       },
       {
         path: 'photography',
