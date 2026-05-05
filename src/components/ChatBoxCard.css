@@ -211,6 +211,15 @@
   cursor: not-allowed;
 }
 
+@media (min-width: 1024px) {
+  .home-container > .chatbox-card {
+    margin-left: calc(var(--spacing-md));
+    margin-right: 0;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+  }
+}
+
 @media (max-width: 768px) {
   .chatbox-card {
     border-radius: 20px;

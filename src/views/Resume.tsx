@@ -615,7 +615,7 @@ const Resume = () => {
                 <li>
                   {language === 'zh' ? (
                     <>
-                      <strong>数学荣誉学士（带薪实习）</strong>，数据科学
+                      <strong>数学荣誉学士（Co-op）</strong>，数据科学
                     </>
                   ) : (
                     <>

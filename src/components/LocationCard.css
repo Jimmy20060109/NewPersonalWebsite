@@ -38,7 +38,7 @@
   position: relative;
   z-index: 2;
   height: 100%;
-  padding: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) calc(var(--spacing-md) + var(--spacing-sm));
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -51,7 +51,7 @@
 
 .location-card-footer {
   position: absolute;
-  left: var(--spacing-md);
+  left: calc(var(--spacing-md) + var(--spacing-sm));
   right: var(--spacing-md);
   bottom: var(--home-card-action-bottom, 1rem);
   display: flex;

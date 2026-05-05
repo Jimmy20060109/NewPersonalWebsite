@@ -100,7 +100,7 @@
   align-items: center;
   gap: var(--spacing-sm);
   flex: 1;
-  margin-left: auto;
+  margin-left: clamp(var(--spacing-lg), 4vw, 5rem);
 }
 
 .social-icon {
@@ -150,6 +150,44 @@
   margin: 0 6px;
 }
 
+@media (min-width: 1800px) {
+  .introduction-card {
+    padding: clamp(var(--spacing-md), 1.7vw, 2rem);
+  }
+
+  .introduction-header {
+    gap: clamp(var(--spacing-sm), 0.8vw, var(--spacing-md));
+    margin-bottom: clamp(var(--spacing-sm), 0.8vw, var(--spacing-md));
+  }
+
+  .introduction-top-row {
+    gap: clamp(var(--spacing-md), 1.4vw, var(--spacing-xl));
+  }
+
+  .introduction-avatar {
+    width: clamp(72px, 5vw, 108px);
+    height: clamp(72px, 5vw, 108px);
+    border-width: clamp(3px, 0.2vw, 4px);
+  }
+
+  .introduction-greeting {
+    font-size: clamp(var(--font-size-xl), 1.45vw, 2.15rem);
+  }
+
+  .introduction-description {
+    font-size: clamp(var(--font-size-base), 0.95vw, 1.45rem);
+  }
+
+  .introduction-social-icons {
+    gap: clamp(var(--spacing-sm), 0.8vw, var(--spacing-md));
+  }
+
+  .social-icon svg {
+    width: clamp(20px, 1.35vw, 30px);
+    height: clamp(20px, 1.35vw, 30px);
+  }
+}
+
 @media (max-width: 768px) {
   .introduction-card {
     padding: var(--spacing-md);
@@ -171,6 +209,7 @@
 
   .introduction-social-icons {
     justify-content: center;
+    margin-left: 0;
   }
 
   .introduction-avatar {
