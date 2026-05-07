@@ -1,6 +1,6 @@
 import './Resume.css'
 import { useState, useEffect, useRef, type ReactNode } from 'react'
-import { useLanguage } from '../i18n/LanguageContext'
+import { useLanguage, useTranslations } from '../i18n/LanguageContext'
 import AutotestLogo from '../images/tools/autotest_Logo.png'
 import BookLogo from '../images/Book_Logo.png'
 import BootstrapLogo from '../images/framework/BootStrap_Logo.png'
@@ -45,6 +45,67 @@ import WaterlooLogo from '../images/waterlooLoGo.svg'
 import WorkExperienceLogo from '../images/work-experience-logo.svg'
 import WorkLogo from '../images/Work_Logo.png'
 import ComfyLogo from '../images/tools/Comfy.png'
+
+const translations = {
+  en: {
+    educationTitle: 'EDUCATIONAL BACKGROUND',
+    skillsTitle: 'TECHNICAL SKILLS',
+    workTitle: 'Work Experience',
+    projectsTitle: 'Personal Projects',
+    relevantCoursework: 'Relevant Coursework:',
+    skillsLabel: 'Skills:',
+    coursework: 'Coursework:',
+    download: 'View & Download',
+    downloadPdf: 'Resume in PDF',
+    waterloo: 'University of Waterloo',
+    waterlooLocation: '2B, Waterloo, Ontario',
+    waterlooDates: 'Sep 2024 - (Expected) April 2029',
+    bachelorOfMath: (
+      <>
+        <strong>Bachelor of Mathematics (Honours) Co-op</strong>, Data Science
+      </>
+    ) as ReactNode,
+    universityCoursework:
+      'Object-Oriented Programming, Calculus, Algorithm Design & Data Structure, Linear Algebra',
+    universitySkills:
+      'Problem-solving in binary search, binary trees, graph theory, and backtracking algorithms',
+    rhhs: 'Richmond Hill High School',
+    rhhsLocation: 'Richmond Hill, Ontario',
+    rhhsDates: 'Sep 2021 - Jun 2024',
+    highSchoolDiploma: 'High School Diploma',
+    highSchoolCoursework:
+      'Calculus, Advanced Functions, Data Management, Object-Oriented Programming',
+    skillsCategoryTitles: ['Languages', 'Frameworks & Libraries', 'Tools & Technologies'],
+  },
+  zh: {
+    educationTitle: '教育背景',
+    skillsTitle: '技术技能',
+    workTitle: '工作经历',
+    projectsTitle: '个人项目',
+    relevantCoursework: '相关课程：',
+    skillsLabel: '技能：',
+    coursework: '课程：',
+    download: '查看并下载',
+    downloadPdf: 'PDF 简历',
+    waterloo: '滑铁卢大学',
+    waterlooLocation: '2B，安大略省滑铁卢',
+    waterlooDates: '2024 年 9 月 - 预计 2029 年 4 月',
+    bachelorOfMath: (
+      <>
+        <strong>数学荣誉学士（Co-op）</strong>，数据科学
+      </>
+    ) as ReactNode,
+    universityCoursework: '面向对象编程、微积分、算法设计与数据结构、线性代数',
+    universitySkills: '二分查找、二叉树、图论和回溯算法的问题解决能力',
+    rhhs: '列治文山高中',
+    rhhsLocation: '安大略省列治文山',
+    rhhsDates: '2021 年 9 月 - 2024 年 6 月',
+    highSchoolDiploma: '高中毕业证书',
+    highSchoolCoursework: '微积分、高级函数、数据管理、面向对象编程',
+    skillsCategoryTitles: ['编程语言', '框架与库', '工具与技术'],
+  },
+}
+
 interface ExperienceItem {
   title: string
   company: string
@@ -512,7 +573,8 @@ const skillsCategories: SkillCategory[] = [
 ]
 
 const Resume = () => {
-  const { language, t } = useLanguage()
+  const { language } = useLanguage()
+  const t = useTranslations(translations)
   const [buttonState, setButtonState] = useState('initial-show')
   const isHoveredRef = useRef(false)
   const collapseDelayRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -589,7 +651,7 @@ const Resume = () => {
           <div className="educational-background">
             <div className="section-header">
               <img src={BookLogo} alt="Book Logo" className="section-icon" />
-              <h2 className="section-title">{t('resume.educationTitle')}</h2>
+              <h2 className="section-title">{t.educationTitle}</h2>
             </div>
             <div className="education-entry">
               <div className="education-header">
@@ -600,40 +662,28 @@ const Resume = () => {
                     rel="noopener noreferrer"
                     className="university-name resume-link"
                   >
-                    {language === 'zh' ? '滑铁卢大学' : 'University of Waterloo'}
+                    {t.waterloo}
                   </a>
                   <img src={WaterlooLogo} alt="University of Waterloo Logo" className="university-logo" />, 
                   <span className="location">
-                    {language === 'zh' ? '2B，安大略省滑铁卢' : '2B, Waterloo, Ontario'}
+                    {t.waterlooLocation}
                   </span>
                 </div>
                 <span className="education-dates">
-                  {language === 'zh' ? '2024 年 9 月 - 预计 2029 年 4 月' : 'Sep 2024 - (Expected) April 2029'}
+                  {t.waterlooDates}
                 </span>
               </div>
               <ul className="education-details">
                 <li>
-                  {language === 'zh' ? (
-                    <>
-                      <strong>数学荣誉学士（Co-op）</strong>，数据科学
-                    </>
-                  ) : (
-                    <>
-                      <strong>Bachelor of Mathematics (Honours) Co-op</strong>, Data Science
-                    </>
-                  )}
+                  {t.bachelorOfMath}
                 </li>
                 <li>
-                  <strong>{t('resume.relevantCoursework')}</strong>{' '}
-                  {language === 'zh'
-                    ? '面向对象编程、微积分、算法设计与数据结构、线性代数'
-                    : 'Object-Oriented Programming, Calculus, Algorithm Design & Data Structure, Linear Algebra'}
+                  <strong>{t.relevantCoursework}</strong>{' '}
+                  {t.universityCoursework}
                 </li>
                 <li>
-                  <strong>{t('resume.skillsLabel')}</strong>{' '}
-                  {language === 'zh'
-                    ? '二分查找、二叉树、图论和回溯算法的问题解决能力'
-                    : 'Problem-solving in binary search, binary trees, graph theory, and backtracking algorithms'}
+                  <strong>{t.skillsLabel}</strong>{' '}
+                  {t.universitySkills}
                 </li>
               </ul>
             </div>
@@ -646,26 +696,24 @@ const Resume = () => {
                     rel="noopener noreferrer"
                     className="university-name resume-link"
                   >
-                    {language === 'zh' ? '列治文山高中' : 'Richmond Hill High School'}
+                    {t.rhhs}
                   </a>
                   <img src={RHHSLogo} alt="Richmond Hill High School Logo" className="university-logo" />, 
                   <span className="location">
-                    {language === 'zh' ? '安大略省列治文山' : 'Richmond Hill, Ontario'}
+                    {t.rhhsLocation}
                   </span>
                 </div>
                 <span className="education-dates">
-                  {language === 'zh' ? '2021 年 9 月 - 2024 年 6 月' : 'Sep 2021 - Jun 2024'}
+                  {t.rhhsDates}
                 </span>
               </div>
               <ul className="education-details">
                 <li>
-                  <strong>{language === 'zh' ? '高中毕业证书' : 'High School Diploma'}</strong>
+                  <strong>{t.highSchoolDiploma}</strong>
                 </li>
                 <li>
-                  <strong>{t('resume.coursework')}</strong>{' '}
-                  {language === 'zh'
-                    ? '微积分、高级函数、数据管理、面向对象编程'
-                    : 'Calculus, Advanced Functions, Data Management, Object-Oriented Programming'}
+                  <strong>{t.coursework}</strong>{' '}
+                  {t.highSchoolCoursework}
                 </li>
               </ul>
             </div>
@@ -675,14 +723,12 @@ const Resume = () => {
           <div className="technical-skills">
             <div className="section-header">
               <img src={SkillsLogo} alt="Skills Logo" className="section-icon" />
-              <h2 className="section-title">{t('resume.skillsTitle')}</h2>
+              <h2 className="section-title">{t.skillsTitle}</h2>
             </div>
             {skillsCategories.map((category, categoryIndex) => (
               <div key={category.title} className="skills-category">
                 <h3 className="skills-category-title">
-                  {language === 'zh'
-                    ? ['编程语言', '框架与库', '工具与技术'][categoryIndex]
-                    : category.title}
+                  {t.skillsCategoryTitles[categoryIndex] ?? category.title}
                 </h3>
                 <p className="skills-list">
                   {category.links.map((link, index) => (
@@ -726,7 +772,7 @@ const Resume = () => {
           <div className="work-experience">
             <div className="section-header">
               <img src={WorkLogo} alt="Work Experience Logo" className="section-icon" />
-              <h2 className="section-title">{t('resume.workTitle')}</h2>
+              <h2 className="section-title">{t.workTitle}</h2>
             </div>
             <div className="experience-list">
             {localizedExperiences.map((exp, index) => (
@@ -785,7 +831,7 @@ const Resume = () => {
           <div className="personal-projects">
             <div className="section-header">
               <img src={WorkExperienceLogo} alt="Personal Projects Logo" className="section-icon" />
-              <h2 className="section-title">{t('resume.projectsTitle')}</h2>
+              <h2 className="section-title">{t.projectsTitle}</h2>
             </div>
             <div className="experience-list">
               {localizedPersonalProjects.map((project, index) => (
@@ -833,9 +879,9 @@ const Resume = () => {
             onMouseLeave={handleMouseLeave}
           >
             <button className="resume-download-button" onClick={handleDownload}>
-              {t('resume.download')}
+              {t.download}
               <br />
-              {t('resume.downloadPdf')}
+              {t.downloadPdf}
             </button>
           </div>
         </div>

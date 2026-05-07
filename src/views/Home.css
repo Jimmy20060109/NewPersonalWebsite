@@ -1,85 +1,171 @@
 .home-container {
   --home-card-action-bottom: 1rem;
   --home-card-action-gap: 1rem;
+  --home-grid-columns: 1;
+  --home-grid-row-height: auto;
   min-height: calc(80vh - 560px);
   padding: var(--spacing-lg) var(--spacing-xs);
   max-width: none;
   margin: 0 var(--spacing-sm);
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-lg);
-  align-items: start;
-}
-
-.home-container > .photography-card,
-.home-container > .location-card,
-.home-container > .home-card-row {
-  width: 100%;
-  align-self: stretch;
-}
-
-.home-card-row {
-  display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(var(--home-grid-columns), minmax(0, 1fr));
+  grid-auto-rows: var(--home-grid-row-height);
+  grid-auto-flow: dense;
   gap: var(--spacing-lg);
   align-items: stretch;
+  position: relative;
+  isolation: isolate;
 }
 
-.home-card-row > .location-card,
-.home-card-row > .education-card {
+.home-container::before,
+.home-container::after {
+  content: '';
+  position: fixed;
+  pointer-events: none;
+  z-index: -1;
+  border-radius: 999px;
+  filter: blur(12px);
+}
+
+.home-container::before {
+  top: 8rem;
+  right: 4vw;
+  width: min(34vw, 420px);
+  height: min(34vw, 420px);
+  background: radial-gradient(circle, rgba(58, 92, 204, 0.14), transparent 65%);
+}
+
+.home-container::after {
+  left: 4vw;
+  bottom: 5rem;
+  width: min(30vw, 360px);
+  height: min(30vw, 360px);
+  background: radial-gradient(circle, rgba(145, 198, 188, 0.16), transparent 64%);
+}
+
+.home-container > * {
+  --home-card-col-span: var(--home-grid-columns);
+  --home-card-row-span: 1;
+  grid-column: span var(--home-card-col-span);
+  grid-row: span var(--home-card-row-span);
   width: 100%;
   align-self: stretch;
-  aspect-ratio: 1.75 / 1;
-  min-height: 250px;
+  min-width: 0;
 }
 
-.home-card-row > .education-card {
-  min-height: 250px;
+.home-container > .home-slot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px;
+}
+
+.home-slot > * {
+  width: 100%;
+  height: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.home-slot.is-dragging {
+  z-index: 1000;
+  cursor: grabbing;
+  filter: drop-shadow(0 24px 48px rgba(15, 23, 42, 0.28));
+  transition: none;
+  pointer-events: none;
+}
+
+.home-slot.is-dragging > * {
+  pointer-events: none;
+}
+
+.home-slot.is-drop-target::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 30px;
+  border: 2px dashed var(--color-highlight, #91C6BC);
+  pointer-events: none;
+  z-index: 5;
+  animation: home-slot-drop-pulse 0.9s ease-in-out infinite;
+}
+
+@keyframes home-slot-drop-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
 }
 
 @media (min-width: 1024px) {
   .home-container {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    grid-template-areas:
-      'intro intro intro intro intro intro intro intro resume resume resume resume'
-      'photo photo photo photo photo photo photo chat chat chat chat chat'
-      'loc loc loc loc loc loc loc chat chat chat chat chat';
-    padding: var(--spacing-xl) var(--spacing-md);
-    gap: var(--spacing-md);
-    margin: 0 var(--spacing-sm);
-    align-items: stretch;
+    --home-grid-columns: 12;
+    --home-grid-row-height: minmax(min-content, auto);
+    padding: clamp(var(--spacing-xl), 5vw, 5rem) clamp(var(--spacing-md), 3vw, 3.5rem);
+    gap: clamp(var(--spacing-md), 2vw, 2rem);
+    margin: 0;
   }
 
-  .home-container > .introduction-card {
-    grid-area: intro;
-    align-self: stretch;
+  .home-container > .home-slot {
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.1);
+    will-change: transform;
+    transform: translateY(0);
+    cursor: grab;
+    transition: transform 0.2s ease;
   }
 
-  .home-container > .resume-card {
-    grid-area: resume;
-    align-self: stretch;
+  .home-container > .home-slot:not(.is-dragging):hover {
+    transform: translateY(-0.35rem);
   }
 
-  .home-container > .photography-card {
-    grid-area: photo;
-    align-self: stretch;
+  .home-container > .home-slot[data-slot-index="0"] {
+    --home-card-col-span: 8;
+    min-height: 280px;
   }
 
-  .home-container > .home-card-row {
-    grid-area: loc;
-    align-self: stretch;
+  .home-container > .home-slot[data-slot-index="1"] {
+    --home-card-col-span: 4;
+    min-height: 280px;
   }
 
-  .home-container > .chatbox-card {
-    grid-area: chat;
+  .home-container > .home-slot[data-slot-index="2"] {
+    --home-card-col-span: 6;
+    --home-card-row-span: 2;
+    min-height: 752px;
+  }
+
+  .home-container > .home-slot[data-slot-index="3"] {
+    --home-card-col-span: 6;
+    min-height: 360px;
+  }
+
+  .home-container > .home-slot[data-slot-index="4"] {
+    --home-card-col-span: 6;
+    min-height: 360px;
+  }
+
+  .home-container > .home-slot[data-slot-index="5"] {
+    --home-card-col-span: 6;
+    min-height: 360px;
+  }
+
+  .home-container > .home-slot[data-slot-index="6"],
+  .home-container > .home-slot[data-slot-index="7"] {
+    --home-card-col-span: 3;
+    min-height: 320px;
+  }
+
+  /* Make sure cards stretch to fill their slot regardless of natural ratio. */
+  .home-slot > .photography-card,
+  .home-slot > .location-card,
+  .home-slot > .education-card,
+  .home-slot > .skills-card,
+  .home-slot > .chatbox-card {
+    aspect-ratio: auto;
     height: 100%;
     min-height: 0;
-    align-self: stretch;
   }
 
-  .home-card-row {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--spacing-md);
+  .home-slot > .chatbox-card {
+    margin: 0;
   }
 }
 
@@ -92,27 +178,20 @@
     margin: 0 0.35rem;
   }
 
-  .home-container > .resume-card {
+  .home-slot > .resume-card {
     height: clamp(230px, 38vh, 300px);
     min-height: clamp(230px, 38vh, 300px);
   }
 
-  .home-container > .introduction-card {
+  .home-slot > .introduction-card {
     height: auto;
     min-height: 230px;
   }
 
-  .home-card-row {
-    gap: var(--spacing-sm);
-  }
-
-  .home-card-row > .education-card {
+  .home-slot > .location-card,
+  .home-slot > .education-card,
+  .home-slot > .skills-card {
     aspect-ratio: auto;
-    min-height: 215px;
-  }
-
-  .home-card-row > .location-card {
-    aspect-ratio: auto;
-    min-height: 215px;
+    min-height: 260px;
   }
 }

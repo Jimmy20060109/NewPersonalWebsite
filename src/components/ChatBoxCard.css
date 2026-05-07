@@ -5,7 +5,7 @@
   background: var(--chatbox-bg);
   border: 1px solid var(--color-border);
   border-radius: 24px;
-  padding: var(--spacing-md);
+  padding: var(--spacing-sm);
   box-shadow: 0 8px 24px rgba(17, 24, 39, 0.08);
   min-height: 360px;
 }
@@ -212,18 +212,17 @@
 }
 
 @media (min-width: 1024px) {
-  .home-container > .chatbox-card {
-    margin-left: calc(var(--spacing-md));
-    margin-right: 0;
-    padding-left: var(--spacing-md);
-    padding-right: var(--spacing-md);
+  .home-slot > .chatbox-card {
+    margin: 0;
+    padding-left: var(--spacing-sm);
+    padding-right: var(--spacing-sm);
   }
 }
 
 @media (max-width: 768px) {
   .chatbox-card {
     border-radius: 20px;
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
     min-height: 320px;
   }
 

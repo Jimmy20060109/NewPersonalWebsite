@@ -3,11 +3,25 @@ import avatarImage from '../images/avatar.jpg?url'
 import cursorLogo from '../images/cursorLogo.png?url'
 import claudeLogo from '../images/claude-ai-icon.webp?url'
 import waterlooLogo from '../images/waterlooLoGo.svg?url'
-import { useLanguage } from '../i18n/LanguageContext'
+import { useLanguage, useTranslations } from '../i18n/LanguageContext'
 import './IntroductionCard.css'
 
+const translations = {
+  en: {
+    greetingPrefix: 'Hey there! I am',
+    greetingSuffix: 'welcome to my web!',
+    name: 'Jimmy Zheng',
+  },
+  zh: {
+    greetingPrefix: '你好！我是',
+    greetingSuffix: '欢迎来到我的网站！',
+    name: '郑谨觉',
+  },
+}
+
 const IntroductionCard = () => {
-  const { language, t } = useLanguage()
+  const { language } = useLanguage()
+  const t = useTranslations(translations)
 
   const handleSocialClick = (e: React.MouseEvent, url: string) => {
     e.preventDefault()
@@ -64,9 +78,9 @@ const IntroductionCard = () => {
             </div>
           </div>
           <p className="introduction-greeting">
-            {t('intro.greetingPrefix')}{' '}
-            <strong>{language === 'zh' ? '郑谨觉' : 'Jimmy Zheng'}</strong>,{' '}
-            {t('intro.greetingSuffix')}
+            {t.greetingPrefix}{' '}
+            <strong>{t.name}</strong>,{' '}
+            {t.greetingSuffix}
           </p>
         </div>
         <p className="introduction-description">

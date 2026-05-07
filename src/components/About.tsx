@@ -1,13 +1,23 @@
 import './About.css'
 import WaterlooLogo from '../images/waterlooLoGo.svg'
-import { useLanguage } from '../i18n/LanguageContext'
+import { useLanguage, useTranslations } from '../i18n/LanguageContext'
+
+const translations = {
+  en: {
+    title: 'About',
+  },
+  zh: {
+    title: '关于我',
+  },
+}
 
 const About = () => {
-  const { language, t } = useLanguage()
+  const { language } = useLanguage()
+  const t = useTranslations(translations)
 
   return (
     <section id="about" className="about">
-      <h2 className="section-title">{t('about.title')}</h2>
+      <h2 className="section-title">{t.title}</h2>
       <div className="about-content">
         {language === 'zh' ? (
           <>

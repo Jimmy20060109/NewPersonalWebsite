@@ -1,0 +1,318 @@
+/* ============================================================
+   Skills page — fully namespaced under .skills-page / .skill-domain
+   to avoid collisions with components/SkillsCard.css
+   ============================================================ */
+
+.skills-page {
+  --sp-card-bg: var(--color-card);
+  --sp-card-border: rgba(15, 23, 42, 0.06);
+  --sp-card-shadow: 0 30px 60px -28px rgba(15, 23, 42, 0.18),
+    0 12px 30px -18px rgba(15, 23, 42, 0.1);
+  --sp-card-shadow-hover: 0 36px 72px -28px rgba(15, 23, 42, 0.24),
+    0 16px 38px -18px rgba(15, 23, 42, 0.16);
+  --sp-divider: rgba(15, 23, 42, 0.08);
+  --sp-tag-bg: rgba(15, 23, 42, 0.04);
+  --sp-tag-color: #475569;
+  --sp-tag-border: rgba(15, 23, 42, 0.07);
+  --sp-tag-bg-hover: rgba(15, 23, 42, 0.07);
+  --sp-tag-color-hover: var(--color-text);
+  --sp-count-bg: rgba(15, 23, 42, 0.05);
+  --sp-count-color: #64748b;
+  --sp-meta-color: var(--color-text-light);
+
+  position: relative;
+  z-index: 1;
+  min-height: calc(100vh - 160px);
+  padding: var(--spacing-xl) var(--spacing-md);
+}
+
+:root[data-theme='dark'] .skills-page {
+  --sp-card-bg: var(--color-card);
+  --sp-card-border: rgba(148, 163, 184, 0.16);
+  --sp-card-shadow: 0 30px 60px -28px rgba(0, 0, 0, 0.6),
+    0 12px 30px -18px rgba(0, 0, 0, 0.45);
+  --sp-card-shadow-hover: 0 36px 72px -28px rgba(0, 0, 0, 0.7),
+    0 16px 38px -18px rgba(0, 0, 0, 0.55);
+  --sp-divider: rgba(148, 163, 184, 0.18);
+  --sp-tag-bg: rgba(148, 163, 184, 0.1);
+  --sp-tag-color: var(--color-text-light);
+  --sp-tag-border: rgba(148, 163, 184, 0.18);
+  --sp-tag-bg-hover: rgba(148, 163, 184, 0.16);
+  --sp-tag-color-hover: var(--color-text);
+  --sp-count-bg: rgba(148, 163, 184, 0.14);
+  --sp-count-color: var(--color-text-light);
+}
+
+/* Background diagonal texture (matches Projects/About views) */
+.skills-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cpath d='M-1 7 L7 -1' stroke='%23475569' stroke-width='1' stroke-opacity='0.28'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 16px 16px;
+  opacity: 0.18;
+  transform: translateZ(0);
+}
+
+.skills-page-content {
+  position: relative;
+  z-index: 1;
+  width: min(1180px, calc(100% - 2 * var(--spacing-md)));
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(var(--spacing-lg), 4vw, 3.5rem);
+}
+
+/* ── Header ────────────────────────────────────────────── */
+.skills-page-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.skills-page-title {
+  margin: 0;
+  font-size: clamp(2rem, 3.6vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--color-text);
+}
+
+.skills-page-subtitle {
+  margin: 0 auto;
+  max-width: 60ch;
+  color: var(--color-text-light);
+  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+  line-height: 1.6;
+}
+
+/* ── Grid ──────────────────────────────────────────────── */
+.skill-domain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2.4vw, 2rem);
+  align-items: stretch;
+}
+
+/* ── Card ──────────────────────────────────────────────── */
+.skill-domain {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  background: var(--sp-card-bg);
+  border: 1px solid var(--sp-card-border);
+  border-radius: 24px;
+  box-shadow: var(--sp-card-shadow);
+  transition:
+    transform 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.28s ease;
+  overflow: hidden;
+}
+
+.skill-domain:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sp-card-shadow-hover);
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+:root[data-theme='dark'] .skill-domain:hover {
+  border-color: rgba(148, 163, 184, 0.28);
+}
+
+/* Soft colored glow in the top-right corner using domain accent */
+.skill-domain-glow {
+  position: absolute;
+  inset: -40% -40% auto auto;
+  width: 70%;
+  aspect-ratio: 1;
+  background: var(--domain-accent);
+  filter: blur(60px);
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.skill-domain:hover .skill-domain-glow {
+  opacity: 0.3;
+  transform: scale(1.05);
+}
+
+:root[data-theme='dark'] .skill-domain-glow {
+  opacity: 0.28;
+}
+
+:root[data-theme='dark'] .skill-domain:hover .skill-domain-glow {
+  opacity: 0.42;
+}
+
+.skill-domain-inner {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(var(--spacing-sm), 1.6vw, 1.25rem);
+  padding: clamp(1.25rem, 2vw, 1.75rem);
+}
+
+/* ── Card header ───────────────────────────────────────── */
+.skill-domain-header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.skill-domain-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: var(--domain-accent);
+  color: #ffffff;
+  box-shadow:
+    0 10px 24px -10px var(--domain-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.skill-domain-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.skill-domain-title {
+  margin: 0;
+  font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.skill-domain-caption {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  color: var(--sp-meta-color);
+  letter-spacing: 0.01em;
+  line-height: 1.45;
+}
+
+.skill-domain-count {
+  font-family: ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--sp-count-bg);
+  color: var(--sp-count-color);
+  white-space: nowrap;
+}
+
+/* ── Divider ───────────────────────────────────────────── */
+.skill-domain-divider {
+  margin: 0;
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--sp-divider) 18%,
+    var(--sp-divider) 82%,
+    transparent
+  );
+}
+
+/* ── Tags ──────────────────────────────────────────────── */
+.skill-domain-tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-content: flex-start;
+}
+
+.skill-domain-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  padding: 6px 11px 6px 8px;
+  border-radius: 8px;
+  background: var(--sp-tag-bg);
+  color: var(--sp-tag-color);
+  border: 1px solid var(--sp-tag-border);
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease,
+    border-color 0.18s ease;
+  cursor: default;
+}
+
+.skill-domain-tag:hover {
+  background: var(--sp-tag-bg-hover);
+  color: var(--sp-tag-color-hover);
+  transform: translateY(-1px);
+}
+
+.skill-domain-tag-logo {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  display: block;
+  transition: filter 0.18s ease;
+}
+
+.skill-domain-tag-name {
+  display: inline-flex;
+  line-height: 1;
+}
+
+/* Some logos are pure black/dark and become invisible on dark backgrounds.
+   Invert them only in dark mode. */
+:root[data-theme='dark'] .skill-domain-tag--invert .skill-domain-tag-logo {
+  filter: invert(1) brightness(1.05);
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .skill-domain-grid {
+    grid-template-columns: 1fr;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .skills-page {
+    padding: var(--spacing-lg) var(--spacing-sm);
+  }
+
+  .skill-domain {
+    border-radius: 20px;
+  }
+
+  .skill-domain-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+  }
+}

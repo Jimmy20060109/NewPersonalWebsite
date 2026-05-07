@@ -1,0 +1,153 @@
+.checkin-anim {
+  --checkin-bezel: var(--color-border);
+  --checkin-bezel-inner: var(--color-card);
+  --checkin-screen-bg: var(--color-bg);
+  --checkin-screen-fg: var(--color-text);
+  --checkin-screen-fg-soft: var(--color-text-light);
+  --checkin-screen-fg-faint: rgba(17, 24, 39, 0.18);
+  --checkin-screen-shadow: rgba(17, 24, 39, 0.18);
+  --checkin-outer-radius: 22px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+}
+
+:root[data-theme='dark'] .checkin-anim {
+  --checkin-screen-fg-faint: rgba(255, 255, 255, 0.22);
+  --checkin-screen-shadow: rgba(0, 0, 0, 0.5);
+}
+
+/* ── Tablet bezels ────────────────────────────────────────── */
+.checkin-tablet {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--checkin-outer-radius);
+  padding: 6px;
+  background: var(--checkin-bezel);
+  box-shadow:
+    0 30px 60px -15px var(--checkin-screen-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transform-style: preserve-3d;
+  box-sizing: border-box;
+}
+
+.checkin-tablet-bezel {
+  height: 100%;
+  width: 100%;
+  border-radius: calc(var(--checkin-outer-radius) - 4px);
+  padding: 3px;
+  background: var(--checkin-bezel-inner);
+  box-sizing: border-box;
+}
+
+.checkin-tablet-screen {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-radius: calc(var(--checkin-outer-radius) - 8px);
+  background: var(--checkin-screen-bg);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* ── Tablet content (each phase) ──────────────────────────── */
+.checkin-screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: clamp(6px, 1.2vw, 14px);
+}
+
+.checkin-screen-success {
+  background: #34c759;
+}
+
+.checkin-nfc-ring {
+  width: clamp(48px, 11%, 110px);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  border: 1.5px solid var(--checkin-screen-fg-faint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--checkin-screen-fg-soft);
+}
+
+.checkin-nfc-ring svg {
+  width: 50%;
+  height: 50%;
+}
+
+.checkin-text-primary {
+  margin: 0;
+  color: var(--checkin-screen-fg);
+  font-size: clamp(11px, 1.6vw, 22px);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.checkin-text-secondary {
+  margin: 0;
+  color: var(--checkin-screen-fg-soft);
+  font-size: clamp(9px, 1.1vw, 15px);
+}
+
+.checkin-scan-ring {
+  width: clamp(54px, 13%, 130px);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  border: 1.5px solid var(--checkin-screen-fg-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkin-scan-inner {
+  width: 56%;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  border: 1.5px solid var(--checkin-screen-fg-soft);
+}
+
+.checkin-text-reading {
+  margin: 0;
+  color: var(--checkin-screen-fg-soft);
+  font-size: clamp(10px, 1.2vw, 16px);
+}
+
+.checkin-success-ring {
+  width: clamp(50px, 12%, 120px);
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #34c759;
+}
+
+.checkin-success-ring svg {
+  width: 50%;
+  height: 50%;
+}
+
+.checkin-screen-success .checkin-text-primary,
+.checkin-screen-success .checkin-text-secondary {
+  color: #ffffff;
+}
+
+.checkin-text-success-title {
+  font-size: clamp(13px, 1.7vw, 24px);
+  font-weight: 700;
+}
+
+.checkin-text-success-meta {
+  color: rgba(255, 255, 255, 0.78);
+}

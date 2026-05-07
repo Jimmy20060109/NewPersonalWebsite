@@ -1,7 +1,22 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useLanguage } from '../i18n/LanguageContext'
+import { useTranslations } from '../i18n/LanguageContext'
 import './PhotographyCard.css'
+
+const translations = {
+  en: {
+    eyebrow: 'Creative Work',
+    title: 'Photography',
+    subtitle: 'Street, portrait, and travel moments.',
+    button: 'View Photos',
+  },
+  zh: {
+    eyebrow: '创意作品',
+    title: '摄影',
+    subtitle: '街拍、人像与旅行瞬间。',
+    button: '查看照片',
+  },
+}
 
 const homepageImageModules = import.meta.glob(
   '../images/travel/homepage/*.{jpg,JPG,jpeg,JPEG,png,PNG,webp,WEBP}',
@@ -35,7 +50,7 @@ const pickRandomImage = (exclude?: string) => {
 }
 
 const PhotographyCard = () => {
-  const { t } = useLanguage()
+  const t = useTranslations(translations)
   const [currentImage, setCurrentImage] = useState<string>(() => pickRandomImage())
   const [nextImage, setNextImage] = useState<string | null>(null)
   const [isCrossfading, setIsCrossfading] = useState(false)
@@ -93,10 +108,10 @@ const PhotographyCard = () => {
       <span className="photography-card-tint" />
       <span className="photography-card-glow" />
       <div className="photography-card-content">
-        <p className="photography-card-eyebrow">{t('photographyCard.eyebrow')}</p>
-        <h2 className="photography-card-title">{t('photographyCard.title')}</h2>
-        <p className="photography-card-subtitle">{t('photographyCard.subtitle')}</p>
-        <span className="photography-card-button">{t('photographyCard.button')}</span>
+        <p className="photography-card-eyebrow">{t.eyebrow}</p>
+        <h2 className="photography-card-title">{t.title}</h2>
+        <p className="photography-card-subtitle">{t.subtitle}</p>
+        <span className="photography-card-button">{t.button}</span>
       </div>
     </Link>
   )

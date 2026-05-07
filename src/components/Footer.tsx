@@ -1,14 +1,25 @@
-import { useLanguage } from '../i18n/LanguageContext'
+import { useTranslations } from '../i18n/LanguageContext'
 import './Footer.css'
 
+const translations = {
+  en: {
+    rights: 'All rights reserved.',
+    email: 'Email',
+  },
+  zh: {
+    rights: '保留所有权利。',
+    email: '邮箱',
+  },
+}
+
 const Footer = () => {
-  const { t } = useLanguage()
+  const t = useTranslations(translations)
 
   return (
     <footer className="footer">
       <div className="footer-content">
         <p className="footer-text">
-          © 2026 Jimmy Zheng. {t('footer.rights')}
+          © 2026 Jimmy Zheng. {t.rights}
         </p>
         <div className="footer-links">
           <a
@@ -25,7 +36,7 @@ const Footer = () => {
           >
             GitHub
           </a>
-          <a href="mailto:j289zhen@uwaterloo.ca">{t('common.email')}</a>
+          <a href="mailto:j289zhen@uwaterloo.ca">{t.email}</a>
         </div>
       </div>
     </footer>

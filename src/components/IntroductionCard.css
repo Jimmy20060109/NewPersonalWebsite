@@ -5,7 +5,7 @@
   margin: 0;
   background: var(--color-card);
   border-radius: 24px;
-  padding: var(--spacing-md);
+  padding: var(--spacing-sm);
   text-decoration: none;
   color: var(--color-text);
   transition: all 0.3s ease;
@@ -190,7 +190,7 @@
 
 @media (max-width: 768px) {
   .introduction-card {
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
     margin: 0;
     border-radius: 20px;
     min-height: 220px;

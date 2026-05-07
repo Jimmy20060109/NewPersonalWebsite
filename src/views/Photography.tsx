@@ -1,7 +1,24 @@
 import { useEffect, useRef, useState } from 'react'
 import interact from 'interactjs'
-import { useLanguage } from '../i18n/LanguageContext'
+import { useTranslations } from '../i18n/LanguageContext'
 import './Photography.css'
+
+const translations = {
+  en: {
+    title: 'Photography',
+    subtitle: 'Travel Collection',
+    openPhoto: 'Open photo',
+    lightbox: 'Enlarged photo view',
+    closePhoto: 'Close enlarged photo',
+  },
+  zh: {
+    title: '摄影',
+    subtitle: '旅行合集',
+    openPhoto: '打开照片',
+    lightbox: '放大的照片视图',
+    closePhoto: '关闭放大照片',
+  },
+}
 
 const imageModules = import.meta.glob('../images/travel/*.{jpg,JPG,jpeg,JPEG,png,PNG,webp,WEBP}', {
   eager: true,
@@ -26,7 +43,7 @@ const initialTravelImages = shuffleArray(
 )
 
 const Photography = () => {
-  const { t } = useLanguage()
+  const t = useTranslations(translations)
   const [images, setImages] = useState(initialTravelImages)
   const [selectedImage, setSelectedImage] = useState<(typeof initialTravelImages)[number] | null>(null)
   const [imageRowSpans, setImageRowSpans] = useState<Record<string, number>>({})
@@ -214,9 +231,9 @@ const Photography = () => {
 
   return (
     <section id="photography" className="photography">
-      <h2 className="section-title">{t('photography.title')}</h2>
+      <h2 className="section-title">{t.title}</h2>
       <div className="photography-header">
-        <p className="photography-subtitle">{t('photography.subtitle')}</p>
+        <p className="photography-subtitle">{t.subtitle}</p>
       </div>
       <div ref={galleryRef} className="photography-gallery">
         {images.map((image) => (
@@ -230,7 +247,7 @@ const Photography = () => {
               type="button"
               className="photo-frame-button"
               onClick={() => handleImageClick(image)}
-              aria-label={`${t('photography.openPhoto')}: ${image.alt}`}
+              aria-label={`${t.openPhoto}: ${image.alt}`}
             >
               <img
                 src={image.src}
@@ -247,7 +264,7 @@ const Photography = () => {
           className="photo-lightbox"
           role="dialog"
           aria-modal="true"
-          aria-label={t('photography.lightbox')}
+          aria-label={t.lightbox}
           onClick={() => setSelectedImage(null)}
         >
           <div className="photo-lightbox-content" onClick={(event) => event.stopPropagation()}>
@@ -255,7 +272,7 @@ const Photography = () => {
               type="button"
               className="photo-lightbox-close"
               onClick={() => setSelectedImage(null)}
-              aria-label={t('photography.closePhoto')}
+              aria-label={t.closePhoto}
             >
               ×
             </button>

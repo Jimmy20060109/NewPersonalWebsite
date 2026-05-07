@@ -1,6 +1,25 @@
 import { useEffect, useState } from 'react'
-import { useLanguage } from '../i18n/LanguageContext'
+import { useTranslations } from '../i18n/LanguageContext'
 import './LocationCard.css'
+
+const translations = {
+  en: {
+    cardLabel: 'Current Base',
+    title: 'Location',
+    city: 'Richmond Hill, ON',
+    button: 'Open Map',
+    closeMap: 'Close location map',
+    modalTitle: 'I live in Richmond Hill',
+  },
+  zh: {
+    cardLabel: '当前所在地',
+    title: '位置',
+    city: '安大略省列治文山',
+    button: '打开地图',
+    closeMap: '关闭位置地图',
+    modalTitle: '我住在列治文山',
+  },
+}
 
 declare global {
   interface Window {
@@ -140,7 +159,7 @@ async function loadGoogleMapsScript(apiKey: string): Promise<void> {
 }
 
 const LocationCard = () => {
-  const { t } = useLanguage()
+  const t = useTranslations(translations)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [useFallbackMap, setUseFallbackMap] = useState(true)
   const apiKey = (import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string | undefined)?.trim()
@@ -224,9 +243,22 @@ const LocationCard = () => {
     }
   }, [apiKey, mapHost])
 
+  const openModal = () => setIsModalOpen(true)
+
   return (
     <>
-      <button type="button" className="location-card" onClick={() => setIsModalOpen(true)}>
+      <div
+        className="location-card"
+        role="button"
+        tabIndex={0}
+        onClick={openModal}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault()
+            openModal()
+          }
+        }}
+      >
         <div className="location-card-map" aria-hidden="true">
           <div ref={setMapHost} className="location-card-map-canvas" />
           {useFallbackMap && (
@@ -240,15 +272,15 @@ const LocationCard = () => {
         </div>
         <div className="location-card-content">
           <div className="location-card-top">
-            <p className="location-card-eyebrow">{t('location.cardLabel')}</p>
-            <h2 className="location-card-title">{t('location.title')}</h2>
+            <p className="location-card-eyebrow">{t.cardLabel}</p>
+            <h2 className="location-card-title">{t.title}</h2>
           </div>
           <div className="location-card-footer">
-            <p className="location-card-subtitle">{t('location.city')}</p>
-            <span className="location-card-button">{t('location.button')}</span>
+            <p className="location-card-subtitle">{t.city}</p>
+            <span className="location-card-button">{t.button}</span>
           </div>
         </div>
-      </button>
+      </div>
 
       {isModalOpen && (
         <div
@@ -266,14 +298,14 @@ const LocationCard = () => {
             <button
               type="button"
               className="location-modal-close"
-              aria-label={t('location.closeMap')}
+              aria-label={t.closeMap}
               onClick={() => setIsModalOpen(false)}
             >
               ×
             </button>
 
             <div className="location-modal-header">
-              <h3 id="location-modal-title">{t('location.modalTitle')}</h3>
+              <h3 id="location-modal-title">{t.modalTitle}</h3>
               <p>55 Falling River Dr, Richmond Hill, ON L4S 2R2</p>
             </div>
 

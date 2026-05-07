@@ -38,7 +38,7 @@
   position: relative;
   z-index: 2;
   height: 100%;
-  padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) calc(var(--spacing-md) + var(--spacing-sm));
+  padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-sm) var(--spacing-md);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -51,12 +51,12 @@
 
 .location-card-footer {
   position: absolute;
-  left: calc(var(--spacing-md) + var(--spacing-sm));
-  right: var(--spacing-md);
-  bottom: var(--home-card-action-bottom, 1rem);
+  left: var(--spacing-md);
+  right: var(--spacing-sm);
+  bottom: var(--home-card-action-bottom, var(--spacing-sm));
   display: flex;
   flex-direction: column;
-  gap: var(--home-card-action-gap, 1rem);
+  gap: var(--home-card-action-gap, var(--spacing-sm));
 }
 
 .location-card-map {
@@ -209,12 +209,12 @@
   }
 
   .location-card-content {
-    padding: var(--spacing-sm);
+    padding: var(--spacing-xs);
   }
 
   .location-card-footer {
-    left: var(--spacing-sm);
-    right: var(--spacing-sm);
+    left: var(--spacing-xs);
+    right: var(--spacing-xs);
     bottom: var(--home-card-action-bottom, var(--spacing-xs));
   }
 

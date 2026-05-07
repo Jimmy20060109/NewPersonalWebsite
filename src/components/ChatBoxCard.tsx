@@ -1,6 +1,37 @@
 import { ChangeEvent, FormEvent, useEffect, useMemo, useRef, useState } from 'react'
-import { useLanguage } from '../i18n/LanguageContext'
+import { useLanguage, useTranslations } from '../i18n/LanguageContext'
 import './ChatBoxCard.css'
+
+const translations = {
+  en: {
+    label: 'AI chat assistant',
+    initial: 'Hi, I can answer questions about Jimmy’s projects, work experience, education, and skills.',
+    reset: 'Conversation reset. Ask me anything about Jimmy.',
+    title: 'Ask Jimmy AI',
+    subtitle: 'Ask anything about Jimmy !!!',
+    clear: 'Clear',
+    placeholder: 'Ask something about Jimmy...',
+    thinking: 'Thinking...',
+    send: 'Send',
+    noAnswer: 'No answer returned from server.',
+    unknownError: 'Unknown request error',
+    requestFailed: 'Request failed',
+  },
+  zh: {
+    label: 'AI 聊天助手',
+    initial: '你好，我可以回答关于 Jimmy 的项目、工作经历、教育背景和技能的问题。',
+    reset: '对话已重置。欢迎继续询问关于 Jimmy 的任何问题。',
+    title: '询问 Jimmy AI',
+    subtitle: '欢迎询问任何关于 Jimmy 的问题！！！',
+    clear: '清空',
+    placeholder: '询问一些关于 Jimmy 的问题...',
+    thinking: '思考中...',
+    send: '发送',
+    noAnswer: '服务器没有返回答案。',
+    unknownError: '未知请求错误',
+    requestFailed: '请求失败',
+  },
+}
 
 interface AskSource {
   id: string
@@ -42,7 +73,8 @@ function makeMessageId(): string {
 }
 
 const ChatBoxCard = () => {
-  const { language, t } = useLanguage()
+  const { language } = useLanguage()
+  const t = useTranslations(translations)
   const apiBaseUrl = useMemo(() => getApiBaseUrl(), [])
   const messagesContainerRef = useRef<HTMLDivElement | null>(null)
   const questionInputRef = useRef<HTMLTextAreaElement | null>(null)
@@ -54,7 +86,7 @@ const ChatBoxCard = () => {
     {
       id: makeMessageId(),
       role: 'assistant',
-      text: t('chat.initial')
+      text: t.initial
     }
   ])
 
@@ -84,7 +116,7 @@ const ChatBoxCard = () => {
         return prev
       }
 
-      return [{ ...prev[0], text: t('chat.initial') }]
+      return [{ ...prev[0], text: t.initial }]
     })
   }, [t])
 
@@ -143,7 +175,7 @@ const ChatBoxCard = () => {
       }
 
       const data = (await response.json()) as AskResponse
-      const answerText = data.answer?.trim() || t('chat.noAnswer')
+      const answerText = data.answer?.trim() || t.noAnswer
 
       setMessages((prev) => [
         ...prev,
@@ -155,13 +187,13 @@ const ChatBoxCard = () => {
         }
       ])
     } catch (error) {
-      const message = error instanceof Error ? error.message : t('chat.unknownError')
+      const message = error instanceof Error ? error.message : t.unknownError
       setMessages((prev) => [
         ...prev,
         {
           id: makeMessageId(),
           role: 'assistant',
-          text: `${t('chat.requestFailed')}: ${message}`,
+          text: `${t.requestFailed}: ${message}`,
           isError: true
         }
       ])
@@ -175,7 +207,7 @@ const ChatBoxCard = () => {
       {
         id: makeMessageId(),
         role: 'assistant',
-        text: t('chat.reset')
+        text: t.reset
       }
     ])
   }
@@ -192,10 +224,10 @@ const ChatBoxCard = () => {
 
 
   return (
-    <section className="chatbox-card" aria-label={t('chat.label')}>
+    <section className="chatbox-card" aria-label={t.label}>
       <div className="chatbox-header">
-        <h2 className="chatbox-title">{t('chat.title')}</h2>
-        <p className="chatbox-subtitle">{t('chat.subtitle')}</p>
+        <h2 className="chatbox-title">{t.title}</h2>
+        <p className="chatbox-subtitle">{t.subtitle}</p>
       </div>
 
       <div
@@ -231,14 +263,14 @@ const ChatBoxCard = () => {
             onChange={handleQuestionChange}
             onKeyDown={handleKeyDown}
             className="chatbox-input"
-            placeholder={t('chat.placeholder')}
+            placeholder={t.placeholder}
             rows={1}
           />
           <button type="submit" className="chatbox-send-button" disabled={!canSubmit}>
-            {isLoading ? t('chat.thinking') : t('chat.send')}
+            {isLoading ? t.thinking : t.send}
           </button>
           <button type="button" className="chatbox-clear-button" onClick={clearConversation} disabled={isLoading}>
-            {t('chat.clear')}
+            {t.clear}
           </button>
         </div>
       </form>

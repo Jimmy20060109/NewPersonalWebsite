@@ -1,8 +1,21 @@
-import { useLanguage } from '../i18n/LanguageContext'
+import { useTranslations } from '../i18n/LanguageContext'
 import './Hero.css'
 
+const translations = {
+  en: {
+    role: 'Software Developer',
+    education: 'University of Waterloo, 2B • Data Science',
+    email: 'Email',
+  },
+  zh: {
+    role: '软件开发者',
+    education: '滑铁卢大学, 2B · 数据科学',
+    email: '邮箱',
+  },
+}
+
 const Hero = () => {
-  const { t } = useLanguage()
+  const t = useTranslations(translations)
 
   return (
     <section id="hero" className="hero">
@@ -10,9 +23,9 @@ const Hero = () => {
         <h1 className="hero-title">
           <span className="hero-name">Jimmy Zheng</span>
         </h1>
-        <p className="hero-subtitle">{t('hero.role')}</p>
+        <p className="hero-subtitle">{t.role}</p>
         <p className="hero-description">
-          {t('hero.education')}
+          {t.education}
         </p>
         <div className="hero-links">
           <a
@@ -32,7 +45,7 @@ const Hero = () => {
             GitHub
           </a>
           <a href="mailto:j289zhen@uwaterloo.ca" className="hero-link">
-            {t('common.email')}
+            {t.email}
           </a>
         </div>
         <div className="hero-contact">
