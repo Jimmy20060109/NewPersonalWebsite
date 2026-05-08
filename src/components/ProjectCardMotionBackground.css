@@ -1,0 +1,281 @@
+/* ─────────────────────────────────────────────────────────────
+   Cyberspace project-card background
+   - SVG perspective grid + animated network of nodes
+   - Floating code text and binary stream
+   - HUD-style corner brackets and vignette
+   - Adapts cleanly to both light and dark themes
+   ───────────────────────────────────────────────────────────── */
+
+.project-card-bg {
+  /* Light theme defaults — soft, blue-tinted "tech" palette so the
+     existing card text (dark) stays comfortably readable on top. */
+  --pcb-accent: #1d8a64;
+  --pcb-accent-strong: #0f9d6b;
+  --pcb-accent-soft: rgba(16, 185, 129, 0.55);
+  --pcb-glow: rgba(16, 185, 129, 0.28);
+  --pcb-corner-shadow: rgba(16, 185, 129, 0.28);
+  --pcb-code-opacity: 0.18;
+  --pcb-binary-opacity: 0.42;
+  --pcb-grid-opacity: 0.55;
+  --pcb-link-base: 0.18;
+  --pcb-link-peak: 0.55;
+  --pcb-vignette:
+    radial-gradient(120% 80% at 50% 110%, rgba(15, 157, 107, 0.08), transparent 60%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.0) 60%, rgba(15, 17, 21, 0.04) 100%);
+  --pcb-radial-tint:
+    radial-gradient(120% 80% at 75% 30%, rgba(16, 185, 129, 0.07), transparent 60%),
+    radial-gradient(80% 60% at 18% 85%, rgba(16, 185, 129, 0.05), transparent 60%);
+
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  color: var(--pcb-accent);
+  background: var(--pcb-radial-tint);
+  pointer-events: none;
+  user-select: none;
+}
+
+:root[data-theme='dark'] .project-card-bg {
+  /* Dark theme — bold green-on-black to mirror the reference image. */
+  --pcb-accent: #34d399;
+  --pcb-accent-strong: #6ee7b7;
+  --pcb-accent-soft: rgba(110, 231, 183, 0.7);
+  --pcb-glow: rgba(110, 231, 183, 0.55);
+  --pcb-corner-shadow: rgba(74, 222, 128, 0.55);
+  --pcb-code-opacity: 0.28;
+  --pcb-binary-opacity: 0.6;
+  --pcb-grid-opacity: 0.85;
+  --pcb-link-base: 0.28;
+  --pcb-link-peak: 0.85;
+  --pcb-vignette:
+    radial-gradient(120% 80% at 50% 120%, rgba(16, 185, 129, 0.18), transparent 65%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.0) 55%, rgba(0, 0, 0, 0.35) 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.18) 0%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.18) 100%);
+  --pcb-radial-tint:
+    radial-gradient(120% 80% at 75% 30%, rgba(16, 185, 129, 0.16), transparent 60%),
+    radial-gradient(80% 60% at 18% 85%, rgba(16, 185, 129, 0.10), transparent 60%);
+}
+
+/* ── Layers ──────────────────────────────────────────────── */
+
+.project-card-bg__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--pcb-accent);
+}
+
+.project-card-bg__layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* ── Floating code snippet ───────────────────────────────── */
+
+.project-card-bg__code {
+  position: absolute;
+  top: 14%;
+  right: 6%;
+  margin: 0;
+  padding: 0;
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', ui-monospace, Menlo,
+    monospace;
+  font-size: 0.62rem;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  color: var(--pcb-accent);
+  opacity: var(--pcb-code-opacity);
+  white-space: pre;
+  text-align: left;
+  max-width: 60%;
+  filter: blur(0.2px);
+}
+
+/* ── Binary digit stream ─────────────────────────────────── */
+
+.project-card-bg__layer--binary {
+  inset: auto 5% 18% auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  align-items: flex-end;
+  font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  color: var(--pcb-accent-strong);
+  opacity: var(--pcb-binary-opacity);
+}
+
+.project-card-bg__binary-line {
+  display: block;
+  animation: pcb-binary-flicker 4.5s ease-in-out infinite;
+}
+
+@keyframes pcb-binary-flicker {
+  0%,
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  45% {
+    opacity: 0.25;
+    transform: translateX(-2px);
+  }
+  55% {
+    opacity: 0.9;
+    transform: translateX(1px);
+  }
+}
+
+/* ── Perspective grid ────────────────────────────────────── */
+
+.project-card-bg__grid {
+  opacity: var(--pcb-grid-opacity);
+}
+
+/* ── Network of nodes & links ────────────────────────────── */
+
+.project-card-bg__links line {
+  opacity: var(--pcb-link-base);
+  animation: pcb-link-pulse 6s ease-in-out infinite;
+}
+
+@keyframes pcb-link-pulse {
+  0%,
+  100% {
+    opacity: var(--pcb-link-base);
+  }
+  50% {
+    opacity: var(--pcb-link-peak);
+  }
+}
+
+.project-card-bg__node {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pcb-node-pulse 3s ease-in-out infinite;
+}
+
+.project-card-bg__node-glow {
+  opacity: 0.85;
+}
+
+.project-card-bg__node-core {
+  filter: drop-shadow(0 0 4px var(--pcb-glow));
+}
+
+@keyframes pcb-node-pulse {
+  0%,
+  100% {
+    transform: scale(0.85);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 1;
+  }
+}
+
+/* ── HUD corner brackets ─────────────────────────────────── */
+
+.project-card-bg__corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 0 solid var(--pcb-accent-strong);
+  pointer-events: none;
+  filter: drop-shadow(0 0 6px var(--pcb-corner-shadow));
+}
+
+.project-card-bg__corner--tl {
+  top: 14px;
+  left: 14px;
+  border-top-width: 1.5px;
+  border-left-width: 1.5px;
+  border-top-left-radius: 6px;
+}
+
+.project-card-bg__corner--tr {
+  top: 14px;
+  right: 14px;
+  border-top-width: 1.5px;
+  border-right-width: 1.5px;
+  border-top-right-radius: 6px;
+}
+
+.project-card-bg__corner--bl {
+  bottom: 14px;
+  left: 14px;
+  border-bottom-width: 1.5px;
+  border-left-width: 1.5px;
+  border-bottom-left-radius: 6px;
+}
+
+.project-card-bg__corner--br {
+  bottom: 14px;
+  right: 14px;
+  border-bottom-width: 1.5px;
+  border-right-width: 1.5px;
+  border-bottom-right-radius: 6px;
+}
+
+/* ── Vignette / gradient overlay ─────────────────────────── */
+
+.project-card-bg__vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--pcb-vignette);
+}
+
+/* ── Responsive tweaks ───────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .project-card-bg__code {
+    font-size: 0.52rem;
+    max-width: 70%;
+    top: 18%;
+  }
+
+  .project-card-bg__layer--binary {
+    font-size: 0.6rem;
+    right: 6%;
+  }
+
+  .project-card-bg__corner {
+    width: 16px;
+    height: 16px;
+    top: 10px;
+    left: 10px;
+  }
+
+  .project-card-bg__corner--tr {
+    left: auto;
+    right: 10px;
+  }
+
+  .project-card-bg__corner--bl {
+    top: auto;
+    bottom: 10px;
+  }
+
+  .project-card-bg__corner--br {
+    top: auto;
+    left: auto;
+    right: 10px;
+    bottom: 10px;
+  }
+}
+
+/* ── Reduced motion ──────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card-bg__node,
+  .project-card-bg__links line,
+  .project-card-bg__binary-line {
+    animation: none;
+  }
+}

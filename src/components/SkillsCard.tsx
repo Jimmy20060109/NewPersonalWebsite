@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useTranslations } from '../i18n/LanguageContext'
+import SkillsCardMotionBackground from './SkillsCardMotionBackground'
 import './SkillsCard.css'
 
 const translations = {
@@ -24,6 +25,7 @@ const SkillsCard = () => {
 
   return (
     <Link to="/skills" className="skills-card" aria-label={t.aria}>
+      <SkillsCardMotionBackground />
       <div className="skills-card-content">
         <div className="skills-card-top">
           <p className="skills-card-eyebrow">{t.eyebrow}</p>

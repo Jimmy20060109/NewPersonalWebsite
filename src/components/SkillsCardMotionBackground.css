@@ -1,0 +1,180 @@
+/* ─────────────────────────────────────────────────────────────
+   Blueprint-style background for the Skills home card
+   - Dark "engineering canvas" surface in both themes (mirrors the
+     other dark feature cards: Education / Photography)
+   - Isometric grid + framed iso-blocks + circuit traces
+   - Math / code snippets as blueprint annotations
+   - Theme-aware accent intensities so it doesn't visually clash
+     against a bright page in light mode
+   ───────────────────────────────────────────────────────────── */
+
+.skills-card-bg {
+  /* Light-page defaults — slightly softer accents so the dark card
+     doesn't shout against a white page background. */
+  --scb-bg-from: #1a2236;
+  --scb-bg-mid: #131a2c;
+  --scb-bg-to: #0b1228;
+  --scb-line: #b6dbe8;
+  --scb-line-strong: #d8ecf3;
+  --scb-text: rgba(182, 219, 232, 0.55);
+  --scb-text-strong: rgba(216, 236, 243, 0.78);
+  --scb-text-fine: rgba(182, 219, 232, 0.32);
+  --scb-glow: rgba(255, 215, 170, 0.18);
+  --scb-svg-opacity: 0.7;
+
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+  user-select: none;
+  color: var(--scb-line);
+
+  background:
+    radial-gradient(circle at 14% 6%, rgba(255, 220, 180, 0.10), transparent 38%),
+    radial-gradient(circle at 92% 98%, rgba(58, 92, 204, 0.18), transparent 52%),
+    linear-gradient(135deg, var(--scb-bg-from) 0%, var(--scb-bg-mid) 55%, var(--scb-bg-to) 100%);
+}
+
+/* Slightly bump accents in dark mode so the card feels more vivid
+   against the dark page rather than washing out. */
+:root[data-theme='dark'] .skills-card-bg {
+  --scb-line: #c2e3ee;
+  --scb-line-strong: #e6f3f8;
+  --scb-text: rgba(194, 227, 238, 0.7);
+  --scb-text-strong: rgba(230, 243, 248, 0.92);
+  --scb-text-fine: rgba(194, 227, 238, 0.4);
+  --scb-glow: rgba(255, 220, 180, 0.24);
+  --scb-svg-opacity: 0.85;
+}
+
+/* ── Layers ──────────────────────────────────────────────── */
+
+.skills-card-bg__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--scb-line);
+  opacity: var(--scb-svg-opacity);
+}
+
+.skills-card-bg__iso-fill {
+  opacity: 0.55;
+}
+
+.skills-card-bg__glow {
+  position: absolute;
+  top: -18%;
+  left: -10%;
+  width: 60%;
+  height: 70%;
+  background: radial-gradient(
+    ellipse at 30% 30%,
+    var(--scb-glow) 0%,
+    transparent 65%
+  );
+  pointer-events: none;
+  filter: blur(2px);
+}
+
+/* Vertical scaffolding mark on the far left */
+.skills-card-bg__rule {
+  position: absolute;
+  top: 8%;
+  bottom: 8%;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--scb-line) 30%,
+    var(--scb-line) 70%,
+    transparent 100%
+  );
+  opacity: 0.35;
+}
+
+.skills-card-bg__rule--left {
+  left: 3%;
+}
+
+/* ── Math / code annotations ─────────────────────────────── */
+
+.skills-card-bg__text-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', ui-monospace, Menlo,
+    monospace;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  color: var(--scb-text);
+}
+
+.skills-card-bg__snippet {
+  position: absolute;
+  white-space: pre;
+  line-height: 1.3;
+  text-shadow: 0 0 8px rgba(15, 23, 42, 0.4);
+}
+
+.skills-card-bg__snippet--fine {
+  color: var(--scb-text-fine);
+  font-weight: 300;
+}
+
+.skills-card-bg__snippet--medium {
+  color: var(--scb-text);
+  font-weight: 350;
+}
+
+.skills-card-bg__snippet--bold {
+  color: var(--scb-text-strong);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+}
+
+.skills-card-bg__snippet--glyph {
+  color: var(--scb-text-strong);
+  font-family: 'Times New Roman', 'Cambria Math', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 0.65;
+}
+
+/* ── Inner overlay — keeps the header/footer text crisp ─── */
+
+.skills-card-bg__overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8, 12, 22, 0.05) 0%,
+      transparent 35%,
+      transparent 60%,
+      rgba(8, 12, 22, 0.55) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(8, 12, 22, 0.18) 0%,
+      transparent 25%,
+      transparent 75%,
+      rgba(8, 12, 22, 0.18) 100%
+    );
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .skills-card-bg__snippet {
+    font-size: 11px !important;
+  }
+  .skills-card-bg__snippet--glyph {
+    font-size: 22px !important;
+  }
+  .skills-card-bg__rule {
+    display: none;
+  }
+}

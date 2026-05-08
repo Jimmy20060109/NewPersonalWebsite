@@ -6,18 +6,18 @@ const translations = {
   en: {
     cardLabel: 'Current Base',
     title: 'Location',
-    city: 'Richmond Hill, ON',
+    city: 'Waterloo, ON',
     button: 'Open Map',
     closeMap: 'Close location map',
-    modalTitle: 'I live in Richmond Hill',
+    modalTitle: 'I live in Waterloo',
   },
   zh: {
     cardLabel: '当前所在地',
     title: '位置',
-    city: '安大略省列治文山',
+    city: '安大略省滑铁卢',
     button: '打开地图',
     closeMap: '关闭位置地图',
-    modalTitle: '我住在列治文山',
+    modalTitle: '我住在滑铁卢',
   },
 }
 
@@ -34,9 +34,9 @@ declare global {
 }
 
 const MAPS_SCRIPT_ID = 'google-maps-sdk'
-const MAP_COORDS = { lat: 43.9078295, lng: -79.4380962 }
+const MAP_COORDS = { lat: 43.4771523, lng: -80.5377245 }
 const EMBED_URL =
-  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5748.98004918972!2d-79.44068002360596!3d43.9078279359245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b2a77a1ddb031%3A0x6945bc4d63159682!2s55%20Falling%20River%20Dr%2C%20Richmond%20Hill%2C%20ON%20L4S%202R2!5e0!3m2!1sen!2sca!4v1771933744639!5m2!1sen!2sca'
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6039.2206541356!2d-80.53772452386053!3d43.47715226379947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882bf3f856aa2347%3A0x9b33f072ac765155!2s316%20Batavia%20Pl%2C%20Waterloo%2C%20ON%20N2L%203W2!5e1!3m2!1sen!2sca!4v1778199433325!5m2!1sen!2sca'
 
 const darkStyle = [
   { elementType: 'geometry', stylers: [{ color: '#0f1115' }] },
@@ -222,7 +222,7 @@ const LocationCard = () => {
         new window.google.maps.Marker({
           position: MAP_COORDS,
           map,
-          title: 'Richmond Hill, Ontario'
+          title: 'Waterloo, Ontario'
         })
 
         if (!authFailed) {
@@ -306,7 +306,7 @@ const LocationCard = () => {
 
             <div className="location-modal-header">
               <h3 id="location-modal-title">{t.modalTitle}</h3>
-              <p>55 Falling River Dr, Richmond Hill, ON L4S 2R2</p>
+              <p>316 Batavia Pl, Waterloo, ON N2L 3W2</p>
             </div>
 
             <div className="location-modal-map-wrap">
@@ -317,7 +317,7 @@ const LocationCard = () => {
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
               />
-              <span className="location-modal-coordinates">43.9078279, -79.4406800</span>
+              <span className="location-modal-coordinates">43.4771523, -80.5377245</span>
             </div>
           </div>
         </div>

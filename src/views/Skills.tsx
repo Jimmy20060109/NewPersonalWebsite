@@ -52,30 +52,24 @@ const translations = {
     title: 'Skills',
     languages: {
       title: 'Languages',
-      caption: 'Day-to-day programming languages.',
     },
     frameworks: {
       title: 'Frameworks & Libraries',
-      caption: 'Stacks I ship products with.',
     },
     tools: {
       title: 'Tools & Platforms',
-      caption: 'Dev tooling, infra and services.',
     },
   },
   zh: {
     title: '技能',
     languages: {
       title: '编程语言',
-      caption: '日常开发使用的语言。',
     },
     frameworks: {
       title: '框架与库',
-      caption: '构建产品时使用的技术栈。',
     },
     tools: {
       title: '工具与平台',
-      caption: '开发工具、基础设施与服务。',
     },
   },
 }
@@ -232,7 +226,6 @@ const Skills = () => {
       <div className="skills-page-content">
         <header className="skills-page-header">
           <h2 className="skills-page-title">{t.title}</h2>
-          <p className="skills-page-subtitle">{t.subtitle}</p>
         </header>
 
         <div className="skill-domain-grid">
@@ -257,13 +250,7 @@ const Skills = () => {
                     </span>
                     <div className="skill-domain-meta">
                       <h3 className="skill-domain-title">{localized.title}</h3>
-                      <p className="skill-domain-caption">
-                        {localized.caption}
-                      </p>
                     </div>
-                    <span className="skill-domain-count" aria-hidden="true">
-                      {String(domain.items.length).padStart(2, '0')}
-                    </span>
                   </header>
 
                   <hr className="skill-domain-divider" aria-hidden="true" />
