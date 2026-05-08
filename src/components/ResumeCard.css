@@ -26,6 +26,12 @@
   overflow: hidden;
   height: 100%;
   min-height: 250px;
+  /* Force own compositing layer so iOS Safari reliably clips the
+     blurred ::before background to the rounded corners. */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  isolation: isolate;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
 :root[data-theme='dark'] .resume-card {
@@ -55,7 +61,7 @@
 }
 
 .resume-card:hover {
-  transform: translateY(-4px);
+  transform: translate3d(0, -4px, 0);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 

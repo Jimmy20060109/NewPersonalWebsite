@@ -36,7 +36,7 @@ declare global {
 const MAPS_SCRIPT_ID = 'google-maps-sdk'
 const MAP_COORDS = { lat: 43.4771523, lng: -80.5377245 }
 const EMBED_URL =
-  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6039.2206541356!2d-80.53772452386053!3d43.47715226379947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882bf3f856aa2347%3A0x9b33f072ac765155!2s316%20Batavia%20Pl%2C%20Waterloo%2C%20ON%20N2L%203W2!5e1!3m2!1sen!2sca!4v1778199433325!5m2!1sen!2sca'
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6039.2206541356!2d-80.53772452386053!3d43.47715226379947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882bf3f856aa2347%3A0x9b33f072ac765155!2s316%20Batavia%20Pl%2C%20Waterloo%2C%20ON%20N2L%203W2!5e0!3m2!1sen!2sca!4v1778199433325!5m2!1sen!2sca'
 
 const darkStyle = [
   { elementType: 'geometry', stylers: [{ color: '#0f1115' }] },
