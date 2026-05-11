@@ -252,7 +252,8 @@ const Photography = () => {
               <img
                 src={image.src}
                 alt={image.alt}
-                loading="lazy"
+                decoding="async"
+                fetchPriority="low"
                 onLoad={(event) => handleImageLoad(image.id, event)}
               />
             </button>
@@ -276,7 +277,7 @@ const Photography = () => {
             >
               ×
             </button>
-            <img src={selectedImage.src} alt={selectedImage.alt} />
+            <img decoding="async" fetchPriority="low" src={selectedImage.src} alt={selectedImage.alt} />
           </div>
         </div>
       )}
