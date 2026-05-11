@@ -20,12 +20,20 @@ const translations = {
 
 const homepageImageModules = import.meta.glob(
   '../images/travel/homepage/*.{jpg,JPG,jpeg,JPEG,png,PNG,webp,WEBP}',
-  { eager: true, import: 'default' },
+  {
+    eager: true,
+    import: 'default',
+    query: { w: '1600', format: 'webp', quality: '80' },
+  },
 ) as Record<string, string>
 
 const travelImageModules = import.meta.glob(
   '../images/travel/*.{jpg,JPG,jpeg,JPEG,png,PNG,webp,WEBP}',
-  { eager: true, import: 'default' },
+  {
+    eager: true,
+    import: 'default',
+    query: { w: '1600', format: 'webp', quality: '80' },
+  },
 ) as Record<string, string>
 
 const travelImageUrls = Object.values(homepageImageModules).length

@@ -20,9 +20,23 @@ const translations = {
   },
 }
 
-const imageModules = import.meta.glob('../images/travel/*.{jpg,JPG,jpeg,JPEG,png,PNG,webp,WEBP}', {
-  eager: true,
-}) as Record<string, { default: string }>
+const thumbModules = import.meta.glob(
+  '../images/travel/*.{jpg,JPG,jpeg,JPEG,png,PNG,webp,WEBP}',
+  {
+    eager: true,
+    query: { w: '900', format: 'webp', quality: '75' },
+    import: 'default',
+  },
+) as Record<string, string>
+
+const fullModules = import.meta.glob(
+  '../images/travel/*.{jpg,JPG,jpeg,JPEG,png,PNG,webp,WEBP}',
+  {
+    eager: true,
+    query: { w: '1920', format: 'webp', quality: '85' },
+    import: 'default',
+  },
+) as Record<string, string>
 
 function shuffleArray<T>(array: T[]) {
   const result = [...array]
@@ -33,11 +47,12 @@ function shuffleArray<T>(array: T[]) {
   }
   return result
 }
+
 const initialTravelImages = shuffleArray(
-  Object.entries(imageModules)
-  .map(([path, module]) => ({
+  Object.keys(thumbModules).map((path) => ({
     id: path,
-    src: module.default,
+    thumbSrc: thumbModules[path],
+    fullSrc: fullModules[path],
     alt: `${path.split('/').pop()?.replace(/\.[^.]+$/, '') || 'travel'} photo`,
   })),
 )
@@ -250,10 +265,11 @@ const Photography = () => {
               aria-label={`${t.openPhoto}: ${image.alt}`}
             >
               <img
-                src={image.src}
+                src={image.thumbSrc}
                 alt={image.alt}
                 decoding="async"
                 fetchPriority="low"
+                loading="lazy"
                 onLoad={(event) => handleImageLoad(image.id, event)}
               />
             </button>
@@ -277,7 +293,7 @@ const Photography = () => {
             >
               ×
             </button>
-            <img decoding="async" fetchPriority="low" src={selectedImage.src} alt={selectedImage.alt} />
+            <img decoding="async" fetchPriority="high" src={selectedImage.fullSrc} alt={selectedImage.alt} />
           </div>
         </div>
       )}
