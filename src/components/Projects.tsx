@@ -24,10 +24,85 @@ interface Project {
   liveUrl?: string
   codeUrl?: string
   accent: string
-  preview: 'simon' | 'keeper'
+  preview: 'fountain' | 'voluntrack' | 'portfolio' | 'simon' | 'keeper'
 }
 
 const projects: Project[] = [
+  {
+    title: 'Fountain Health App',
+    period: 'Feb 2026 - Present',
+    description: [
+      'Built a cross-platform healthcare app for Waterloo and Kitchener clinics, enabling patients to view real-time wait times and join online queues.',
+      'Developed 10+ responsive Flutter screens and reusable UI components with light/dark theme support across iOS and Android devices.',
+      'Built an offline-accessible shared patient profile feature so users can save medical information once and reuse it without network access.',
+    ],
+    technologies: [
+      'Flutter',
+      'Dart',
+      '.NET',
+      'NestJS',
+      'Supabase',
+      'PostgreSQL',
+      'Cloudflare',
+      'Postman',
+      'REST APIs',
+    ],
+    liveUrl: 'https://fountainhealth.ca/',
+    codeUrl: 'https://github.com/FountainHealthTechnologiesInc',
+    accent: 'linear-gradient(135deg, #dbeafe 0%, #ccfbf1 100%)',
+    preview: 'fountain',
+  },
+  {
+    title: 'VolunTrack Web & Mobile App',
+    period: 'Feb 2024 - Aug 2025',
+    description: [
+      'Designed and developed web and mobile pages using React and React Native for a non-profit volunteer platform.',
+      'Built and maintained a PostgreSQL-backed volunteer opportunity database with searchable listings that reduced search time to under 2 seconds.',
+      'Implemented API and automated testing with Postman, Python unit tests, and Jest to validate core user flows and catch 15+ bugs pre-release.',
+    ],
+    technologies: [
+      'React',
+      'React Native',
+      'TypeScript',
+      'JavaScript',
+      'Python',
+      'Node.js',
+      'Express.js',
+      'PostgreSQL',
+      'Jest',
+      'Postman',
+    ],
+    liveUrl: 'https://voluntracks.com/',
+    codeUrl: 'https://github.com/VolunTrack',
+    accent: 'linear-gradient(135deg, #dcfce7 0%, #e0e7ff 100%)',
+    preview: 'voluntrack',
+  },
+  {
+    title: 'Personal Website',
+    period: 'Feb 2026 - Present',
+    description: [
+      'Deployed and maintained a responsive portfolio website on Vercel using React, Vite, and Next.js with reusable components and route-based navigation.',
+      'Built a custom grid-based drag-and-drop system with Interact.js for rearranging homepage components and photography page images.',
+      'Implemented an Express.js RAG API using OpenAI API and vector embeddings, including ask, health, and reindex endpoints.',
+      'Improved performance for 300+ WebP images with lazy loading, thumbnails, async loading, and fetchPriority.',
+    ],
+    technologies: [
+      'React',
+      'Vite',
+      'Next.js',
+      'Vercel',
+      'Express.js',
+      'OpenAI API',
+      'RAG',
+      'Interact.js',
+      'Google Maps API',
+      'WebP',
+    ],
+    liveUrl: 'https://www.jinjuezheng.com/',
+    codeUrl: 'https://github.com/Jimmy20060109/NewPersonalWebsite',
+    accent: 'linear-gradient(135deg, #e0f2fe 0%, #f5d0fe 100%)',
+    preview: 'portfolio',
+  },
   {
     title: "Simon's Game",
     period: 'Oct 2024 - Dec 2024',
@@ -161,7 +236,134 @@ const KeeperPreview = () => (
   </div>
 )
 
+const FountainPreview = () => (
+  <div className="project-preview-frame project-preview-fountain">
+    <div className="project-preview-chrome">
+      <span />
+      <span />
+      <span />
+    </div>
+    <div className="project-preview-body">
+      <div className="fountain-phone">
+        <div className="fountain-status" />
+        <div className="fountain-topbar">
+          <span className="fountain-logo">FH</span>
+          <span className="fountain-avatar" />
+        </div>
+        <div className="fountain-card">
+          <span className="fountain-pill">Wait time</span>
+          <strong>12 min</strong>
+          <span className="fountain-clinic">Waterloo clinic</span>
+        </div>
+        <div className="fountain-clinics">
+          <div className="fountain-clinic-row fountain-clinic-row-active">
+            <span />
+            <strong>Open</strong>
+          </div>
+          <div className="fountain-clinic-row">
+            <span />
+            <strong>18 min</strong>
+          </div>
+        </div>
+        <div className="fountain-action">Join queue</div>
+      </div>
+      <div className="fountain-side-card">
+        <span>Live queue</span>
+        <strong>4</strong>
+        <div className="fountain-mini-chart">
+          <i />
+          <i />
+          <i />
+          <i />
+        </div>
+      </div>
+    </div>
+  </div>
+)
+
+const VolunTrackPreview = () => (
+  <div className="project-preview-frame project-preview-voluntrack">
+    <div className="project-preview-chrome">
+      <span />
+      <span />
+      <span />
+    </div>
+    <div className="project-preview-body">
+      <div className="voluntrack-dashboard">
+        <div className="voluntrack-nav">
+          <span className="voluntrack-brand" />
+          <span />
+          <span />
+        </div>
+        <div className="voluntrack-search">
+          <span>Search opportunities</span>
+        </div>
+        <div className="voluntrack-list">
+          <div className="voluntrack-row voluntrack-row-active">
+            <span className="voluntrack-badge">STEM</span>
+            <strong>Food bank shift</strong>
+            <em>1.2 km</em>
+          </div>
+          <div className="voluntrack-row">
+            <span className="voluntrack-badge">Youth</span>
+            <strong>Library helper</strong>
+            <em>2.8 km</em>
+          </div>
+          <div className="voluntrack-row">
+            <span className="voluntrack-badge">Care</span>
+            <strong>Clinic desk</strong>
+            <em>4.1 km</em>
+          </div>
+        </div>
+      </div>
+      <div className="voluntrack-phone">
+        <span className="voluntrack-phone-bar" />
+        <span className="voluntrack-phone-card" />
+        <span className="voluntrack-phone-card voluntrack-phone-card-active" />
+        <span className="voluntrack-phone-card" />
+      </div>
+    </div>
+  </div>
+)
+
+const PortfolioPreview = () => (
+  <div className="project-preview-frame project-preview-portfolio">
+    <div className="project-preview-chrome">
+      <span />
+      <span />
+      <span />
+    </div>
+    <div className="project-preview-body">
+      <div className="portfolio-shell">
+        <div className="portfolio-nav">
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className="portfolio-grid">
+          <div className="portfolio-tile portfolio-tile-wide">
+            <span />
+            <strong>Jimmy Zheng</strong>
+          </div>
+          <div className="portfolio-tile portfolio-tile-photo" />
+          <div className="portfolio-tile portfolio-tile-tall" />
+          <div className="portfolio-tile" />
+          <div className="portfolio-tile portfolio-tile-map" />
+        </div>
+      </div>
+      <div className="portfolio-chat">
+        <strong>AI</strong>
+        <span />
+        <span />
+      </div>
+    </div>
+  </div>
+)
+
 const renderPreview = (kind: Project['preview']) => {
+  if (kind === 'fountain') return <FountainPreview />
+  if (kind === 'voluntrack') return <VolunTrackPreview />
+  if (kind === 'portfolio') return <PortfolioPreview />
   if (kind === 'simon') return <SimonPreview />
   if (kind === 'keeper') return <KeeperPreview />
   return null
@@ -173,6 +375,40 @@ const Projects = () => {
 
   const localizedProjects = projects.map((project) => {
     if (language !== 'zh') return project
+    if (project.title === 'Fountain Health App') {
+      return {
+        ...project,
+        period: '2026 年 2 月 - 至今',
+        description: [
+          '为 Waterloo 和 Kitchener 诊所构建跨平台医疗应用，支持患者查看实时等待时间并加入线上队列。',
+          '开发 10+ 个响应式 Flutter 页面和可复用 UI 组件，支持 iOS 与 Android 的浅色/深色主题。',
+          '构建离线可访问的共享患者资料功能，让用户一次保存医疗信息并在无网络时复用。',
+        ],
+      }
+    }
+    if (project.title === 'VolunTrack Web & Mobile App') {
+      return {
+        ...project,
+        period: '2024 年 2 月 - 2025 年 8 月',
+        description: [
+          '使用 React 和 React Native 为非营利志愿者平台设计并开发 Web 与移动端页面。',
+          '构建并维护基于 PostgreSQL 的志愿机会数据库，提供可搜索列表，将搜索时间缩短到 2 秒以内。',
+          '使用 Postman、Python 单元测试和 Jest 实现 API 与自动化测试，验证核心流程并在发布前发现 15+ 个问题。',
+        ],
+      }
+    }
+    if (project.title === 'Personal Website') {
+      return {
+        ...project,
+        period: '2026 年 2 月 - 至今',
+        description: [
+          '使用 React、Vite 和 Next.js 在 Vercel 上部署并维护响应式个人作品集网站，包含可复用组件和基于路由的页面导航。',
+          '使用 Interact.js 构建自定义网格拖拽系统，支持首页组件和摄影页面图片的交互式重排。',
+          '使用 OpenAI API 和向量嵌入实现 Express.js RAG API，包含 ask、health 和 reindex 等接口。',
+          '通过懒加载、缩略图、异步加载和 fetchPriority 优化 300+ 张 WebP 图片的移动端和桌面端性能。',
+        ],
+      }
+    }
     if (project.title === "Simon's Game") {
       return {
         ...project,

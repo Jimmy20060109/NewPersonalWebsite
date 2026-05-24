@@ -118,12 +118,12 @@
 
   .home-container > .home-slot[data-slot-index="0"] {
     --home-card-col-span: 8;
-    min-height: 280px;
+    min-height: 360px;
   }
 
   .home-container > .home-slot[data-slot-index="1"] {
     --home-card-col-span: 4;
-    min-height: 280px;
+    min-height: 360px;
   }
 
   .home-container > .home-slot[data-slot-index="2"] {
@@ -150,11 +150,12 @@
   .home-container > .home-slot[data-slot-index="6"],
   .home-container > .home-slot[data-slot-index="7"] {
     --home-card-col-span: 3;
-    min-height: 320px;
+    min-height: 360px;
   }
 
   /* Make sure cards stretch to fill their slot regardless of natural ratio. */
   .home-slot > .photography-card,
+  .home-slot > .project-card-home,
   .home-slot > .location-card,
   .home-slot > .education-card,
   .home-slot > .skills-card,
@@ -179,8 +180,8 @@
   }
 
   .home-slot > .resume-card {
-    height: clamp(230px, 38vh, 300px);
-    min-height: clamp(230px, 38vh, 300px);
+    height: clamp(260px, 38vh, 300px);
+    min-height: clamp(260px, 38vh, 300px);
   }
 
   .home-slot > .introduction-card {
@@ -189,9 +190,19 @@
   }
 
   .home-slot > .location-card,
+  .home-slot > .project-card-home,
   .home-slot > .education-card,
   .home-slot > .skills-card {
     aspect-ratio: auto;
+    min-height: 260px;
+  }
+  .home-slot > .chatbox-card {
+    height: clamp(300px, 42vh, 400px);
+    min-height: clamp(300px, 42vh, 400px);
+  }
+  .home-slot > .photography-card {
+    aspect-ratio: auto;
+    height: auto;
     min-height: 260px;
   }
 }

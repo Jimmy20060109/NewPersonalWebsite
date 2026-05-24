@@ -25,10 +25,10 @@ const DEFAULT_ORDER: CardId[] = [
   'resume',
   'photography',
   'project',
-  'chatbox',
   'location',
   'education',
   'skills',
+  'chatbox',
 ]
 
 const STORAGE_KEY = 'home-card-order'
